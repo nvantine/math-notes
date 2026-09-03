@@ -28,6 +28,9 @@ book:
 
 bibliography: references.bib
 
+filters:
+  - math-notes-toggle
+
 format:
   html:
     theme:

@@ -20,12 +20,22 @@ body {
   color: var(--notes-accent);
 }
 
-.lean-paired .panel-tabset {
+.lean-paired .math-notes-tabset {
   margin-top: 0.65rem;
+}
+
+.math-notes-tabset .tab-content {
+  padding: 1rem 0.15rem 0.25rem;
+}
+
+.math-notes-tabset .nav-link {
+  font-weight: 600;
 }
 
 .lean-paired pre {
   max-height: 32rem;
+  overflow-x: auto;
+  padding-right: 3rem;
 }
 
 .lean-source-link {

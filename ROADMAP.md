@@ -3,8 +3,8 @@
 ## Pilot
 
 - [x] Quarto book structure for project-wide mathematical cross-references
-- [ ] Reusable Notes / Lean 4 toggle
-- [ ] Marker-based Lean snippet synchronization
+- [x] Reusable Notes / Lean 4 toggle
+- [x] Marker-based Lean snippet synchronization
 - [ ] GitHub Pages deployment
 
 ## After pilot approval
