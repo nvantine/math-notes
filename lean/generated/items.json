@@ -1,26 +1,29 @@
 {
   "def-relation": {
     "end_line": 7,
+    "highlighted_snippet": "lean/generated/def-relation.html",
     "language": "lean",
     "snippet": "lean/generated/def-relation.lean",
     "source_file": "lean/source/Pilot.lean",
-    "source_url": "https://github.com/nvantine/math-notes/blob/b9dc146062b71e905e550bcf9f06c8ab5caaf9e3/lean/source/Pilot.lean#L6-L7",
+    "source_url": "https://github.com/nvantine/math-notes/blob/2e2f5e23388e08473a32a456bbe00b7c20fb7df4/lean/source/Pilot.lean#L6-L7",
     "start_line": 6
   },
   "exr-de-morgan-union": {
     "end_line": 15,
+    "highlighted_snippet": "lean/generated/exr-de-morgan-union.html",
     "language": "lean",
     "snippet": "lean/generated/exr-de-morgan-union.lean",
     "source_file": "lean/source/Pilot.lean",
-    "source_url": "https://github.com/nvantine/math-notes/blob/b9dc146062b71e905e550bcf9f06c8ab5caaf9e3/lean/source/Pilot.lean#L11-L15",
+    "source_url": "https://github.com/nvantine/math-notes/blob/2e2f5e23388e08473a32a456bbe00b7c20fb7df4/lean/source/Pilot.lean#L11-L15",
     "start_line": 11
   },
   "exr-double-negation": {
     "end_line": 21,
+    "highlighted_snippet": "lean/generated/exr-double-negation.html",
     "language": "lean",
     "snippet": "lean/generated/exr-double-negation.lean",
     "source_file": "lean/source/Pilot.lean",
-    "source_url": "https://github.com/nvantine/math-notes/blob/b9dc146062b71e905e550bcf9f06c8ab5caaf9e3/lean/source/Pilot.lean#L19-L21",
+    "source_url": "https://github.com/nvantine/math-notes/blob/2e2f5e23388e08473a32a456bbe00b7c20fb7df4/lean/source/Pilot.lean#L19-L21",
     "start_line": 19
   }
 }

@@ -36,10 +36,9 @@ format:
     theme:
       light:
         - lumen
-        - styles.scss
       dark:
         - darkly
-        - styles.scss
+    css: styles.css
     toc: true
     number-sections: true
     code-copy: true

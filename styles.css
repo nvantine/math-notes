@@ -1,5 +1,4 @@
 /*-- scss:rules --*/
-
 :root {
   --notes-accent: #2f6f8f;
   --notes-definition-bg: color-mix(in srgb, var(--notes-accent) 7%, transparent);

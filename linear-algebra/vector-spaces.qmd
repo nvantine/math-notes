@@ -5,7 +5,8 @@ title: "Vector Spaces"
 ::: {#exr-double-negation name="Double additive inverse" .lean-paired lean-id="exr-double-negation"}
 Prove that $-(-v)=v$ for every $v\in V$.
 
-#### Solution
+::: {.callout-tip collapse="true"}
+## Solution
 
 Let $v\in V$. By definition, $-v$ is an additive inverse of $v$, so
 
@@ -20,6 +21,7 @@ $$
 $$
 
 Because additive inverses are unique, $-(-v)=v$.
+:::
 :::
 
 The statement of @exr-double-negation only uses the additive-group structure; no scalar multiplication is needed.

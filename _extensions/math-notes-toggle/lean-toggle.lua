@@ -26,6 +26,10 @@ local function read_file(path)
   return content
 end
 
+local function html_escape(value)
+  return value:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
+end
+
 local function load_metadata()
   if metadata == nil then
     local path = project_path("lean/generated/items.json")
@@ -67,16 +71,13 @@ local function lean_toggle(div)
     error("math-notes-toggle: no generated Lean item for " .. lean_id)
   end
 
-  local snippet = read_file(project_path(item.snippet))
-  local code = pandoc.CodeBlock(
-    snippet,
-    pandoc.Attr(
-      "",
-      { "sourceCode", "lean" },
-      {
-        { "filename", item.source_file },
-        { "code-copy", "false" },
-      }
+  local highlighted_snippet = read_file(project_path(item.highlighted_snippet))
+  local code = pandoc.RawBlock(
+    "html",
+    string.format(
+      [[<div class="code-copy-outer-scaffold lean-code-scaffold"><pre class="lean4" data-filename="%s"><code>%s</code></pre><button type="button" title="Copy to Clipboard" aria-label="Copy Lean code" class="code-copy-button"><i class="bi bi-clipboard"></i><span class="visually-hidden">Copy Lean code</span></button></div>]],
+      html_escape(item.source_file),
+      highlighted_snippet
     )
   )
   local source_link = pandoc.Link(
