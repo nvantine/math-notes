@@ -5,7 +5,7 @@
 - [x] Quarto book structure for project-wide mathematical cross-references
 - [x] Reusable Notes / Lean 4 toggle
 - [x] Marker-based Lean snippet synchronization
-- [ ] GitHub Pages deployment
+- [x] GitHub Pages deployment
 
 ## After pilot approval
 
