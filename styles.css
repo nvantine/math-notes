@@ -85,15 +85,21 @@ body {
 
 .lean-code-scaffold .code-copy-button {
   align-self: flex-end;
+  align-items: center;
   background: transparent;
   border: 1px solid var(--bs-border-color);
   border-radius: 0.2rem;
   color: var(--bs-secondary-color);
-  font-size: 0.75rem;
-  margin-bottom: 0.3rem;
+  display: inline-flex;
+  font-size: 0.68rem;
+  height: 1.3rem;
+  justify-content: center;
+  line-height: 1;
+  margin-bottom: 0.2rem;
   order: -1;
-  padding: 0.15rem 0.35rem;
+  padding: 0;
   position: static !important;
+  width: 1.3rem;
 }
 
 .lean-code-scaffold .code-copy-button:hover,
@@ -115,6 +121,8 @@ body {
   display: block;
   font-size: 0.9rem;
   line-height: 1.55;
+  overflow-wrap: inherit;
+  white-space: inherit;
 }
 
 .lean-code .c1,
