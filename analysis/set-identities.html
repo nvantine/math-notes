@@ -50,9 +50,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4dba0c84348dae533db8b5e960f17ac4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-04c566cee02cb9f70cb404523c549063.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4dba0c84348dae533db8b5e960f17ac4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,6 +112,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -427,8 +428,18 @@ window.Quarto = {
 =
 \bigcap_{i=1}^{\infty} A_i^c.
 \]</span></p>
-<section id="solution" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="solution">Solution</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>We show equality by a chain of biconditionals. For arbitrary <span class="math inline">\(x\)</span>,</p>
 <p><span class="math display">\[\begin{align*}
 x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
@@ -437,18 +448,20 @@ x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
 &amp;\iff x \in A_i^c \text{ for every } i\in\mathbb N \\
 &amp;\iff x \in \bigcap_{i=1}^{\infty} A_i^c.
 \end{align*}\]</span></p>
-</section>
+</div>
+</div>
+</div>
 </div>
 <div id="exr-de-morgan-union-lean-panel" class="tab-pane fade" role="tabpanel" aria-labelledby="exr-de-morgan-union-lean-tab" tabindex="0">
-<div class="code-copy-outer-scaffold"><div class="lean-code">
-<pre class="sourceCode lean code-with-copy" data-filename="lean/source/Pilot.lean" data-code-copy="false"><code>/-- The complement of a union is the intersection of the complements. -/
-theorem compl_iUnion {α ι : Type*} (A : ι → Set α) :
-    (⋃ i, A i)ᶜ = ⋂ i, (A i)ᶜ := by
-  ext x
-  simp
-</code></pre>
-</div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><a href="https://github.com/nvantine/math-notes/blob/b9dc146062b71e905e550bcf9f06c8ab5caaf9e3/lean/source/Pilot.lean#L11-L15" class="lean-source-link">View exact source on GitHub</a></p>
+<div class="lean-code">
+<div class="code-copy-outer-scaffold lean-code-scaffold"><pre class="lean4" data-filename="lean/source/Pilot.lean"><code><span class="sd">/-- The complement of a union is the intersection of the complements. -/</span>
+<span class="kn">theorem</span><span class="w"> </span><span class="n">compl_iUnion</span><span class="w"> </span><span class="o">{</span><span class="n">α</span><span class="w"> </span><span class="n">ι</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ι</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="n">α</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
+<span class="w">    </span><span class="o">(</span><span class="bp">⋃</span><span class="w"> </span><span class="n">i</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="bp">ᶜ</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="bp">⋂</span><span class="w"> </span><span class="n">i</span><span class="o">,</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="bp">ᶜ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">by</span>
+<span class="w">  </span><span class="n">ext</span><span class="w"> </span><span class="n">x</span>
+<span class="w">  </span><span class="n">simp</span>
+</code></pre><button type="button" title="Copy to Clipboard" aria-label="Copy Lean code" class="code-copy-button"><i class="bi bi-clipboard"></i><span class="visually-hidden">Copy Lean code</span></button></div>
+</div>
+<p><a href="https://github.com/nvantine/math-notes/blob/2e2f5e23388e08473a32a456bbe00b7c20fb7df4/lean/source/Pilot.lean#L11-L15" class="lean-source-link">View exact source on GitHub</a></p>
 </div>
 </div>
 </div>
