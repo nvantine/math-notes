@@ -1,0 +1,27 @@
+---
+title: "Math Notes"
+number-sections: false
+---
+
+Welcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.
+
+## Pilot
+
+The pilot converts three real items from my existing LaTeX notes:
+
+- @def-relation from the foundations notes;
+- @exr-de-morgan-union from advanced calculus; and
+- @exr-double-negation from linear algebra.
+
+Each item has a **Notes / Lean 4** view. The Lean source in this pilot lives in this repository so the presentation and synchronization workflow can be tested before a standalone Lean project exists.
+
+::: {.callout-note .pilot-note}
+## Pilot scope
+
+This is intentionally a small sample. The rest of `notes-and-exercises` will not be migrated until the structure and toggle design are approved.
+:::
+
+## Sources
+
+- [Original LaTeX notes](https://github.com/nvantine/notes-and-exercises)
+- [Website source](https://github.com/nvantine/math-notes)

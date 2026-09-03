@@ -1,0 +1,47 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "Math Notes"
+  author: "Nicholas Vantine"
+  description: "Definitions, theorems, exercises, and formalizations in Lean 4."
+  site-url: "https://nvantine.github.io/math-notes/"
+  repo-url: "https://github.com/nvantine/math-notes"
+  repo-actions: [edit, issue]
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - part: "Foundations"
+      chapters:
+        - foundations/relations.qmd
+    - part: "Analysis"
+      chapters:
+        - analysis/set-identities.qmd
+    - part: "Linear Algebra"
+      chapters:
+        - linear-algebra/vector-spaces.qmd
+  sidebar:
+    style: floating
+    collapse-level: 2
+    pinned: false
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light:
+        - lumen
+        - styles.scss
+      dark:
+        - darkly
+        - styles.scss
+    toc: true
+    number-sections: true
+    code-copy: true
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

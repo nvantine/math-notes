@@ -1,0 +1,27 @@
+---
+title: "Set Identities"
+---
+
+::: {#exr-de-morgan-union name="De Morgan's law for unions"}
+For a sequence of sets $(A_i)_{i=1}^{\infty}$, show that
+
+$$
+\left(\bigcup_{i=1}^{\infty} A_i\right)^c
+=
+\bigcap_{i=1}^{\infty} A_i^c.
+$$
+
+#### Solution
+
+We show equality by a chain of biconditionals. For arbitrary $x$,
+
+\begin{align*}
+x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
+&\iff x \notin \bigcup_{i=1}^{\infty} A_i \\
+&\iff x \notin A_i \text{ for every } i\in\mathbb N \\
+&\iff x \in A_i^c \text{ for every } i\in\mathbb N \\
+&\iff x \in \bigcap_{i=1}^{\infty} A_i^c.
+\end{align*}
+:::
+
+This elementwise proof is the handwritten-side counterpart of the extensional Lean proof shown with @exr-de-morgan-union.

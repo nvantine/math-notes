@@ -1,0 +1,38 @@
+/*-- scss:rules --*/
+
+:root {
+  --notes-accent: #2f6f8f;
+}
+
+body {
+  line-height: 1.65;
+}
+
+.theorem {
+  border-left: 0.24rem solid var(--notes-accent);
+  border-radius: 0.2rem;
+  padding: 0.85rem 1rem 0.3rem;
+  margin: 1.4rem 0;
+  background: color-mix(in srgb, var(--notes-accent) 7%, transparent);
+}
+
+.theorem-title {
+  color: var(--notes-accent);
+}
+
+.lean-paired .panel-tabset {
+  margin-top: 0.65rem;
+}
+
+.lean-paired pre {
+  max-height: 32rem;
+}
+
+.lean-source-link {
+  margin-top: -0.4rem;
+  font-size: 0.9rem;
+}
+
+.pilot-note {
+  border-left-color: #7b61a8;
+}

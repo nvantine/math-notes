@@ -1,0 +1,9 @@
+_site/
+.quarto/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+/.quarto/
+**/*.quarto_ipynb

@@ -1,0 +1,25 @@
+---
+title: "Vector Spaces"
+---
+
+::: {#exr-double-negation name="Double additive inverse"}
+Prove that $-(-v)=v$ for every $v\in V$.
+
+#### Solution
+
+Let $v\in V$. By definition, $-v$ is an additive inverse of $v$, so
+
+$$
+v+(-v)=0.
+$$
+
+Commutativity gives $(-v)+v=0$. But $-(-v)$ is also defined by
+
+$$
+(-v)+(-(-v))=0.
+$$
+
+Because additive inverses are unique, $-(-v)=v$.
+:::
+
+The statement of @exr-double-negation only uses the additive-group structure; no scalar multiplication is needed.

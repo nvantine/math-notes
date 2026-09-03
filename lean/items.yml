@@ -1,0 +1,10 @@
+items:
+  def-relation:
+    source: lean/source/Pilot.lean
+    repository: nvantine/math-notes
+  exr-de-morgan-union:
+    source: lean/source/Pilot.lean
+    repository: nvantine/math-notes
+  exr-double-negation:
+    source: lean/source/Pilot.lean
+    repository: nvantine/math-notes

@@ -1,0 +1,13 @@
+---
+title: "Relations"
+---
+
+A relation records which ordered pairs from two sets are related.
+
+::: {#def-relation name="Relation"}
+Let $X$ and $Y$ be sets. A *relation* over $X \times Y$ is a subset $R \subseteq X \times Y$.
+
+If $Y=X$, the relation is called *homogeneous*. When $(x,y)\in R$, we say that $x$ is related to $y$ and write $xRy$.
+:::
+
+The definition in @def-relation treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.
