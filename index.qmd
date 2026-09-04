@@ -15,6 +15,7 @@ This site collects mathematical definitions, examples, exercises, and proofs in 
 ## Analysis
 
 - @exr-de-morgan-union proves De Morgan's law for a countable union, adapted from @Abbott2015.
+- [Continuous Everywhere, Nowhere Differentiable](analysis/continuous-nowhere-differentiable.qmd) develops the Weierstrass function from the definitions of continuity and differentiability through the nowhere-differentiability proof.
 
 ## Linear Algebra
 
@@ -37,4 +38,5 @@ All populated sections from the original LaTeX notes are included. Lean presenta
 ## Sources
 
 - [Original LaTeX notes](https://github.com/nvantine/notes-and-exercises)
+- [Continuous-everywhere, nowhere-differentiable paper](https://github.com/nvantine/Continuous-Everywhere-Nowhere-Differentiable-Function-Paper)
 - [Website source](https://github.com/nvantine/math-notes)

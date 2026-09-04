@@ -1,0 +1,360 @@
+---
+title: "Continuous Everywhere, Nowhere Differentiable"
+subtitle: "The Weierstrass function"
+author: "Nicholas Vantine"
+date: "2025-03-20"
+date-format: "[Spring] YYYY"
+---
+
+This chapter adapts the paper at [source revision `612ce5f`](https://github.com/nvantine/Continuous-Everywhere-Nowhere-Differentiable-Function-Paper/tree/612ce5ff672ae637570f975a9d285a0e71681019). It follows the paper's historical motivation while tightening the main construction and proof.
+
+## Introduction {#introduction}
+
+In the nineteenth century, continuity was often associated with geometric smoothness. Karl Weierstrass overturned that intuition by constructing a function that is continuous at every real number and differentiable at none [@wiki-Weierstrass-function; @wiki-Karl-Weierstrass].
+
+A classical form of his function is
+
+$$
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x),
+$$
+
+where
+
+$$
+0<a<1,\qquad b>1\text{ is an odd integer},
+\qquad ab>1+\frac{3\pi}{2}.
+$$
+
+The factor $\pi$ is only a scaling convention: replacing $x$ by $x/\pi$ gives the version $\sum a^n\cos(b^n x)$ used in the original paper. The series is built from smooth cosine waves whose amplitudes decay while their frequencies grow. The result converges to a continuous curve but retains oscillations at every scale [@SteinShakarchi2003].
+
+## Background {#background}
+
+::: {#def-continuity-epsilon name="Continuity" .definition}
+Let $f:S\to\mathbb R$ and let $c\in S$. The function $f$ is *continuous at $c$* if, for every $\varepsilon>0$, there exists $\delta>0$ such that
+
+$$
+x\in S\text{ and }|x-c|<\delta
+\quad\Longrightarrow\quad
+|f(x)-f(c)|<\varepsilon.
+$$
+
+This is the usual $\varepsilon$--$\delta$ definition [@Abbott2015].
+:::
+
+::: {#def-continuity-sequential name="Sequential continuity" .definition}
+Let $f:S\to\mathbb R$ and let $c\in S$. The function $f$ is continuous at $c$ if every sequence $(x_n)$ in $S$ satisfying $x_n\to c$ also satisfies $f(x_n)\to f(c)$ [@ClassNotes].
+:::
+
+::: {#def-differentiability name="Differentiability" .definition}
+Let $g:S\to\mathbb R$ be defined on an interval $S$, and let $c\in S$. The derivative of $g$ at $c$ is
+
+$$
+g'(c)=\lim_{x\to c}\frac{g(x)-g(c)}{x-c},
+$$
+
+provided this limit exists. In that case, $g$ is *differentiable at $c$* [@Abbott2015].
+:::
+
+::: {#thm-differentiable-implies-continuous name="Differentiability implies continuity" .theorem}
+If $g:S\to\mathbb R$ is differentiable at $c\in S$, then $g$ is continuous at $c$.
+:::
+
+::: {.proof}
+Because the difference quotient tends to $g'(c)$,
+
+$$
+\lim_{x\to c}\bigl(g(x)-g(c)\bigr)
+=
+\lim_{x\to c}
+\left(\frac{g(x)-g(c)}{x-c}\right)(x-c)
+=g'(c)\cdot0=0.
+$$
+
+Therefore $\lim_{x\to c}g(x)=g(c)$ [@Abbott2015].
+:::
+
+The converse fails even for familiar functions.
+
+::: {#exm-absolute-value-cusp name="The absolute-value cusp" .example}
+The function $f(x)=|x|$ is continuous at $0$, but
+
+$$
+\lim_{x\to0^-}\frac{|x|}{x}=-1
+\qquad\text{and}\qquad
+\lim_{x\to0^+}\frac{|x|}{x}=1.
+$$
+
+Thus $f'(0)$ does not exist [@Abbott2015].
+:::
+
+This example has only one corner. Weierstrass's construction is more striking because it has no differentiable point at all.
+
+## Construction {#construction}
+
+We need three elementary estimates.
+
+::: {#lem-cosine-lipschitz name="Cosine is Lipschitz" .lemma}
+For all $x,y\in\mathbb R$,
+
+$$
+|\cos x-\cos y|\le |x-y|.
+$$
+:::
+
+::: {.proof}
+The mean value theorem gives $\cos x-\cos y=-\sin(\xi)(x-y)$ for some $\xi$ between $x$ and $y$. Since $|\sin\xi|\le1$, the claim follows.
+:::
+
+::: {#lem-cosine-oscillation name="A nearby cosine oscillation" .lemma}
+For every $c\in\mathbb R$ and every positive integer $k$, there exists
+
+$$
+y\in\left(c+\frac{\pi}{k},c+\frac{3\pi}{k}\right)
+$$
+
+such that
+
+$$
+|\cos(kc)-\cos(ky)|\ge1.
+$$
+:::
+
+::: {.proof}
+As $y$ traverses this interval, $ky$ traverses an open interval of length $2\pi$. Put $r=\cos(kc)$. If $-1<r<1$, the interval contains points where cosine equals both $-1$ and $1$, so one of those values differs from $r$ by at least $1$. If $r=1$ or $r=-1$, the interval contains a point where cosine is $0$, again giving a difference of $1$.
+:::
+
+::: {#lem-cosine-shift name="Integer shifts of cosine" .lemma}
+For every integer $r$ and every real $t$,
+
+$$
+\cos(r\pi+t)=(-1)^r\cos t.
+$$
+:::
+
+::: {.proof}
+Apply the cosine addition formula and use $\sin(r\pi)=0$ and $\cos(r\pi)=(-1)^r$.
+:::
+
+::: {#lem-reverse-triangle-three-terms name="Three-term reverse triangle inequality" .lemma}
+For all real numbers $u,v,w$,
+
+$$
+|u+v+w|\ge |u|-|v|-|w|.
+$$
+:::
+
+::: {.proof}
+Twice applying the triangle inequality gives
+$|u|\le |u+v+w|+|v|+|w|$.
+:::
+
+::: {#thm-weierstrass-absolute-convergence name="Absolute convergence" .theorem}
+For every $x\in\mathbb R$, the series
+
+$$
+\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+$$
+
+converges absolutely.
+:::
+
+::: {.proof}
+Since $|\cos(\pi b^n x)|\le1$,
+
+$$
+|a^n\cos(\pi b^n x)|\le a^n.
+$$
+
+The geometric series $\sum_{n=0}^{\infty}a^n$ converges because $0<a<1$. Comparison proves absolute convergence [@MITRealAnalysisLecture18].
+:::
+
+## Continuity {#continuity}
+
+::: {#thm-weierstrass-continuity name="Continuity of the Weierstrass function" .theorem}
+The function
+
+$$
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+$$
+
+is bounded and continuous on $\mathbb R$.
+:::
+
+::: {.proof}
+For every $x$,
+
+$$
+|W(x)|
+\le \sum_{n=0}^{\infty}a^n
+=\frac{1}{1-a},
+$$
+
+so $W$ is bounded. The same estimate is independent of $x$, so the Weierstrass M-test shows that the partial sums converge uniformly. Every partial sum is continuous, and a uniform limit of continuous functions is continuous [@MITRealAnalysisLecture18].
+:::
+
+::: {.callout-note collapse="true"}
+## Sequential proof
+
+The original paper also proves continuity using @def-continuity-sequential. Let $x_j\to c$ and fix $\varepsilon>0$. Choose $M$ so large that
+
+$$
+2\sum_{n=M+1}^{\infty}a^n<\frac{\varepsilon}{2}.
+$$
+
+We split the series into a finite head and a uniformly small tail. For the head, continuity of each cosine term gives
+
+$$
+\sum_{n=0}^{M}a^n
+\left|\cos(\pi b^n x_j)-\cos(\pi b^n c)\right|
+\longrightarrow0.
+$$
+
+It is therefore less than $\varepsilon/2$ for all sufficiently large $j$. The tail satisfies
+
+$$
+\sum_{n=M+1}^{\infty}a^n
+\left|\cos(\pi b^n x_j)-\cos(\pi b^n c)\right|
+\le2\sum_{n=M+1}^{\infty}a^n
+<\frac{\varepsilon}{2}.
+$$
+
+Hence $|W(x_j)-W(c)|<\varepsilon$ eventually, so $W(x_j)\to W(c)$ [@MITRealAnalysisLecture18].
+:::
+
+The original paper approached continuity sequentially and used the following useful fact.
+
+::: {#exr-limsup-zero name="A limsup criterion for convergence to zero" .exercise}
+Prove that
+
+$$
+\limsup_{n\to\infty}|x_n|=0
+\quad\Longleftrightarrow\quad
+\lim_{n\to\infty}x_n=0.
+$$
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+If $x_n\to0$, then $|x_n|\to0$, so $\limsup |x_n|=0$.
+
+Conversely, suppose $\limsup |x_n|=0$. Because $|x_n|\ge0$, we also have $\liminf |x_n|\ge0$. Hence
+
+$$
+0\le\liminf_{n\to\infty}|x_n|
+\le\limsup_{n\to\infty}|x_n|=0.
+$$
+
+Thus $|x_n|\to0$, which is equivalent to $x_n\to0$.
+:::
+:::
+
+## Nowhere differentiability {#nowhere-differentiability}
+
+::: {#thm-weierstrass-nowhere-differentiable name="Weierstrass" .theorem}
+Assume
+
+$$
+0<a<1,
+\qquad b>1\text{ is an odd integer},
+\qquad ab>1+\frac{3\pi}{2}.
+$$
+
+Then
+
+$$
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+$$
+
+is nowhere differentiable on $\mathbb R$.
+:::
+
+::: {.proof}
+Fix $x_0\in\mathbb R$. For each $m$, choose an integer $k_m$ nearest to $b^m x_0$ and write
+
+$$
+z_m=b^m x_0-k_m,
+\qquad -\frac12\le z_m\le\frac12.
+$$
+
+Set
+
+$$
+x_m=\frac{k_m+1}{b^m},
+\qquad
+h_m=x_m-x_0=\frac{1-z_m}{b^m}.
+$$
+
+Then
+
+$$
+\frac{1}{2b^m}\le h_m\le\frac{3}{2b^m},
+$$
+
+so $x_m\to x_0$ from the right. Split the increment as
+
+$$
+W(x_m)-W(x_0)=A_m+B_m,
+$$
+
+where $A_m$ contains the terms $0\le n<m$ and $B_m$ contains the terms $n\ge m$.
+
+By @lem-cosine-lipschitz,
+
+$$
+\begin{aligned}
+|A_m|
+&\le \pi h_m\sum_{n=0}^{m-1}(ab)^n \\
+&\le \frac{\pi(ab)^m}{ab-1}h_m.
+\end{aligned}
+$$
+
+For $n\ge m$, the oddness of $b$ and @lem-cosine-shift give
+
+$$
+\cos(\pi b^n x_m)=-(-1)^{k_m}
+$$
+
+and
+
+$$
+\cos(\pi b^n x_0)
+=(-1)^{k_m}\cos(\pi b^{n-m}z_m).
+$$
+
+Therefore
+
+$$
+B_m=-(-1)^{k_m}
+\sum_{n=m}^{\infty}a^n
+\left(1+\cos(\pi b^{n-m}z_m)\right).
+$$
+
+Every summand in parentheses is nonnegative. Keeping only the $n=m$ term and using $|z_m|\le1/2$ yields
+
+$$
+|B_m|
+\ge a^m\bigl(1+\cos(\pi z_m)\bigr)
+\ge a^m.
+$$
+
+Since $h_m\le 3/(2b^m)$,
+
+$$
+|B_m|\ge\frac23(ab)^m h_m.
+$$
+
+The reverse triangle inequality now gives
+
+$$
+\left|\frac{W(x_m)-W(x_0)}{x_m-x_0}\right|
+\ge
+(ab)^m\left(\frac23-\frac{\pi}{ab-1}\right).
+$$
+
+The parenthesized constant is positive precisely when
+$ab>1+3\pi/2$, and $(ab)^m\to\infty$. Thus the difference quotients along $x_m\to x_0$ are unbounded, so $W'(x_0)$ does not exist. Because $x_0$ was arbitrary, $W$ is nowhere differentiable [@MITRealAnalysisLecture18].
+:::
+
+## Conclusion
+
+The Weierstrass function separates continuity from smoothness in the strongest possible way. Its partial sums are smooth, and they converge uniformly, yet the limiting curve remains jagged at every scale. The example shows both the reach and the limits of geometric intuition: continuity survives uniform limits, while differentiability need not.

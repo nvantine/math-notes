@@ -1,0 +1,124 @@
+<script id="xref-math-previews" type="application/javascript">
+(() => {
+  const mathJaxUrl = "https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js";
+  const loadTimeoutMs = 10000;
+  const pendingPreviews = new WeakSet();
+  let mathJaxPromise;
+
+  const waitForMathJax = (script) => new Promise((resolve, reject) => {
+    let settled = false;
+    const finish = (callback, value) => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      script.removeEventListener("load", onLoad);
+      script.removeEventListener("error", onError);
+      callback(value);
+    };
+    const ready = async () => {
+      try {
+        await window.MathJax?.startup?.promise;
+        if (!window.MathJax?.typesetPromise) {
+          throw new Error("MathJax loaded without typesetPromise");
+        }
+        finish(resolve, window.MathJax);
+      } catch (error) {
+        finish(reject, error);
+      }
+    };
+    const onLoad = () => void ready();
+    const onError = () => finish(reject, new Error("MathJax failed to load"));
+    const timeout = window.setTimeout(
+      () => finish(reject, new Error("MathJax loading timed out")),
+      loadTimeoutMs,
+    );
+
+    script.addEventListener("load", onLoad, { once: true });
+    script.addEventListener("error", onError, { once: true });
+    if (window.MathJax?.typesetPromise) void ready();
+  });
+
+  const injectMathJax = () => {
+    const script = document.createElement("script");
+    script.src = mathJaxUrl;
+    script.async = true;
+    const ready = waitForMathJax(script).catch((error) => {
+      script.remove();
+      throw error;
+    });
+    document.head.appendChild(script);
+    return ready;
+  };
+
+  const loadMathJax = async () => {
+    if (window.MathJax?.typesetPromise) {
+      await window.MathJax.startup?.promise;
+      return window.MathJax;
+    }
+
+    const existing = document.querySelector('script[src*="mathjax"]');
+    if (existing) {
+      try {
+        return await waitForMathJax(existing);
+      } catch (_error) {
+        existing.remove();
+      }
+    }
+    return injectMathJax();
+  };
+
+  const ensureMathJax = () => {
+    if (!mathJaxPromise) {
+      mathJaxPromise = loadMathJax().catch((error) => {
+        mathJaxPromise = undefined;
+        throw error;
+      });
+    }
+    return mathJaxPromise;
+  };
+
+  const hasUnrenderedMath = (preview) =>
+    [...preview.querySelectorAll(".math")]
+      .some((item) => !item.querySelector("mjx-container"));
+
+  const typesetPreview = async (preview) => {
+    if (!hasUnrenderedMath(preview) || pendingPreviews.has(preview)) return;
+
+    pendingPreviews.add(preview);
+    let completed = false;
+    try {
+      const MathJax = await ensureMathJax();
+      await MathJax.typesetPromise([preview]);
+      completed = true;
+    } catch (error) {
+      console.warn("Unable to typeset cross-reference preview", error);
+    } finally {
+      pendingPreviews.delete(preview);
+      if (completed && hasUnrenderedMath(preview)) {
+        window.queueMicrotask(() => void typesetPreview(preview));
+      }
+    }
+  };
+
+  const previewContainers = (node) => {
+    if (!(node instanceof Element)) return [];
+    const containers = [...node.querySelectorAll(".tippy-content")];
+    if (node.matches(".tippy-content")) containers.unshift(node);
+    const parent = node.closest(".tippy-content");
+    if (parent) containers.unshift(parent);
+    return containers;
+  };
+
+  const observer = new MutationObserver((mutations) => {
+    const previews = new Set();
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        for (const preview of previewContainers(node)) previews.add(preview);
+      }
+    }
+    for (const preview of previews) void typesetPreview(preview);
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>

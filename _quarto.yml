@@ -18,6 +18,7 @@ book:
     - part: "Analysis"
       chapters:
         - analysis/set-identities.qmd
+        - analysis/continuous-nowhere-differentiable.qmd
     - part: "Linear Algebra"
       chapters:
         - linear-algebra/vector-spaces.qmd
@@ -39,6 +40,7 @@ format:
       dark:
         - darkly
     css: styles.css
+    include-after-body: xref-math.html
     toc: true
     number-sections: true
     code-copy: true

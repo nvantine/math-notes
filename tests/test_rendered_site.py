@@ -27,7 +27,24 @@ QMD_PAGES = (
     ROOT / "analysis" / "set-identities.qmd",
     ROOT / "linear-algebra" / "vector-spaces.qmd",
     ROOT / "convex-optimization" / "convex-sets.qmd",
+    ROOT / "analysis" / "continuous-nowhere-differentiable.qmd",
 )
+
+WEIERSTRASS_ITEMS = {
+    "def-continuity-epsilon": "definition",
+    "def-continuity-sequential": "definition",
+    "def-differentiability": "definition",
+    "thm-differentiable-implies-continuous": "theorem",
+    "exm-absolute-value-cusp": "example",
+    "lem-cosine-lipschitz": "lemma",
+    "lem-cosine-oscillation": "lemma",
+    "lem-cosine-shift": "lemma",
+    "lem-reverse-triangle-three-terms": "lemma",
+    "thm-weierstrass-absolute-convergence": "theorem",
+    "thm-weierstrass-continuity": "theorem",
+    "exr-limsup-zero": "exercise",
+    "thm-weierstrass-nowhere-differentiable": "theorem",
+}
 
 
 def rendered_page(page: str) -> BeautifulSoup:
@@ -132,3 +149,98 @@ def test_solution_disclosure_has_an_explicit_blue_header_style():
 
     assert "--notes-solution-bg" in stylesheet
     assert ".callout-tip.callout-style-default > .callout-header" in stylesheet
+
+
+def test_cross_reference_previews_lazy_load_and_typeset_math():
+    page = rendered_page("index.html")
+    script = page.select_one("script#xref-math-previews")
+
+    assert script is not None
+    source = script.get_text()
+    assert "MutationObserver" in source
+    assert "typesetPromise" in source
+    assert "mathjax@4.0.0/tex-chtml.js" in source
+    assert ".tippy-content" in source
+    assert "mathJaxPromise = undefined" in source
+    assert "const pendingPreviews = new WeakSet()" in source
+    assert "const previews = new Set()" in source
+
+
+def test_weierstrass_paper_is_an_analysis_chapter():
+    page = rendered_page("analysis/continuous-nowhere-differentiable.html")
+    title = page.select_one("main.content h1.title")
+
+    assert title is not None
+    assert "Continuous Everywhere, Nowhere Differentiable" in title.get_text(" ")
+    metadata = page.select_one(".quarto-title-meta")
+    assert metadata is not None
+    assert "Spring 2025" in metadata.get_text(" ", strip=True)
+    assert page.select_one("#introduction") is not None
+    assert page.select_one("#background") is not None
+    assert page.select_one("#construction") is not None
+    assert page.select_one("#continuity") is not None
+    assert page.select_one("#nowhere-differentiability") is not None
+
+    sidebar_hrefs = {
+        link.get("href") for link in page.select("#quarto-sidebar a.sidebar-link")
+    }
+    assert "../analysis/continuous-nowhere-differentiable.html" in sidebar_hrefs
+
+
+@pytest.mark.parametrize(("label", "environment"), WEIERSTRASS_ITEMS.items())
+def test_weierstrass_paper_preserves_mathematical_environments(
+    label: str, environment: str
+):
+    page = rendered_page("analysis/continuous-nowhere-differentiable.html")
+
+    assert page.select_one(f"#{label}.theorem.{environment}") is not None
+
+
+def test_weierstrass_exercise_has_a_closed_solution():
+    page = rendered_page("analysis/continuous-nowhere-differentiable.html")
+    exercise = page.select_one("#exr-limsup-zero.exercise")
+
+    assert exercise is not None
+    solution = exercise.select_one(":scope > .callout.callout-tip")
+    assert solution is not None
+    toggle = solution.select_one(".callout-header")
+    assert toggle is not None
+    assert toggle.get("aria-expanded") == "false"
+
+
+def test_weierstrass_page_resolves_its_sources():
+    page = rendered_page("analysis/continuous-nowhere-differentiable.html")
+    cited = {
+        key
+        for citation in page.select("[data-cites]")
+        for key in str(citation.attrs.get("data-cites", "")).split()
+    }
+
+    assert {
+        "Abbott2015",
+        "ClassNotes",
+        "SteinShakarchi2003",
+        "MITRealAnalysisLecture18",
+        "wiki-Karl-Weierstrass",
+        "wiki-Weierstrass-function",
+    }.issubset(cited)
+
+
+def test_weierstrass_authoring_uses_mathjax_supported_notation():
+    source = (ROOT / "analysis" / "continuous-nowhere-differentiable.qmd").read_text(
+        encoding="utf-8"
+    )
+
+    assert "\\R" not in source
+    assert "\\eps" not in source
+    assert "\\begin{equation}" not in source
+    assert "\\newpage" not in source
+
+
+def test_weierstrass_page_preserves_the_sequential_continuity_argument():
+    source = (ROOT / "analysis" / "continuous-nowhere-differentiable.qmd").read_text(
+        encoding="utf-8"
+    )
+
+    assert "Sequential proof" in source
+    assert "split the series into a finite head and a uniformly small tail" in source
