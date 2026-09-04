@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Math Notes",
     "section": "",
-    "text": "Pilot\nWelcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.\nThe pilot converts three real items from my existing LaTeX notes:\nEach item has a Notes / Lean 4 view. The Lean source in this pilot lives in this repository so the presentation and synchronization workflow can be tested before a standalone Lean project exists.",
+    "text": "Pilot\nWelcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.\nThe pilot converts three real items from my existing LaTeX notes:\nEach item is presented as a focused mathematical note. Lean formalizations are deferred while the notes and exercise layout are refined.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#pilot",
     "title": "Math Notes",
     "section": "",
-    "text": "Definition 2.1 from the foundations notes;\nExercise 3.1 from advanced calculus; and\nExercise 4.1 from linear algebra.\n\n\n\n\n\n\n\n\nNotePilot scope\n\n\n\nThis is intentionally a small sample. The rest of notes-and-exercises will not be migrated until the structure and toggle design are approved.",
+    "text": "Definition 2.1 from the foundations notes;\nExercise 3.1 from advanced calculus; and\nExercise 4.1 from linear algebra.\n\n\n\n\n\n\n\n\nNotePilot scope\n\n\n\nThis is intentionally a small sample. The rest of notes-and-exercises will not be migrated until the structure and presentation are approved.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "foundations/relations.html",
     "title": "2  Relations",
     "section": "",
-    "text": "A relation records which ordered pairs from two sets are related.\n\nDefinition 2.1 (Relation)  \n\n\n  \n    Notes\n  \n  \n    Lean 4\n  \n\n\n\n\nLet \\(X\\) and \\(Y\\) be sets. A relation over \\(X \\times Y\\) is a subset \\(R \\subseteq X \\times Y\\).\nIf \\(Y=X\\), the relation is called homogeneous. When \\((x,y)\\in R\\), we say that \\(x\\) is related to \\(y\\) and write \\(xRy\\).\n\n\n\n/-- A relation from `α` to `β` is a proposition-valued function of two arguments. -/\nabbrev Relation (α β : Type*) := α → β → Prop\nCopy Lean code\n\nView exact source on GitHub\n\n\n\n\nThe definition in Definition 2.1 treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.",
+    "text": "A relation records which ordered pairs from two sets are related.\n\nDefinition 2.1 (Relation) Let \\(X\\) and \\(Y\\) be sets. A relation over \\(X \\times Y\\) is a subset \\(R \\subseteq X \\times Y\\).\nIf \\(Y=X\\), the relation is called homogeneous. When \\((x,y)\\in R\\), we say that \\(x\\) is related to \\(y\\) and write \\(xRy\\).\n\nThe definition in Definition 2.1 treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Relations</span>"
@@ -45,7 +45,7 @@
     "href": "analysis/set-identities.html",
     "title": "3  Set Identities",
     "section": "",
-    "text": "Exercise 3.1 (De Morgan’s law for unions)  \n\n\n  \n    Notes\n  \n  \n    Lean 4\n  \n\n\n\n\nFor a sequence of sets \\((A_i)_{i=1}^{\\infty}\\), show that\n\\[\n\\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n=\n\\bigcap_{i=1}^{\\infty} A_i^c.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe show equality by a chain of biconditionals. For arbitrary \\(x\\),\n\\[\\begin{align*}\nx \\in \\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n&\\iff x \\notin \\bigcup_{i=1}^{\\infty} A_i \\\\\n&\\iff x \\notin A_i \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in A_i^c \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in \\bigcap_{i=1}^{\\infty} A_i^c.\n\\end{align*}\\]\n\n\n\n\n\n\n/-- The complement of a union is the intersection of the complements. -/\ntheorem compl_iUnion {α ι : Type*} (A : ι → Set α) :\n    (⋃ i, A i)ᶜ = ⋂ i, (A i)ᶜ := by\n  ext x\n  simp\nCopy Lean code\n\nView exact source on GitHub\n\n\n\n\nThis elementwise proof is the handwritten-side counterpart of the extensional Lean proof shown with Exercise 3.1.",
+    "text": "Exercise 3.1 (De Morgan’s law for unions) For a sequence of sets \\((A_i)_{i=1}^{\\infty}\\), show that\n\\[\n\\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n=\n\\bigcap_{i=1}^{\\infty} A_i^c.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe show equality by a chain of biconditionals. For arbitrary \\(x\\),\n\\[\\begin{align*}\nx \\in \\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n&\\iff x \\notin \\bigcup_{i=1}^{\\infty} A_i \\\\\n&\\iff x \\notin A_i \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in A_i^c \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in \\bigcap_{i=1}^{\\infty} A_i^c.\n\\end{align*}\\]\n\n\n\n\nThis elementwise proof establishes the identity directly.",
     "crumbs": [
       "Analysis",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Set Identities</span>"
@@ -56,7 +56,7 @@
     "href": "linear-algebra/vector-spaces.html",
     "title": "4  Vector Spaces",
     "section": "",
-    "text": "Exercise 4.1 (Double additive inverse)  \n\n\n  \n    Notes\n  \n  \n    Lean 4\n  \n\n\n\n\nProve that \\(-(-v)=v\\) for every \\(v\\in V\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nLet \\(v\\in V\\). By definition, \\(-v\\) is an additive inverse of \\(v\\), so\n\\[\nv+(-v)=0.\n\\]\nCommutativity gives \\((-v)+v=0\\). But \\(-(-v)\\) is also defined by\n\\[\n(-v)+(-(-v))=0.\n\\]\nBecause additive inverses are unique, \\(-(-v)=v\\).\n\n\n\n\n\n\n/-- Taking the additive inverse twice returns the original element. -/\ntheorem neg_neg_element {V : Type*} [AddGroup V] (v : V) : -(-v) = v := by\n  exact neg_neg v\nCopy Lean code\n\nView exact source on GitHub\n\n\n\n\nThe statement of Exercise 4.1 only uses the additive-group structure; no scalar multiplication is needed.",
+    "text": "Exercise 4.1 (Double additive inverse) Prove that \\(-(-v)=v\\) for every \\(v\\in V\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nLet \\(v\\in V\\). By definition, \\(-v\\) is an additive inverse of \\(v\\), so\n\\[\nv+(-v)=0.\n\\]\nCommutativity gives \\((-v)+v=0\\). But \\(-(-v)\\) is also defined by\n\\[\n(-v)+(-(-v))=0.\n\\]\nBecause additive inverses are unique, \\(-(-v)=v\\).\n\n\n\n\nThe statement only uses the additive-group structure; no scalar multiplication is needed.",
     "crumbs": [
       "Linear Algebra",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vector Spaces</span>"

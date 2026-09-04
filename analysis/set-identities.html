@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Definitions, theorems, exercises, and formalizations in Lean 4.">
+<meta name="description" content="Definitions, theorems, exercises, and proofs.">
 
 <title>3&nbsp; Set Identities – Math Notes</title>
 <style>
@@ -50,9 +50,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d652fadd940e7d2d2844222666495784.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c8194f8818a5177e36a565bc960368c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-d652fadd940e7d2d2844222666495784.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -408,21 +408,8 @@ window.Quarto = {
 </header>
 
 
-<div id="exr-de-morgan-union" class="lean-paired theorem exercise" data-lean-id="exr-de-morgan-union">
-<p><span class="theorem-title"><strong>Exercise 3.1 (De Morgan’s law for unions)</strong></span> &nbsp;</p>
-<div class="math-notes-tabset">
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="exr-de-morgan-union-notes-tab" data-bs-toggle="tab" data-bs-target="#exr-de-morgan-union-notes-panel" type="button" role="tab" aria-controls="exr-de-morgan-union-notes-panel" aria-selected="true">Notes</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="exr-de-morgan-union-lean-tab" data-bs-toggle="tab" data-bs-target="#exr-de-morgan-union-lean-panel" type="button" role="tab" aria-controls="exr-de-morgan-union-lean-panel" aria-selected="false">Lean 4</button>
-  </li>
-</ul>
-
-<div class="tab-content">
-<div id="exr-de-morgan-union-notes-panel" class="tab-pane fade show active" role="tabpanel" aria-labelledby="exr-de-morgan-union-notes-tab" tabindex="0">
-<p>For a sequence of sets <span class="math inline">\((A_i)_{i=1}^{\infty}\)</span>, show that</p>
+<div id="exr-de-morgan-union" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 3.1 (De Morgan’s law for unions)</strong></span> For a sequence of sets <span class="math inline">\((A_i)_{i=1}^{\infty}\)</span>, show that</p>
 <p><span class="math display">\[
 \left(\bigcup_{i=1}^{\infty} A_i\right)^c
 =
@@ -452,21 +439,7 @@ x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
 </div>
 </div>
 </div>
-<div id="exr-de-morgan-union-lean-panel" class="tab-pane fade" role="tabpanel" aria-labelledby="exr-de-morgan-union-lean-tab" tabindex="0">
-<div class="lean-code">
-<div class="code-copy-outer-scaffold lean-code-scaffold"><pre class="lean4" data-filename="lean/source/Pilot.lean"><code><span class="sd">/-- The complement of a union is the intersection of the complements. -/</span>
-<span class="kn">theorem</span><span class="w"> </span><span class="n">compl_iUnion</span><span class="w"> </span><span class="o">{</span><span class="n">α</span><span class="w"> </span><span class="n">ι</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ι</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="n">α</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
-<span class="w">    </span><span class="o">(</span><span class="bp">⋃</span><span class="w"> </span><span class="n">i</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="bp">ᶜ</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="bp">⋂</span><span class="w"> </span><span class="n">i</span><span class="o">,</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="bp">ᶜ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">by</span>
-<span class="w">  </span><span class="n">ext</span><span class="w"> </span><span class="n">x</span>
-<span class="w">  </span><span class="n">simp</span>
-</code></pre><button type="button" title="Copy to Clipboard" aria-label="Copy Lean code" class="code-copy-button"><i class="bi bi-clipboard"></i><span class="visually-hidden">Copy Lean code</span></button></div>
-</div>
-<p><a href="https://github.com/nvantine/math-notes/blob/2e2f5e23388e08473a32a456bbe00b7c20fb7df4/lean/source/Pilot.lean#L11-L15" class="lean-source-link">View exact source on GitHub</a></p>
-</div>
-</div>
-</div>
-</div>
-<p>This elementwise proof is the handwritten-side counterpart of the extensional Lean proof shown with <a href="#exr-de-morgan-union" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a>.</p>
+<p>This elementwise proof establishes the identity directly.</p>
 
 
 
