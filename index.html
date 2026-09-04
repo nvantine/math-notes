@@ -28,7 +28,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -348,6 +367,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Convex Optimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -358,7 +394,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pilot" id="toc-pilot" class="nav-link active" data-scroll-target="#pilot">Pilot</a></li>
+  <li><a href="#foundations" id="toc-foundations" class="nav-link active" data-scroll-target="#foundations">Foundations</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#linear-algebra" id="toc-linear-algebra" class="nav-link" data-scroll-target="#linear-algebra">Linear Algebra</a></li>
+  <li><a href="#convex-optimization" id="toc-convex-optimization" class="nav-link" data-scroll-target="#convex-optimization">Convex Optimization</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -397,27 +436,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.</p>
-<section id="pilot" class="level2">
-<h2 class="anchored" data-anchor-id="pilot">Pilot</h2>
-<p>The pilot converts three real items from my existing LaTeX notes:</p>
+<p>This site collects mathematical definitions, examples, exercises, and proofs in a searchable, cross-referenced form.</p>
+<section id="foundations" class="level2">
+<h2 class="anchored" data-anchor-id="foundations">Foundations</h2>
 <ul>
-<li><a href="foundations/relations.html#def-relation" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> from the foundations notes;</li>
-<li><a href="analysis/set-identities.html#exr-de-morgan-union" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a> from advanced calculus; and</li>
-<li><a href="linear-algebra/vector-spaces.html#exr-double-negation" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a> from linear algebra.</li>
+<li><a href="foundations/relations.html#def-relation" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> defines a relation as a set of ordered pairs.</li>
+<li><a href="foundations/relations.html#exm-basic-relations" class="quarto-xref">Example&nbsp;<span>2.1</span></a> records the discrete, empty, and diagonal relations.</li>
+<li><a href="foundations/relations.html#exr-equal-canonical-relations" class="quarto-xref">Exercise&nbsp;<span>2.1</span></a> compares those three basic relations.</li>
+<li><a href="foundations/relations.html#exr-product-relation-subset" class="quarto-xref">Exercise&nbsp;<span>2.2</span></a> describes the product of two relations.</li>
 </ul>
-<p>Each item is presented as a focused mathematical note. Lean formalizations are deferred while the notes and exercise layout are refined.</p>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<ul>
+<li><a href="analysis/set-identities.html#exr-de-morgan-union" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a> proves De Morgan’s law for a countable union, adapted from <span class="citation" data-cites="Abbott2015">Abbott (<a href="#ref-Abbott2015" role="doc-biblioref">2015</a>)</span>.</li>
+</ul>
+</section>
+<section id="linear-algebra" class="level2">
+<h2 class="anchored" data-anchor-id="linear-algebra">Linear Algebra</h2>
+<ul>
+<li><a href="linear-algebra/vector-spaces.html#exr-double-negation" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a> proves that the additive inverse operation is an involution, adapted from <span class="citation" data-cites="Axler2024">Axler (<a href="#ref-Axler2024" role="doc-biblioref">2024</a>)</span>.</li>
+</ul>
+</section>
+<section id="convex-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="convex-optimization">Convex Optimization</h2>
+<p>The convex-set exercises are adapted from <span class="citation" data-cites="cvxbook">Boyd and Vandenberghe (<a href="#ref-cvxbook" role="doc-biblioref">2004</a>)</span>.</p>
+<ul>
+<li><a href="convex-optimization/convex-sets.html#exr-finite-convex-combinations" class="quarto-xref">Exercise&nbsp;<span>5.1</span></a> extends the definition of convexity to arbitrary finite convex combinations.</li>
+<li><a href="convex-optimization/convex-sets.html#exr-parallel-hyperplanes-distance" class="quarto-xref">Exercise&nbsp;<span>5.2</span></a> computes the distance between parallel hyperplanes.</li>
+<li><a href="convex-optimization/convex-sets.html#exr-voronoi-halfspace" class="quarto-xref">Exercise&nbsp;<span>5.3</span></a> derives the halfspace of points closer to one site than another.</li>
+</ul>
 <div class="pilot-note callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Pilot scope
+<span class="screen-reader-only">Note</span>Migration status
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is intentionally a small sample. The rest of <code>notes-and-exercises</code> will not be migrated until the structure and presentation are approved.</p>
+<p>All populated sections from the original LaTeX notes are included. Lean presentation remains deferred while the notes layout is refined.</p>
 </div>
 </div>
 </section>
@@ -429,6 +488,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Abbott2015" class="csl-entry" role="listitem">
+Abbott, Stephen. 2015. <em>Understanding Analysis</em>. 2nd ed. Springer. <a href="https://link.springer.com/book/10.1007/978-1-4939-2712-8">https://link.springer.com/book/10.1007/978-1-4939-2712-8</a>.
+</div>
+<div id="ref-Axler2024" class="csl-entry" role="listitem">
+Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. 4th ed. Undergraduate Texts in Mathematics. Springer. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
+</div>
+<div id="ref-cvxbook" class="csl-entry" role="listitem">
+Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511804441">https://doi.org/10.1017/CBO9780511804441</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

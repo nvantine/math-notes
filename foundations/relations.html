@@ -377,6 +377,23 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Convex Optimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -414,6 +431,74 @@ window.Quarto = {
 <p>If <span class="math inline">\(Y=X\)</span>, the relation is called <em>homogeneous</em>. When <span class="math inline">\((x,y)\in R\)</span>, we say that <span class="math inline">\(x\)</span> is related to <span class="math inline">\(y\)</span> and write <span class="math inline">\(xRy\)</span>.</p>
 </div>
 <p>The definition in <a href="#def-relation" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.</p>
+<div id="exm-basic-relations" class="example theorem">
+<p><span class="theorem-title"><strong>Example 2.1 (Basic relations)</strong></span> Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be sets. The following are standard examples:</p>
+<ol type="1">
+<li>The <em>discrete relation</em> <span class="math inline">\(X\times Y\)</span>.</li>
+<li>The <em>empty relation</em> <span class="math inline">\(\emptyset\subseteq X\times Y\)</span>.</li>
+<li>When <span class="math inline">\(Y=X\)</span>, the <em>diagonal relation</em> <span class="math inline">\(\{(x,x):x\in X\}\)</span>.</li>
+</ol>
+</div>
+<div id="exr-equal-canonical-relations" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 2.1 (Equality of the basic relations)</strong></span> Give a necessary and sufficient condition for the empty, discrete, and diagonal relations to be equal.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Assume the three are homogeneous relations on the same set <span class="math inline">\(X\)</span>, so <span class="math inline">\(Y=X\)</span>. They are equal if and only if <span class="math inline">\(X=\emptyset\)</span>.</p>
+<p>If <span class="math inline">\(X=\emptyset\)</span>, then</p>
+<p><span class="math display">\[
+X\times X=\emptyset
+\qquad\text{and}\qquad
+\{(x,x):x\in X\}=\emptyset,
+\]</span></p>
+<p>so all three relations coincide. Conversely, if the diagonal relation is empty, then <span class="math inline">\(X\)</span> has no elements: any <span class="math inline">\(x\in X\)</span> would make <span class="math inline">\((x,x)\)</span> an element of the diagonal. Therefore <span class="math inline">\(X=\emptyset\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="exr-product-relation-subset" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 2.2 (Product of relations)</strong></span> Let <span class="math inline">\((X_1,R_1)\)</span> and <span class="math inline">\((X_2,R_2)\)</span> be pairs of sets and relations on them. The rule</p>
+<p><span class="math display">\[
+(x,y)\,(R_1\times R_2)\,(x',y')
+\quad\Longleftrightarrow\quad
+xR_1x'\text{ and }yR_2y'
+\]</span></p>
+<p>defines a relation <span class="math inline">\(R_1\times R_2\)</span> on <span class="math inline">\(X_1\times X_2\)</span>. Express this relation as a subset of <span class="math inline">\((X_1\times X_2)^2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The relation is</p>
+<p><span class="math display">\[
+R_1\times R_2
+=
+\left\{
+\bigl((x,y),(x',y')\bigr)\in(X_1\times X_2)^2
+:
+(x,x')\in R_1\text{ and }(y,y')\in R_2
+\right\}.
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
 
 
 

@@ -27,7 +27,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -377,6 +396,23 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Convex Optimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -408,6 +444,7 @@ window.Quarto = {
 </header>
 
 
+<p>This exercise is adapted from <span class="citation" data-cites="Abbott2015">Abbott (<a href="#ref-Abbott2015" role="doc-biblioref">2015</a>)</span>.</p>
 <div id="exr-de-morgan-union" class="exercise theorem">
 <p><span class="theorem-title"><strong>Exercise 3.1 (De Morgan’s law for unions)</strong></span> For a sequence of sets <span class="math inline">\((A_i)_{i=1}^{\infty}\)</span>, show that</p>
 <p><span class="math display">\[
@@ -442,6 +479,11 @@ x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
 <p>This elementwise proof establishes the identity directly.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Abbott2015" class="csl-entry" role="listitem">
+Abbott, Stephen. 2015. <em>Understanding Analysis</em>. 2nd ed. Springer. <a href="https://link.springer.com/book/10.1007/978-1-4939-2712-8">https://link.springer.com/book/10.1007/978-1-4939-2712-8</a>.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

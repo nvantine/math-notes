@@ -4,17 +4,47 @@
     "href": "index.html",
     "title": "Math Notes",
     "section": "",
-    "text": "Pilot\nWelcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.\nThe pilot converts three real items from my existing LaTeX notes:\nEach item is presented as a focused mathematical note. Lean formalizations are deferred while the notes and exercise layout are refined.",
+    "text": "Foundations\nThis site collects mathematical definitions, examples, exercises, and proofs in a searchable, cross-referenced form.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
     ]
   },
   {
-    "objectID": "index.html#pilot",
-    "href": "index.html#pilot",
+    "objectID": "index.html#foundations",
+    "href": "index.html#foundations",
     "title": "Math Notes",
     "section": "",
-    "text": "Definition 2.1 from the foundations notes;\nExercise 3.1 from advanced calculus; and\nExercise 4.1 from linear algebra.\n\n\n\n\n\n\n\n\nNotePilot scope\n\n\n\nThis is intentionally a small sample. The rest of notes-and-exercises will not be migrated until the structure and presentation are approved.",
+    "text": "Definition 2.1 defines a relation as a set of ordered pairs.\nExample 2.1 records the discrete, empty, and diagonal relations.\nExercise 2.1 compares those three basic relations.\nExercise 2.2 describes the product of two relations.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#analysis",
+    "href": "index.html#analysis",
+    "title": "Math Notes",
+    "section": "Analysis",
+    "text": "Analysis\n\nExercise 3.1 proves De Morgan’s law for a countable union, adapted from Abbott (2015).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#linear-algebra",
+    "href": "index.html#linear-algebra",
+    "title": "Math Notes",
+    "section": "Linear Algebra",
+    "text": "Linear Algebra\n\nExercise 4.1 proves that the additive inverse operation is an involution, adapted from Axler (2024).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#convex-optimization",
+    "href": "index.html#convex-optimization",
+    "title": "Math Notes",
+    "section": "Convex Optimization",
+    "text": "Convex Optimization\nThe convex-set exercises are adapted from Boyd and Vandenberghe (2004).\n\nExercise 5.1 extends the definition of convexity to arbitrary finite convex combinations.\nExercise 5.2 computes the distance between parallel hyperplanes.\nExercise 5.3 derives the halfspace of points closer to one site than another.\n\n\n\n\n\n\n\nNoteMigration status\n\n\n\nAll populated sections from the original LaTeX notes are included. Lean presentation remains deferred while the notes layout is refined.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
     ]
@@ -24,7 +54,7 @@
     "href": "index.html#sources",
     "title": "Math Notes",
     "section": "Sources",
-    "text": "Sources\n\nOriginal LaTeX notes\nWebsite source",
+    "text": "Sources\n\nOriginal LaTeX notes\nWebsite source\n\n\n\n\n\nAbbott, Stephen. 2015. Understanding Analysis. 2nd ed. Springer. https://link.springer.com/book/10.1007/978-1-4939-2712-8.\n\n\nAxler, Sheldon. 2024. Linear Algebra Done Right. 4th ed. Undergraduate Texts in Mathematics. Springer. https://doi.org/10.1007/978-3-031-41026-0.\n\n\nBoyd, Stephen, and Lieven Vandenberghe. 2004. Convex Optimization. Cambridge University Press. https://doi.org/10.1017/CBO9780511804441.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Math Notes</span>"
     ]
@@ -34,7 +64,7 @@
     "href": "foundations/relations.html",
     "title": "2  Relations",
     "section": "",
-    "text": "A relation records which ordered pairs from two sets are related.\n\nDefinition 2.1 (Relation) Let \\(X\\) and \\(Y\\) be sets. A relation over \\(X \\times Y\\) is a subset \\(R \\subseteq X \\times Y\\).\nIf \\(Y=X\\), the relation is called homogeneous. When \\((x,y)\\in R\\), we say that \\(x\\) is related to \\(y\\) and write \\(xRy\\).\n\nThe definition in Definition 2.1 treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.",
+    "text": "A relation records which ordered pairs from two sets are related.\n\nDefinition 2.1 (Relation) Let \\(X\\) and \\(Y\\) be sets. A relation over \\(X \\times Y\\) is a subset \\(R \\subseteq X \\times Y\\).\nIf \\(Y=X\\), the relation is called homogeneous. When \\((x,y)\\in R\\), we say that \\(x\\) is related to \\(y\\) and write \\(xRy\\).\n\nThe definition in Definition 2.1 treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.\n\nExample 2.1 (Basic relations) Let \\(X\\) and \\(Y\\) be sets. The following are standard examples:\n\nThe discrete relation \\(X\\times Y\\).\nThe empty relation \\(\\emptyset\\subseteq X\\times Y\\).\nWhen \\(Y=X\\), the diagonal relation \\(\\{(x,x):x\\in X\\}\\).\n\n\n\nExercise 2.1 (Equality of the basic relations) Give a necessary and sufficient condition for the empty, discrete, and diagonal relations to be equal.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAssume the three are homogeneous relations on the same set \\(X\\), so \\(Y=X\\). They are equal if and only if \\(X=\\emptyset\\).\nIf \\(X=\\emptyset\\), then\n\\[\nX\\times X=\\emptyset\n\\qquad\\text{and}\\qquad\n\\{(x,x):x\\in X\\}=\\emptyset,\n\\]\nso all three relations coincide. Conversely, if the diagonal relation is empty, then \\(X\\) has no elements: any \\(x\\in X\\) would make \\((x,x)\\) an element of the diagonal. Therefore \\(X=\\emptyset\\).\n\n\n\n\n\nExercise 2.2 (Product of relations) Let \\((X_1,R_1)\\) and \\((X_2,R_2)\\) be pairs of sets and relations on them. The rule\n\\[\n(x,y)\\,(R_1\\times R_2)\\,(x',y')\n\\quad\\Longleftrightarrow\\quad\nxR_1x'\\text{ and }yR_2y'\n\\]\ndefines a relation \\(R_1\\times R_2\\) on \\(X_1\\times X_2\\). Express this relation as a subset of \\((X_1\\times X_2)^2\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe relation is\n\\[\nR_1\\times R_2\n=\n\\left\\{\n\\bigl((x,y),(x',y')\\bigr)\\in(X_1\\times X_2)^2\n:\n(x,x')\\in R_1\\text{ and }(y,y')\\in R_2\n\\right\\}.\n\\]",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Relations</span>"
@@ -45,7 +75,7 @@
     "href": "analysis/set-identities.html",
     "title": "3  Set Identities",
     "section": "",
-    "text": "Exercise 3.1 (De Morgan’s law for unions) For a sequence of sets \\((A_i)_{i=1}^{\\infty}\\), show that\n\\[\n\\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n=\n\\bigcap_{i=1}^{\\infty} A_i^c.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe show equality by a chain of biconditionals. For arbitrary \\(x\\),\n\\[\\begin{align*}\nx \\in \\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n&\\iff x \\notin \\bigcup_{i=1}^{\\infty} A_i \\\\\n&\\iff x \\notin A_i \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in A_i^c \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in \\bigcap_{i=1}^{\\infty} A_i^c.\n\\end{align*}\\]\n\n\n\n\nThis elementwise proof establishes the identity directly.",
+    "text": "This exercise is adapted from Abbott (2015).\n\nExercise 3.1 (De Morgan’s law for unions) For a sequence of sets \\((A_i)_{i=1}^{\\infty}\\), show that\n\\[\n\\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n=\n\\bigcap_{i=1}^{\\infty} A_i^c.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe show equality by a chain of biconditionals. For arbitrary \\(x\\),\n\\[\\begin{align*}\nx \\in \\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n&\\iff x \\notin \\bigcup_{i=1}^{\\infty} A_i \\\\\n&\\iff x \\notin A_i \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in A_i^c \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in \\bigcap_{i=1}^{\\infty} A_i^c.\n\\end{align*}\\]\n\n\n\n\nThis elementwise proof establishes the identity directly.\n\n\n\n\nAbbott, Stephen. 2015. Understanding Analysis. 2nd ed. Springer. https://link.springer.com/book/10.1007/978-1-4939-2712-8.",
     "crumbs": [
       "Analysis",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Set Identities</span>"
@@ -56,10 +86,21 @@
     "href": "linear-algebra/vector-spaces.html",
     "title": "4  Vector Spaces",
     "section": "",
-    "text": "Exercise 4.1 (Double additive inverse) Prove that \\(-(-v)=v\\) for every \\(v\\in V\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nLet \\(v\\in V\\). By definition, \\(-v\\) is an additive inverse of \\(v\\), so\n\\[\nv+(-v)=0.\n\\]\nCommutativity gives \\((-v)+v=0\\). But \\(-(-v)\\) is also defined by\n\\[\n(-v)+(-(-v))=0.\n\\]\nBecause additive inverses are unique, \\(-(-v)=v\\).\n\n\n\n\nThe statement only uses the additive-group structure; no scalar multiplication is needed.",
+    "text": "This exercise is adapted from Axler (2024).\n\nExercise 4.1 (Double additive inverse) Prove that \\(-(-v)=v\\) for every \\(v\\in V\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nLet \\(v\\in V\\). By definition, \\(-v\\) is an additive inverse of \\(v\\), so\n\\[\nv+(-v)=0.\n\\]\nCommutativity gives \\((-v)+v=0\\). But \\(-(-v)\\) is also defined by\n\\[\n(-v)+(-(-v))=0.\n\\]\nBecause additive inverses are unique, \\(-(-v)=v\\).\n\n\n\n\nThe statement only uses the additive-group structure; no scalar multiplication is needed.\n\n\n\n\nAxler, Sheldon. 2024. Linear Algebra Done Right. 4th ed. Undergraduate Texts in Mathematics. Springer. https://doi.org/10.1007/978-3-031-41026-0.",
     "crumbs": [
       "Linear Algebra",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vector Spaces</span>"
+    ]
+  },
+  {
+    "objectID": "convex-optimization/convex-sets.html",
+    "href": "convex-optimization/convex-sets.html",
+    "title": "5  Convex Sets",
+    "section": "",
+    "text": "These exercises are adapted from Boyd and Vandenberghe (2004).\n\nExercise 5.1 (Finite convex combinations) Let \\(C \\subseteq \\mathbb{R}^n\\) be a convex set, with \\(x_1, \\ldots, x_k \\in C\\), and let \\(\\theta_1, \\ldots, \\theta_k \\in \\mathbb{R}\\) satisfy\n\\[\n\\theta_i \\geq 0,\n\\qquad\n\\theta_1 + \\cdots + \\theta_k = 1.\n\\]\nShow that\n\\[\n\\theta_1x_1 + \\cdots + \\theta_kx_k \\in C.\n\\]\nThe definition of convexity gives this result for \\(k=2\\); prove it for arbitrary \\(k\\).\nHint. Use induction on \\(k\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe prove the result by induction on the number of points.\nThe case \\(k=1\\) is immediate: the coefficient condition forces \\(\\theta_1=1\\), so \\(\\theta_1x_1=x_1\\in C\\).\nFor the first nontrivial case, let \\(k=2\\). If \\(x_1,x_2\\in C\\) and \\(\\theta\\in[0,1]\\), then the definition of convexity gives\n\\[\n(1-\\theta)x_1+\\theta x_2\\in C.\n\\]\nThus every convex combination of two points in \\(C\\) belongs to \\(C\\).\nNow suppose every convex combination of \\(\\ell\\) points in \\(C\\) belongs to \\(C\\). In other words, whenever\n\\[\nx_i\\in C,\n\\qquad\n\\theta_i\\geq0,\n\\qquad\n\\sum_{i=1}^{\\ell}\\theta_i=1,\n\\]\nwe have\n\\[\n\\sum_{i=1}^{\\ell}\\theta_i x_i\\in C.\n\\]\nLet \\(x_1,\\ldots,x_{\\ell+1}\\in C\\), and let \\(\\phi_i\\geq0\\) satisfy\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i=1.\n\\]\nIf \\(\\phi_{\\ell+1}=1\\), then \\(\\phi_1=\\cdots=\\phi_\\ell=0\\), so\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i=x_{\\ell+1}\\in C.\n\\]\nNow suppose \\(\\phi_{\\ell+1}&lt;1\\), and define\n\\[\nz=\\frac{1}{1-\\phi_{\\ell+1}}\n\\sum_{i=1}^{\\ell}\\phi_i x_i.\n\\]\nSince\n\\[\n\\sum_{i=1}^{\\ell}\\phi_i=1-\\phi_{\\ell+1},\n\\]\nthe coefficients in the definition of \\(z\\) are nonnegative and sum to one. The induction hypothesis therefore implies that \\(z\\in C\\).\nFinally,\n\\[\n\\begin{aligned}\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i\n&=\\sum_{i=1}^{\\ell}\\phi_i x_i+\\phi_{\\ell+1}x_{\\ell+1} \\\\\n&=(1-\\phi_{\\ell+1})z+\\phi_{\\ell+1}x_{\\ell+1}.\n\\end{aligned}\n\\]\nBecause \\(z,x_{\\ell+1}\\in C\\) and \\(\\phi_{\\ell+1}\\in[0,1]\\), convexity of \\(C\\) gives\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i\\in C.\n\\]\nTherefore, by induction, every finite convex combination of points in \\(C\\) belongs to \\(C\\).\n\n\n\n\n\nExercise 5.2 (Distance between parallel hyperplanes) For \\(a\\neq0\\), what is the distance between the parallel hyperplanes\n\\[\nH_1=\\{x\\in\\mathbb{R}^n\\mid a^Tx=b_1\\}\n\\qquad\\text{and}\\qquad\nH_2=\\{x\\in\\mathbb{R}^n\\mid a^Tx=b_2\\}?\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor every \\(x_1\\in H_1\\) and \\(x_2\\in H_2\\),\n\\[\na^T(x_1-x_2)=b_1-b_2.\n\\]\nThe Cauchy–Schwarz inequality therefore gives\n\\[\n|b_1-b_2|\n=|a^T(x_1-x_2)|\n\\leq\\lVert a\\rVert\\,\\lVert x_1-x_2\\rVert.\n\\]\nThus every pair of points, one from each hyperplane, satisfies\n\\[\n\\lVert x_1-x_2\\rVert\n\\geq\n\\frac{|b_1-b_2|}{\\lVert a\\rVert}.\n\\]\nThis lower bound is attained. Choose any \\(x_2\\in H_2\\) and define\n\\[\nx_1=x_2+\\frac{b_1-b_2}{\\lVert a\\rVert^2}a.\n\\]\nThen\n\\[\na^Tx_1\n=a^Tx_2+\\frac{b_1-b_2}{\\lVert a\\rVert^2}a^Ta\n=b_2+(b_1-b_2)\n=b_1,\n\\]\nso \\(x_1\\in H_1\\), and\n\\[\n\\lVert x_1-x_2\\rVert\n=\\left\\lVert\\frac{b_1-b_2}{\\lVert a\\rVert^2}a\\right\\rVert\n=\\frac{|b_1-b_2|}{\\lVert a\\rVert}.\n\\]\nHence the distance between the hyperplanes is\n\\[\n\\boxed{\\frac{|b_1-b_2|}{\\lVert a\\rVert}}.\n\\]\n\n\n\n\n\nExercise 5.3 (Voronoi description of a halfspace) Let \\(a\\) and \\(b\\) be distinct points in \\(\\mathbb{R}^n\\). Show that the set of all points that are closer in Euclidean norm to \\(a\\) than to \\(b\\),\n\\[\n\\{x\\mid \\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\\},\n\\]\nis a halfspace. Describe it explicitly as an inequality of the form \\(c^Tx\\leq d\\). Draw a picture.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nSince both sides are nonnegative,\n\\[\n\\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\n\\iff\n\\lVert x-a\\rVert_2^2\\leq\\lVert x-b\\rVert_2^2.\n\\]\nExpanding the squared norms gives\n\\[\n\\lVert x-a\\rVert_2^2=x^Tx-2a^Tx+a^Ta,\n\\qquad\n\\lVert x-b\\rVert_2^2=x^Tx-2b^Tx+b^Tb.\n\\]\nThe quadratic terms cancel, leaving\n\\[\n2(b-a)^Tx\\leq b^Tb-a^Ta.\n\\]\nThus\n\\[\n\\{x\\mid\\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\\}\n=\n\\{x\\mid c^Tx\\leq d\\},\n\\]\nwhere\n\\[\nc=b-a,\n\\qquad\nd=\\frac{1}{2}\\bigl(\\lVert b\\rVert_2^2-\\lVert a\\rVert_2^2\\bigr).\n\\]\nSince \\(a\\neq b\\), we have \\(c\\neq0\\), so this is a halfspace. Geometrically, its boundary is the perpendicular bisector of the segment \\([a,b]\\), and the halfspace contains \\(a\\).\n\n\n\n\n\n\n\n\nBoyd, Stephen, and Lieven Vandenberghe. 2004. Convex Optimization. Cambridge University Press. https://doi.org/10.1017/CBO9780511804441.",
+    "crumbs": [
+      "Convex Optimization",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Convex Sets</span>"
     ]
   }
 ]

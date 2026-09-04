@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nvantine.github.io/math-notes/index.html</loc>
-    <lastmod>2026-09-04T02:53:22.178Z</lastmod>
+    <lastmod>2026-09-04T03:14:51.075Z</lastmod>
   </url>
   <url>
     <loc>https://nvantine.github.io/math-notes/foundations/relations.html</loc>
-    <lastmod>2026-09-04T02:53:22.178Z</lastmod>
+    <lastmod>2026-09-04T03:14:51.075Z</lastmod>
   </url>
   <url>
     <loc>https://nvantine.github.io/math-notes/analysis/set-identities.html</loc>
-    <lastmod>2026-09-04T02:53:22.178Z</lastmod>
+    <lastmod>2026-09-04T03:14:51.075Z</lastmod>
   </url>
   <url>
     <loc>https://nvantine.github.io/math-notes/linear-algebra/vector-spaces.html</loc>
-    <lastmod>2026-09-04T02:53:22.178Z</lastmod>
+    <lastmod>2026-09-04T03:14:51.075Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nvantine.github.io/math-notes/convex-optimization/convex-sets.html</loc>
+    <lastmod>2026-09-04T03:14:51.075Z</lastmod>
   </url>
 </urlset>

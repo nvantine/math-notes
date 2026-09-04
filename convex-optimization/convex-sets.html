@@ -8,7 +8,7 @@
 
 <meta name="description" content="Definitions, theorems, exercises, and proofs.">
 
-<title>4&nbsp; Vector Spaces – Math Notes</title>
+<title>5&nbsp; Convex Sets – Math Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -56,8 +56,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../convex-optimization/convex-sets.html" rel="next">
-<link href="../analysis/set-identities.html" rel="prev">
+<link href="../linear-algebra/vector-spaces.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -305,7 +304,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../linear-algebra/vector-spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../linear-algebra/vector-spaces.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector Spaces</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../convex-optimization/convex-sets.html">Convex Optimization</a></li><li class="breadcrumb-item"><a href="../convex-optimization/convex-sets.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -390,7 +389,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linear-algebra/vector-spaces.html" class="sidebar-item-text sidebar-link active">
+  <a href="../linear-algebra/vector-spaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector Spaces</span></span></a>
   </div>
 </li>
@@ -407,7 +406,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
+  <a href="../convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></span></a>
   </div>
 </li>
@@ -425,9 +424,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../linear-algebra/vector-spaces.html">Linear Algebra</a></li><li class="breadcrumb-item"><a href="../linear-algebra/vector-spaces.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector Spaces</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../convex-optimization/convex-sets.html">Convex Optimization</a></li><li class="breadcrumb-item"><a href="../convex-optimization/convex-sets.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector Spaces</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></h1>
 </div>
 
 
@@ -444,9 +443,20 @@ window.Quarto = {
 </header>
 
 
-<p>This exercise is adapted from <span class="citation" data-cites="Axler2024">Axler (<a href="#ref-Axler2024" role="doc-biblioref">2024</a>)</span>.</p>
-<div id="exr-double-negation" class="exercise theorem">
-<p><span class="theorem-title"><strong>Exercise 4.1 (Double additive inverse)</strong></span> Prove that <span class="math inline">\(-(-v)=v\)</span> for every <span class="math inline">\(v\in V\)</span>.</p>
+<p>These exercises are adapted from <span class="citation" data-cites="cvxbook">Boyd and Vandenberghe (<a href="#ref-cvxbook" role="doc-biblioref">2004</a>)</span>.</p>
+<div id="exr-finite-convex-combinations" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 5.1 (Finite convex combinations)</strong></span> Let <span class="math inline">\(C \subseteq \mathbb{R}^n\)</span> be a convex set, with <span class="math inline">\(x_1, \ldots, x_k \in C\)</span>, and let <span class="math inline">\(\theta_1, \ldots, \theta_k \in \mathbb{R}\)</span> satisfy</p>
+<p><span class="math display">\[
+\theta_i \geq 0,
+\qquad
+\theta_1 + \cdots + \theta_k = 1.
+\]</span></p>
+<p>Show that</p>
+<p><span class="math display">\[
+\theta_1x_1 + \cdots + \theta_kx_k \in C.
+\]</span></p>
+<p>The definition of convexity gives this result for <span class="math inline">\(k=2\)</span>; prove it for arbitrary <span class="math inline">\(k\)</span>.</p>
+<p><em>Hint.</em> Use induction on <span class="math inline">\(k\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -459,25 +469,176 @@ window.Quarto = {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Let <span class="math inline">\(v\in V\)</span>. By definition, <span class="math inline">\(-v\)</span> is an additive inverse of <span class="math inline">\(v\)</span>, so</p>
+<p>We prove the result by induction on the number of points.</p>
+<p>The case <span class="math inline">\(k=1\)</span> is immediate: the coefficient condition forces <span class="math inline">\(\theta_1=1\)</span>, so <span class="math inline">\(\theta_1x_1=x_1\in C\)</span>.</p>
+<p>For the first nontrivial case, let <span class="math inline">\(k=2\)</span>. If <span class="math inline">\(x_1,x_2\in C\)</span> and <span class="math inline">\(\theta\in[0,1]\)</span>, then the definition of convexity gives</p>
 <p><span class="math display">\[
-v+(-v)=0.
+(1-\theta)x_1+\theta x_2\in C.
 \]</span></p>
-<p>Commutativity gives <span class="math inline">\((-v)+v=0\)</span>. But <span class="math inline">\(-(-v)\)</span> is also defined by</p>
+<p>Thus every convex combination of two points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
+<p>Now suppose every convex combination of <span class="math inline">\(\ell\)</span> points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>. In other words, whenever</p>
 <p><span class="math display">\[
-(-v)+(-(-v))=0.
+x_i\in C,
+\qquad
+\theta_i\geq0,
+\qquad
+\sum_{i=1}^{\ell}\theta_i=1,
 \]</span></p>
-<p>Because additive inverses are unique, <span class="math inline">\(-(-v)=v\)</span>.</p>
+<p>we have</p>
+<p><span class="math display">\[
+\sum_{i=1}^{\ell}\theta_i x_i\in C.
+\]</span></p>
+<p>Let <span class="math inline">\(x_1,\ldots,x_{\ell+1}\in C\)</span>, and let <span class="math inline">\(\phi_i\geq0\)</span> satisfy</p>
+<p><span class="math display">\[
+\sum_{i=1}^{\ell+1}\phi_i=1.
+\]</span></p>
+<p>If <span class="math inline">\(\phi_{\ell+1}=1\)</span>, then <span class="math inline">\(\phi_1=\cdots=\phi_\ell=0\)</span>, so</p>
+<p><span class="math display">\[
+\sum_{i=1}^{\ell+1}\phi_i x_i=x_{\ell+1}\in C.
+\]</span></p>
+<p>Now suppose <span class="math inline">\(\phi_{\ell+1}&lt;1\)</span>, and define</p>
+<p><span class="math display">\[
+z=\frac{1}{1-\phi_{\ell+1}}
+\sum_{i=1}^{\ell}\phi_i x_i.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\sum_{i=1}^{\ell}\phi_i=1-\phi_{\ell+1},
+\]</span></p>
+<p>the coefficients in the definition of <span class="math inline">\(z\)</span> are nonnegative and sum to one. The induction hypothesis therefore implies that <span class="math inline">\(z\in C\)</span>.</p>
+<p>Finally,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{i=1}^{\ell+1}\phi_i x_i
+&amp;=\sum_{i=1}^{\ell}\phi_i x_i+\phi_{\ell+1}x_{\ell+1} \\
+&amp;=(1-\phi_{\ell+1})z+\phi_{\ell+1}x_{\ell+1}.
+\end{aligned}
+\]</span></p>
+<p>Because <span class="math inline">\(z,x_{\ell+1}\in C\)</span> and <span class="math inline">\(\phi_{\ell+1}\in[0,1]\)</span>, convexity of <span class="math inline">\(C\)</span> gives</p>
+<p><span class="math display">\[
+\sum_{i=1}^{\ell+1}\phi_i x_i\in C.
+\]</span></p>
+<p>Therefore, by induction, every finite convex combination of points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
 </div>
 </div>
 </div>
 </div>
-<p>The statement only uses the additive-group structure; no scalar multiplication is needed.</p>
+<div id="exr-parallel-hyperplanes-distance" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 5.2 (Distance between parallel hyperplanes)</strong></span> For <span class="math inline">\(a\neq0\)</span>, what is the distance between the parallel hyperplanes</p>
+<p><span class="math display">\[
+H_1=\{x\in\mathbb{R}^n\mid a^Tx=b_1\}
+\qquad\text{and}\qquad
+H_2=\{x\in\mathbb{R}^n\mid a^Tx=b_2\}?
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For every <span class="math inline">\(x_1\in H_1\)</span> and <span class="math inline">\(x_2\in H_2\)</span>,</p>
+<p><span class="math display">\[
+a^T(x_1-x_2)=b_1-b_2.
+\]</span></p>
+<p>The Cauchy–Schwarz inequality therefore gives</p>
+<p><span class="math display">\[
+|b_1-b_2|
+=|a^T(x_1-x_2)|
+\leq\lVert a\rVert\,\lVert x_1-x_2\rVert.
+\]</span></p>
+<p>Thus every pair of points, one from each hyperplane, satisfies</p>
+<p><span class="math display">\[
+\lVert x_1-x_2\rVert
+\geq
+\frac{|b_1-b_2|}{\lVert a\rVert}.
+\]</span></p>
+<p>This lower bound is attained. Choose any <span class="math inline">\(x_2\in H_2\)</span> and define</p>
+<p><span class="math display">\[
+x_1=x_2+\frac{b_1-b_2}{\lVert a\rVert^2}a.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+a^Tx_1
+=a^Tx_2+\frac{b_1-b_2}{\lVert a\rVert^2}a^Ta
+=b_2+(b_1-b_2)
+=b_1,
+\]</span></p>
+<p>so <span class="math inline">\(x_1\in H_1\)</span>, and</p>
+<p><span class="math display">\[
+\lVert x_1-x_2\rVert
+=\left\lVert\frac{b_1-b_2}{\lVert a\rVert^2}a\right\rVert
+=\frac{|b_1-b_2|}{\lVert a\rVert}.
+\]</span></p>
+<p>Hence the distance between the hyperplanes is</p>
+<p><span class="math display">\[
+\boxed{\frac{|b_1-b_2|}{\lVert a\rVert}}.
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="exr-voronoi-halfspace" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 5.3 (Voronoi description of a halfspace)</strong></span> Let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be distinct points in <span class="math inline">\(\mathbb{R}^n\)</span>. Show that the set of all points that are closer in Euclidean norm to <span class="math inline">\(a\)</span> than to <span class="math inline">\(b\)</span>,</p>
+<p><span class="math display">\[
+\{x\mid \lVert x-a\rVert_2\leq\lVert x-b\rVert_2\},
+\]</span></p>
+<p>is a halfspace. Describe it explicitly as an inequality of the form <span class="math inline">\(c^Tx\leq d\)</span>. Draw a picture.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since both sides are nonnegative,</p>
+<p><span class="math display">\[
+\lVert x-a\rVert_2\leq\lVert x-b\rVert_2
+\iff
+\lVert x-a\rVert_2^2\leq\lVert x-b\rVert_2^2.
+\]</span></p>
+<p>Expanding the squared norms gives</p>
+<p><span class="math display">\[
+\lVert x-a\rVert_2^2=x^Tx-2a^Tx+a^Ta,
+\qquad
+\lVert x-b\rVert_2^2=x^Tx-2b^Tx+b^Tb.
+\]</span></p>
+<p>The quadratic terms cancel, leaving</p>
+<p><span class="math display">\[
+2(b-a)^Tx\leq b^Tb-a^Ta.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\{x\mid\lVert x-a\rVert_2\leq\lVert x-b\rVert_2\}
+=
+\{x\mid c^Tx\leq d\},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+c=b-a,
+\qquad
+d=\frac{1}{2}\bigl(\lVert b\rVert_2^2-\lVert a\rVert_2^2\bigr).
+\]</span></p>
+<p>Since <span class="math inline">\(a\neq b\)</span>, we have <span class="math inline">\(c\neq0\)</span>, so this is a halfspace. Geometrically, its boundary is the perpendicular bisector of the segment <span class="math inline">\([a,b]\)</span>, and the halfspace contains <span class="math inline">\(a\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Axler2024" class="csl-entry" role="listitem">
-Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. 4th ed. Undergraduate Texts in Mathematics. Springer. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
+<div id="ref-cvxbook" class="csl-entry" role="listitem">
+Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511804441">https://doi.org/10.1017/CBO9780511804441</a>.
 </div>
 </div>
 
@@ -902,14 +1063,11 @@ Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. 4th ed. Undergraduate 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../analysis/set-identities.html" class="pagination-link" aria-label="Set Identities">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set Identities</span></span>
+      <a href="../linear-algebra/vector-spaces.html" class="pagination-link" aria-label="Vector Spaces">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vector Spaces</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../convex-optimization/convex-sets.html" class="pagination-link" aria-label="Convex Sets">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Convex Sets</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -917,5 +1075,5 @@ Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. 4th ed. Undergraduate 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/linear-algebra/vector-spaces.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/convex-optimization/convex-sets.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
