@@ -3,14 +3,13 @@
 ## Pilot
 
 - [x] Quarto book structure for project-wide mathematical cross-references
-- [x] Reusable Notes / Lean 4 toggle
+- [ ] Add Lean views only where a corresponding formalization exists
 - [x] Marker-based Lean snippet synchronization
 - [x] GitHub Pages deployment
 
 ## After pilot approval
 
 - [ ] Migrate the remaining populated sections from `notes-and-exercises`
-- [ ] Add Lean views only where a corresponding formalization exists
 - [ ] Expand subject navigation as new notes are written
 
 ## Future implementation

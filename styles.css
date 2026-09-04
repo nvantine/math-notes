@@ -1,7 +1,9 @@
 /*-- scss:rules --*/
+
 :root {
   --notes-accent: #2f6f8f;
   --notes-definition-bg: color-mix(in srgb, var(--notes-accent) 7%, transparent);
+  --notes-exercise-accent: var(--bs-primary);
 }
 
 body {
@@ -9,12 +11,9 @@ body {
 }
 
 .theorem {
-  border: 1px solid var(--bs-border-color);
-  border-left-width: 0.24rem;
-  border-radius: 0.25rem;
-  padding: 0.8rem 1rem 0.35rem;
-  margin: 1.4rem 0;
-  background: transparent;
+  border-left: 0.2rem solid var(--bs-border-color);
+  margin: 1.6rem 0;
+  padding: 0.15rem 0 0.15rem 0.9rem;
 }
 
 .theorem-title {
@@ -22,7 +21,7 @@ body {
 }
 
 .theorem.definition {
-  border-color: var(--notes-accent);
+  border-left-color: var(--notes-accent);
   background: var(--notes-definition-bg);
 }
 
@@ -31,169 +30,22 @@ body {
 }
 
 .theorem.exercise {
-  border-left-style: dashed;
-}
-
-.theorem.example {
-  border-left-style: dotted;
-}
-
-.theorem.proposition {
-  border-left-style: double;
-}
-
-.lean-paired .math-notes-tabset {
-  margin-top: 0.65rem;
-}
-
-.math-notes-tabset .tab-content {
-  padding: 0.8rem 0.15rem 0.25rem;
-}
-
-.math-notes-tabset .nav-tabs {
-  gap: 0.15rem;
-  border-bottom: 1px solid var(--bs-border-color);
-}
-
-.math-notes-tabset .nav-link {
-  border: 0;
-  border-bottom: 2px solid transparent;
-  border-radius: 0.2rem 0.2rem 0 0;
-  color: var(--bs-secondary-color);
-  font-size: 0.82rem;
-  font-weight: 500;
-  padding: 0.25rem 0.55rem;
-}
-
-.math-notes-tabset .nav-link:hover,
-.math-notes-tabset .nav-link:focus-visible {
-  background: var(--bs-tertiary-bg);
-  color: var(--bs-body-color);
-}
-
-.math-notes-tabset .nav-link.active {
-  background: transparent;
-  border-bottom-color: var(--notes-accent);
-  color: var(--bs-body-color);
-}
-
-.lean-code-scaffold {
-  display: flex;
-  flex-direction: column;
-  margin: 0.15rem 0 0.8rem;
-}
-
-.lean-code-scaffold .code-copy-button {
-  align-self: flex-end;
-  align-items: center;
-  background: transparent;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 0.2rem;
-  color: var(--bs-secondary-color);
-  display: inline-flex;
-  font-size: 0.68rem;
-  height: 1.3rem;
-  justify-content: center;
-  line-height: 1;
-  margin-bottom: 0.2rem;
-  order: -1;
-  padding: 0;
-  position: static !important;
-  width: 1.3rem;
-}
-
-.lean-code-scaffold .code-copy-button:hover,
-.lean-code-scaffold .code-copy-button:focus-visible {
-  background: var(--bs-tertiary-bg);
-  color: var(--bs-body-color);
-}
-
-.lean-code pre.lean4 {
-  margin: 0;
-  max-height: none;
-  overflow: visible;
-  overflow-wrap: anywhere;
-  padding: 0.9rem 1rem;
-  white-space: pre-wrap;
-}
-
-.lean-code pre.lean4 code {
-  display: block;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  overflow-wrap: inherit;
-  white-space: inherit;
-}
-
-.lean-code .c1,
-.lean-code .sd {
-  color: #6a737d;
-  font-style: italic;
-}
-
-.lean-code .kn,
-.lean-code .k,
-.lean-code .kt {
-  color: #8250df;
-  font-weight: 600;
-}
-
-.lean-code .n,
-.lean-code .nf {
-  color: #0550ae;
-}
-
-.lean-code .o,
-.lean-code .bp {
-  color: #953800;
-}
-
-.lean-code .m,
-.lean-code .mi,
-.lean-code .mf,
-.lean-code .s,
-.lean-code .s1,
-.lean-code .s2 {
-  color: #0a3069;
-}
-
-body.quarto-dark .lean-code .c1,
-body.quarto-dark .lean-code .sd {
-  color: #8b949e;
-}
-
-body.quarto-dark .lean-code .kn,
-body.quarto-dark .lean-code .k,
-body.quarto-dark .lean-code .kt {
-  color: #d2a8ff;
-}
-
-body.quarto-dark .lean-code .n,
-body.quarto-dark .lean-code .nf {
-  color: #79c0ff;
-}
-
-body.quarto-dark .lean-code .o,
-body.quarto-dark .lean-code .bp {
-  color: #ffa657;
-}
-
-body.quarto-dark .lean-code .m,
-body.quarto-dark .lean-code .mi,
-body.quarto-dark .lean-code .mf,
-body.quarto-dark .lean-code .s,
-body.quarto-dark .lean-code .s1,
-body.quarto-dark .lean-code .s2 {
-  color: #a5d6ff;
+  border-left-color: var(--notes-exercise-accent);
 }
 
 .theorem.exercise .callout-tip {
-  margin: 1rem 0 0.35rem;
+  border: 0;
+  border-left: 0.15rem solid var(--notes-exercise-accent);
+  border-radius: 0;
+  margin: 0.85rem 0 0.15rem;
 }
 
-.lean-source-link {
-  margin-top: -0.4rem;
-  font-size: 0.9rem;
+.theorem.exercise .callout-tip .callout-header {
+  padding: 0.35rem 0.75rem;
+}
+
+.theorem.exercise .callout-tip .callout-body {
+  padding: 0.25rem 0.75rem 0.65rem;
 }
 
 .pilot-note {

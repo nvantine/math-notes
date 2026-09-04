@@ -1,4 +1,3 @@
-import json
 import subprocess
 from pathlib import Path
 
@@ -19,52 +18,20 @@ def render_site():
 
 
 @pytest.mark.parametrize(("label", "page"), PILOT_ITEMS.items())
-def test_pilot_item_uses_native_notes_and_lean_tabs(label: str, page: str):
+def test_pilot_item_uses_a_simple_notes_only_layout(label: str, page: str):
     soup = BeautifulSoup(
         (ROOT / "_site" / page).read_text(encoding="utf-8"), "html.parser"
     )
 
-    item = soup.select_one(f"#{label}.theorem.lean-paired")
+    item = soup.select_one(f"#{label}.theorem")
     assert item is not None
-    tabs = item.select("ul.nav-tabs .nav-link")
-    assert [tab.get_text(" ", strip=True) for tab in tabs] == ["Notes", "Lean 4"]
-    assert tabs[0].get("aria-selected") == "true"
-    assert tabs[1].get("aria-selected") == "false"
-
-    panels = item.select("div.tab-content > div.tab-pane")
-    assert len(panels) == 2
-    assert {"show", "active"}.issubset(panels[0].get("class", []))
-    assert "active" not in panels[1].get("class", [])
-    assert panels[1].select_one("pre.lean4 > code") is not None
-    source_link = panels[1].select_one("a.lean-source-link")
-    assert source_link is not None
-    revision = json.loads(
-        (ROOT / "lean" / "source-lock.json").read_text(encoding="utf-8")
-    )["revision"]
-    assert (
-        f"/blob/{revision}/lean/source/Pilot.lean#L"
-        in source_link["href"]
-    )
-
-
-def test_lean_code_is_highlighted_with_a_non_overlapping_copy_control():
-    soup = BeautifulSoup(
-        (ROOT / "_site" / "foundations" / "relations.html").read_text(
-            encoding="utf-8"
-        ),
-        "html.parser",
-    )
-    item = soup.select_one("#def-relation")
-
-    assert item is not None
-    code = item.select_one(".lean-code pre.lean4 > code")
-    assert code is not None
-    assert code.select_one("span") is not None
-    scaffold = item.select_one(".lean-code-scaffold")
-    assert scaffold is not None
-    copy_button = scaffold.select_one(".code-copy-button")
-    assert copy_button is not None
-    assert copy_button.parent is scaffold
+    classes = item.get("class") or []
+    assert "lean-paired" not in classes
+    assert item.select_one(".theorem-title") is not None
+    assert item.select_one(".math-notes-tabset") is None
+    assert item.select_one("ul.nav-tabs") is None
+    assert item.select_one("[data-lean-id]") is None
+    assert "Lean 4" not in item.get_text(" ", strip=True)
 
 
 @pytest.mark.parametrize(
@@ -75,20 +42,23 @@ def test_lean_code_is_highlighted_with_a_non_overlapping_copy_control():
         ("exr-double-negation", "linear-algebra/vector-spaces.html", "exercise"),
     ],
 )
-def test_pilot_items_keep_their_environment_class(label: str, page: str, environment: str):
+def test_pilot_items_keep_their_environment_class(
+    label: str, page: str, environment: str
+):
     soup = BeautifulSoup(
         (ROOT / "_site" / page).read_text(encoding="utf-8"), "html.parser"
     )
 
-    item = soup.select_one(f"#{label}.lean-paired")
+    item = soup.select_one(f"#{label}")
 
     assert item is not None
     classes = item.get("class")
     assert classes is not None
+    assert "theorem" in classes
     assert environment in classes
 
 
-def test_exercise_solution_is_a_closed_blue_callout():
+def test_exercise_solution_is_separate_and_closed_blue_callout():
     soup = BeautifulSoup(
         (ROOT / "_site" / "analysis" / "set-identities.html").read_text(
             encoding="utf-8"
@@ -100,6 +70,7 @@ def test_exercise_solution_is_a_closed_blue_callout():
     assert item is not None
     solution = item.select_one(".callout.callout-tip")
     assert solution is not None
+    assert solution.parent is item
     toggle = solution.select_one(".callout-header")
     assert toggle is not None
     assert toggle.get("aria-expanded") == "false"
@@ -116,13 +87,13 @@ def test_index_cross_references_all_three_pilot_items():
     assert "linear-algebra/vector-spaces.html#exr-double-negation" in hrefs
 
 
-def test_qmd_authoring_does_not_repeat_tabset_markup():
+def test_qmd_authoring_uses_plain_theorem_environment_markup():
     for page in (
         ROOT / "foundations" / "relations.qmd",
         ROOT / "analysis" / "set-identities.qmd",
         ROOT / "linear-algebra" / "vector-spaces.qmd",
     ):
         source = page.read_text(encoding="utf-8")
-        assert ".lean-paired" in source
-        assert "lean-id=" in source
+        assert ".lean-paired" not in source
+        assert "lean-id=" not in source
         assert ".panel-tabset" not in source

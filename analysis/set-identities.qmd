@@ -2,7 +2,7 @@
 title: "Set Identities"
 ---
 
-::: {#exr-de-morgan-union name="De Morgan's law for unions" .lean-paired lean-id="exr-de-morgan-union"}
+::: {#exr-de-morgan-union name="De Morgan's law for unions" .exercise}
 For a sequence of sets $(A_i)_{i=1}^{\infty}$, show that
 
 $$
@@ -26,4 +26,4 @@ x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
 :::
 :::
 
-This elementwise proof is the handwritten-side counterpart of the extensional Lean proof shown with @exr-de-morgan-union.
+This elementwise proof establishes the identity directly.

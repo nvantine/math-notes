@@ -1,22 +1,22 @@
 # Math Notes
 
-A Quarto-generated personal mathematics site with project-wide cross-references and an optional Notes / Lean 4 view for formalized items.
+A Quarto-generated personal mathematics site with project-wide cross-references for definitions, theorems, exercises, and proofs.
 
 ## Pilot scope
 
 The pilot contains three items adapted from [notes-and-exercises](https://github.com/nvantine/notes-and-exercises). It validates the information architecture and toggle workflow before the remaining notes are migrated.
 
-## Authoring paired items
+## Authoring items
 
-A paired item needs only the normal Quarto cross-reference label plus two attributes:
+An item uses a normal Quarto cross-reference label and environment class:
 
 ```markdown
-::: {#thm-example name="Example theorem" .lean-paired lean-id="thm-example"}
-The mathematical statement and proof go here.
+::: {#thm-example name="Example theorem" .theorem}
+Mathematical statement and proof go here.
 :::
 ```
 
-The Lua extension creates accessible Bootstrap tabs using Quarto's bundled runtime—there is no site-specific JavaScript to maintain. `scripts/sync_lean.py` extracts the matching marker-delimited region from `lean/source/Pilot.lean`, generates the displayed snippet, and creates a commit-pinned GitHub source link.
+The site currently keeps the note presentation simple and does not render Lean tabs. The Lean source and synchronization script remain in the repository for a later implementation.
 
 When Lean source changes, preserve exact source links with this two-commit workflow:
 

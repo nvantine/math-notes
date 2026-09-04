@@ -5,7 +5,7 @@ project:
 book:
   title: "Math Notes"
   author: "Nicholas Vantine"
-  description: "Definitions, theorems, exercises, and formalizations in Lean 4."
+  description: "Definitions, theorems, exercises, and proofs."
   site-url: "https://nvantine.github.io/math-notes/"
   repo-url: "https://github.com/nvantine/math-notes"
   repo-actions: [edit, issue]
@@ -27,9 +27,6 @@ book:
     pinned: false
 
 bibliography: references.bib
-
-filters:
-  - math-notes-toggle
 
 format:
   html:
