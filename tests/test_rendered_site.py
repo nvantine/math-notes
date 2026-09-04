@@ -5,11 +5,33 @@ import pytest
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-PILOT_ITEMS = {
-    "def-relation": "foundations/relations.html",
-    "exr-de-morgan-union": "analysis/set-identities.html",
-    "exr-double-negation": "linear-algebra/vector-spaces.html",
+MIGRATED_ITEMS = {
+    "def-relation": ("foundations/relations.html", "definition"),
+    "exm-basic-relations": ("foundations/relations.html", "example"),
+    "exr-equal-canonical-relations": ("foundations/relations.html", "exercise"),
+    "exr-product-relation-subset": ("foundations/relations.html", "exercise"),
+    "exr-de-morgan-union": ("analysis/set-identities.html", "exercise"),
+    "exr-double-negation": ("linear-algebra/vector-spaces.html", "exercise"),
+    "exr-finite-convex-combinations": (
+        "convex-optimization/convex-sets.html",
+        "exercise",
+    ),
+    "exr-parallel-hyperplanes-distance": (
+        "convex-optimization/convex-sets.html",
+        "exercise",
+    ),
+    "exr-voronoi-halfspace": ("convex-optimization/convex-sets.html", "exercise"),
 }
+QMD_PAGES = (
+    ROOT / "foundations" / "relations.qmd",
+    ROOT / "analysis" / "set-identities.qmd",
+    ROOT / "linear-algebra" / "vector-spaces.qmd",
+    ROOT / "convex-optimization" / "convex-sets.qmd",
+)
+
+
+def rendered_page(page: str) -> BeautifulSoup:
+    return BeautifulSoup((ROOT / "_site" / page).read_text(encoding="utf-8"), "html.parser")
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -17,13 +39,15 @@ def render_site():
     subprocess.run(["quarto", "render"], cwd=ROOT, check=True)
 
 
-@pytest.mark.parametrize(("label", "page"), PILOT_ITEMS.items())
-def test_pilot_item_uses_a_simple_notes_only_layout(label: str, page: str):
-    soup = BeautifulSoup(
-        (ROOT / "_site" / page).read_text(encoding="utf-8"), "html.parser"
-    )
+@pytest.mark.parametrize(
+    ("label", "page", "environment"),
+    [(label, *details) for label, details in MIGRATED_ITEMS.items()],
+)
+def test_migrated_item_uses_simple_native_environment(
+    label: str, page: str, environment: str
+):
+    item = rendered_page(page).select_one(f"#{label}.theorem.{environment}")
 
-    item = soup.select_one(f"#{label}.theorem")
     assert item is not None
     classes = item.get("class") or []
     assert "lean-paired" not in classes
@@ -35,65 +59,76 @@ def test_pilot_item_uses_a_simple_notes_only_layout(label: str, page: str):
 
 
 @pytest.mark.parametrize(
-    ("label", "page", "environment"),
+    ("label", "page"),
     [
-        ("def-relation", "foundations/relations.html", "definition"),
-        ("exr-de-morgan-union", "analysis/set-identities.html", "exercise"),
-        ("exr-double-negation", "linear-algebra/vector-spaces.html", "exercise"),
+        (label, page)
+        for label, (page, environment) in MIGRATED_ITEMS.items()
+        if environment == "exercise"
     ],
 )
-def test_pilot_items_keep_their_environment_class(
-    label: str, page: str, environment: str
-):
-    soup = BeautifulSoup(
-        (ROOT / "_site" / page).read_text(encoding="utf-8"), "html.parser"
-    )
-
-    item = soup.select_one(f"#{label}")
+def test_every_exercise_has_a_separate_closed_solution(label: str, page: str):
+    item = rendered_page(page).select_one(f"#{label}.theorem.exercise")
 
     assert item is not None
-    classes = item.get("class")
-    assert classes is not None
-    assert "theorem" in classes
-    assert environment in classes
-
-
-def test_exercise_solution_is_separate_and_closed_blue_callout():
-    soup = BeautifulSoup(
-        (ROOT / "_site" / "analysis" / "set-identities.html").read_text(
-            encoding="utf-8"
-        ),
-        "html.parser",
-    )
-    item = soup.select_one("#exr-de-morgan-union")
-
-    assert item is not None
-    solution = item.select_one(".callout.callout-tip")
+    solution = item.select_one(":scope > .callout.callout-tip")
     assert solution is not None
-    assert solution.parent is item
     toggle = solution.select_one(".callout-header")
     assert toggle is not None
     assert toggle.get("aria-expanded") == "false"
 
 
-def test_index_cross_references_all_three_pilot_items():
-    soup = BeautifulSoup(
-        (ROOT / "_site" / "index.html").read_text(encoding="utf-8"), "html.parser"
-    )
-    hrefs = {link.get("href") for link in soup.select("a.quarto-xref")}
+def test_site_contains_exactly_the_nine_migrated_items():
+    found = set()
+    for page in {page for page, _ in MIGRATED_ITEMS.values()}:
+        found.update(
+            str(item["id"])
+            for item in rendered_page(page).select(".theorem[id]")
+            if item.get("id")
+        )
 
-    assert "foundations/relations.html#def-relation" in hrefs
-    assert "analysis/set-identities.html#exr-de-morgan-union" in hrefs
-    assert "linear-algebra/vector-spaces.html#exr-double-negation" in hrefs
+    assert found == set(MIGRATED_ITEMS)
+
+
+def test_index_cross_references_every_migrated_item():
+    hrefs = {
+        link.get("href")
+        for link in rendered_page("index.html").select("a.quarto-xref")
+    }
+    expected = {
+        f"{page}#{label}" for label, (page, _) in MIGRATED_ITEMS.items()
+    }
+
+    assert expected.issubset(hrefs)
 
 
 def test_qmd_authoring_uses_plain_theorem_environment_markup():
-    for page in (
-        ROOT / "foundations" / "relations.qmd",
-        ROOT / "analysis" / "set-identities.qmd",
-        ROOT / "linear-algebra" / "vector-spaces.qmd",
-    ):
+    for page in QMD_PAGES:
         source = page.read_text(encoding="utf-8")
         assert ".lean-paired" not in source
         assert "lean-id=" not in source
         assert ".panel-tabset" not in source
+
+
+def test_finite_convex_combination_proof_handles_k_equals_one():
+    source = (ROOT / "convex-optimization" / "convex-sets.qmd").read_text(
+        encoding="utf-8"
+    )
+
+    assert "The case $k=1$ is immediate" in source
+
+
+def test_hyperplane_distance_proof_establishes_bound_and_attainment():
+    source = (ROOT / "convex-optimization" / "convex-sets.qmd").read_text(
+        encoding="utf-8"
+    )
+
+    assert "$a\\neq0$" in source
+    assert "For every $x_1\\in H_1$ and $x_2\\in H_2$" in source
+    assert "This lower bound is attained" in source
+
+
+def test_solution_disclosure_has_an_explicit_blue_header_style():
+    stylesheet = (ROOT / "_site" / "styles.css").read_text(encoding="utf-8")
+
+    assert "--notes-solution-bg" in stylesheet
+    assert ".callout-tip.callout-style-default > .callout-header" in stylesheet

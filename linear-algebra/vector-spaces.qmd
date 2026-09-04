@@ -2,6 +2,8 @@
 title: "Vector Spaces"
 ---
 
+This exercise is adapted from @Axler2024.
+
 ::: {#exr-double-negation name="Double additive inverse" .exercise}
 Prove that $-(-v)=v$ for every $v\in V$.
 

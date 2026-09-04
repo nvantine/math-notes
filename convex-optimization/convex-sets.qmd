@@ -1,0 +1,221 @@
+---
+title: "Convex Sets"
+---
+
+These exercises are adapted from @cvxbook.
+
+::: {#exr-finite-convex-combinations name="Finite convex combinations" .exercise}
+Let $C \subseteq \mathbb{R}^n$ be a convex set, with $x_1, \ldots, x_k \in C$, and let $\theta_1, \ldots, \theta_k \in \mathbb{R}$ satisfy
+
+$$
+\theta_i \geq 0,
+\qquad
+\theta_1 + \cdots + \theta_k = 1.
+$$
+
+Show that
+
+$$
+\theta_1x_1 + \cdots + \theta_kx_k \in C.
+$$
+
+The definition of convexity gives this result for $k=2$; prove it for arbitrary $k$.
+
+*Hint.* Use induction on $k$.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+We prove the result by induction on the number of points.
+
+The case $k=1$ is immediate: the coefficient condition forces $\theta_1=1$, so $\theta_1x_1=x_1\in C$.
+
+For the first nontrivial case, let $k=2$. If $x_1,x_2\in C$ and $\theta\in[0,1]$, then the definition of convexity gives
+
+$$
+(1-\theta)x_1+\theta x_2\in C.
+$$
+
+Thus every convex combination of two points in $C$ belongs to $C$.
+
+Now suppose every convex combination of $\ell$ points in $C$ belongs to $C$. In other words, whenever
+
+$$
+x_i\in C,
+\qquad
+\theta_i\geq0,
+\qquad
+\sum_{i=1}^{\ell}\theta_i=1,
+$$
+
+we have
+
+$$
+\sum_{i=1}^{\ell}\theta_i x_i\in C.
+$$
+
+Let $x_1,\ldots,x_{\ell+1}\in C$, and let $\phi_i\geq0$ satisfy
+
+$$
+\sum_{i=1}^{\ell+1}\phi_i=1.
+$$
+
+If $\phi_{\ell+1}=1$, then $\phi_1=\cdots=\phi_\ell=0$, so
+
+$$
+\sum_{i=1}^{\ell+1}\phi_i x_i=x_{\ell+1}\in C.
+$$
+
+Now suppose $\phi_{\ell+1}<1$, and define
+
+$$
+z=\frac{1}{1-\phi_{\ell+1}}
+\sum_{i=1}^{\ell}\phi_i x_i.
+$$
+
+Since
+
+$$
+\sum_{i=1}^{\ell}\phi_i=1-\phi_{\ell+1},
+$$
+
+the coefficients in the definition of $z$ are nonnegative and sum to one. The induction hypothesis therefore implies that $z\in C$.
+
+Finally,
+
+$$
+\begin{aligned}
+\sum_{i=1}^{\ell+1}\phi_i x_i
+&=\sum_{i=1}^{\ell}\phi_i x_i+\phi_{\ell+1}x_{\ell+1} \\
+&=(1-\phi_{\ell+1})z+\phi_{\ell+1}x_{\ell+1}.
+\end{aligned}
+$$
+
+Because $z,x_{\ell+1}\in C$ and $\phi_{\ell+1}\in[0,1]$, convexity of $C$ gives
+
+$$
+\sum_{i=1}^{\ell+1}\phi_i x_i\in C.
+$$
+
+Therefore, by induction, every finite convex combination of points in $C$ belongs to $C$.
+:::
+:::
+
+::: {#exr-parallel-hyperplanes-distance name="Distance between parallel hyperplanes" .exercise}
+For $a\neq0$, what is the distance between the parallel hyperplanes
+
+$$
+H_1=\{x\in\mathbb{R}^n\mid a^Tx=b_1\}
+\qquad\text{and}\qquad
+H_2=\{x\in\mathbb{R}^n\mid a^Tx=b_2\}?
+$$
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+For every $x_1\in H_1$ and $x_2\in H_2$,
+
+$$
+a^T(x_1-x_2)=b_1-b_2.
+$$
+
+The Cauchy--Schwarz inequality therefore gives
+
+$$
+|b_1-b_2|
+=|a^T(x_1-x_2)|
+\leq\lVert a\rVert\,\lVert x_1-x_2\rVert.
+$$
+
+Thus every pair of points, one from each hyperplane, satisfies
+
+$$
+\lVert x_1-x_2\rVert
+\geq
+\frac{|b_1-b_2|}{\lVert a\rVert}.
+$$
+
+This lower bound is attained. Choose any $x_2\in H_2$ and define
+
+$$
+x_1=x_2+\frac{b_1-b_2}{\lVert a\rVert^2}a.
+$$
+
+Then
+
+$$
+a^Tx_1
+=a^Tx_2+\frac{b_1-b_2}{\lVert a\rVert^2}a^Ta
+=b_2+(b_1-b_2)
+=b_1,
+$$
+
+so $x_1\in H_1$, and
+
+$$
+\lVert x_1-x_2\rVert
+=\left\lVert\frac{b_1-b_2}{\lVert a\rVert^2}a\right\rVert
+=\frac{|b_1-b_2|}{\lVert a\rVert}.
+$$
+
+Hence the distance between the hyperplanes is
+
+$$
+\boxed{\frac{|b_1-b_2|}{\lVert a\rVert}}.
+$$
+:::
+:::
+
+::: {#exr-voronoi-halfspace name="Voronoi description of a halfspace" .exercise}
+Let $a$ and $b$ be distinct points in $\mathbb{R}^n$. Show that the set of all points that are closer in Euclidean norm to $a$ than to $b$,
+
+$$
+\{x\mid \lVert x-a\rVert_2\leq\lVert x-b\rVert_2\},
+$$
+
+is a halfspace. Describe it explicitly as an inequality of the form $c^Tx\leq d$. Draw a picture.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+Since both sides are nonnegative,
+
+$$
+\lVert x-a\rVert_2\leq\lVert x-b\rVert_2
+\iff
+\lVert x-a\rVert_2^2\leq\lVert x-b\rVert_2^2.
+$$
+
+Expanding the squared norms gives
+
+$$
+\lVert x-a\rVert_2^2=x^Tx-2a^Tx+a^Ta,
+\qquad
+\lVert x-b\rVert_2^2=x^Tx-2b^Tx+b^Tb.
+$$
+
+The quadratic terms cancel, leaving
+
+$$
+2(b-a)^Tx\leq b^Tb-a^Ta.
+$$
+
+Thus
+
+$$
+\{x\mid\lVert x-a\rVert_2\leq\lVert x-b\rVert_2\}
+=
+\{x\mid c^Tx\leq d\},
+$$
+
+where
+
+$$
+c=b-a,
+\qquad
+d=\frac{1}{2}\bigl(\lVert b\rVert_2^2-\lVert a\rVert_2^2\bigr).
+$$
+
+Since $a\neq b$, we have $c\neq0$, so this is a halfspace. Geometrically, its boundary is the perpendicular bisector of the segment $[a,b]$, and the halfspace contains $a$.
+:::
+:::

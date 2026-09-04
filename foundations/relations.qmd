@@ -11,3 +11,59 @@ If $Y=X$, the relation is called *homogeneous*. When $(x,y)\in R$, we say that $
 :::
 
 The definition in @def-relation treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.
+
+::: {#exm-basic-relations name="Basic relations" .example}
+Let $X$ and $Y$ be sets. The following are standard examples:
+
+1. The *discrete relation* $X\times Y$.
+2. The *empty relation* $\emptyset\subseteq X\times Y$.
+3. When $Y=X$, the *diagonal relation* $\{(x,x):x\in X\}$.
+:::
+
+::: {#exr-equal-canonical-relations name="Equality of the basic relations" .exercise}
+Give a necessary and sufficient condition for the empty, discrete, and diagonal relations to be equal.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+Assume the three are homogeneous relations on the same set $X$, so $Y=X$. They are equal if and only if $X=\emptyset$.
+
+If $X=\emptyset$, then
+
+$$
+X\times X=\emptyset
+\qquad\text{and}\qquad
+\{(x,x):x\in X\}=\emptyset,
+$$
+
+so all three relations coincide. Conversely, if the diagonal relation is empty, then $X$ has no elements: any $x\in X$ would make $(x,x)$ an element of the diagonal. Therefore $X=\emptyset$.
+:::
+:::
+
+::: {#exr-product-relation-subset name="Product of relations" .exercise}
+Let $(X_1,R_1)$ and $(X_2,R_2)$ be pairs of sets and relations on them. The rule
+
+$$
+(x,y)\,(R_1\times R_2)\,(x',y')
+\quad\Longleftrightarrow\quad
+xR_1x'\text{ and }yR_2y'
+$$
+
+defines a relation $R_1\times R_2$ on $X_1\times X_2$. Express this relation as a subset of $(X_1\times X_2)^2$.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The relation is
+
+$$
+R_1\times R_2
+=
+\left\{
+\bigl((x,y),(x',y')\bigr)\in(X_1\times X_2)^2
+:
+(x,x')\in R_1\text{ and }(y,y')\in R_2
+\right\}.
+$$
+:::
+:::

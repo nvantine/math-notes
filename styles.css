@@ -4,6 +4,7 @@
   --notes-accent: #2f6f8f;
   --notes-definition-bg: color-mix(in srgb, var(--notes-accent) 7%, transparent);
   --notes-exercise-accent: var(--bs-primary);
+  --notes-solution-bg: color-mix(in srgb, var(--notes-exercise-accent) 14%, var(--bs-body-bg));
 }
 
 body {
@@ -42,6 +43,15 @@ body {
 
 .theorem.exercise .callout-tip .callout-header {
   padding: 0.35rem 0.75rem;
+}
+
+.theorem.exercise .callout-tip.callout-style-default > .callout-header {
+  background: var(--notes-solution-bg);
+  color: var(--bs-body-color);
+}
+
+.theorem.exercise .callout-tip .callout-icon-container {
+  display: none;
 }
 
 .theorem.exercise .callout-tip .callout-body {

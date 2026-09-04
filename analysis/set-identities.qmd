@@ -2,6 +2,8 @@
 title: "Set Identities"
 ---
 
+This exercise is adapted from @Abbott2015.
+
 ::: {#exr-de-morgan-union name="De Morgan's law for unions" .exercise}
 For a sequence of sets $(A_i)_{i=1}^{\infty}$, show that
 

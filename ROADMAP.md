@@ -6,10 +6,10 @@
 - [ ] Add Lean views only where a corresponding formalization exists
 - [x] Marker-based Lean snippet synchronization
 - [x] GitHub Pages deployment
+- [x] Migrate every populated section from `notes-and-exercises`
 
 ## After pilot approval
 
-- [ ] Migrate the remaining populated sections from `notes-and-exercises`
 - [ ] Expand subject navigation as new notes are written
 
 ## Future implementation

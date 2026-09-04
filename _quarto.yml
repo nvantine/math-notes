@@ -21,6 +21,9 @@ book:
     - part: "Linear Algebra"
       chapters:
         - linear-algebra/vector-spaces.qmd
+    - part: "Convex Optimization"
+      chapters:
+        - convex-optimization/convex-sets.qmd
   sidebar:
     style: floating
     collapse-level: 2

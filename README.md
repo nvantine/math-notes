@@ -2,9 +2,9 @@
 
 A Quarto-generated personal mathematics site with project-wide cross-references for definitions, theorems, exercises, and proofs.
 
-## Pilot scope
+## Content
 
-The pilot contains three items adapted from [notes-and-exercises](https://github.com/nvantine/notes-and-exercises). It validates the information architecture and toggle workflow before the remaining notes are migrated.
+The site contains every populated item from [notes-and-exercises](https://github.com/nvantine/notes-and-exercises) as of source revision `8c100782306f8da5811148b2314f275497038a13`: one definition, one example, and seven exercises with solutions across foundations, analysis, linear algebra, and convex optimization.
 
 ## Authoring items
 

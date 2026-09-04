@@ -3,22 +3,35 @@ title: "Math Notes"
 number-sections: false
 ---
 
-Welcome. This site collects my mathematical definitions, theorems, exercises, and proofs in a form that is searchable and easy to cross-reference.
+This site collects mathematical definitions, examples, exercises, and proofs in a searchable, cross-referenced form.
 
-## Pilot
+## Foundations
 
-The pilot converts three real items from my existing LaTeX notes:
+- @def-relation defines a relation as a set of ordered pairs.
+- @exm-basic-relations records the discrete, empty, and diagonal relations.
+- @exr-equal-canonical-relations compares those three basic relations.
+- @exr-product-relation-subset describes the product of two relations.
 
-- @def-relation from the foundations notes;
-- @exr-de-morgan-union from advanced calculus; and
-- @exr-double-negation from linear algebra.
+## Analysis
 
-Each item is presented as a focused mathematical note. Lean formalizations are deferred while the notes and exercise layout are refined.
+- @exr-de-morgan-union proves De Morgan's law for a countable union, adapted from @Abbott2015.
+
+## Linear Algebra
+
+- @exr-double-negation proves that the additive inverse operation is an involution, adapted from @Axler2024.
+
+## Convex Optimization
+
+The convex-set exercises are adapted from @cvxbook.
+
+- @exr-finite-convex-combinations extends the definition of convexity to arbitrary finite convex combinations.
+- @exr-parallel-hyperplanes-distance computes the distance between parallel hyperplanes.
+- @exr-voronoi-halfspace derives the halfspace of points closer to one site than another.
 
 ::: {.callout-note .pilot-note}
-## Pilot scope
+## Migration status
 
-This is intentionally a small sample. The rest of `notes-and-exercises` will not be migrated until the structure and presentation are approved.
+All populated sections from the original LaTeX notes are included. Lean presentation remains deferred while the notes layout is refined.
 :::
 
 ## Sources
