@@ -9,7 +9,7 @@
 <meta name="author" content="Nicholas Vantine">
 <meta name="description" content="Definitions, theorems, exercises, and proofs.">
 
-<title>Math Notes</title>
+<title>4&nbsp; Continuous Everywhere, Nowhere Differentiable – Math Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -50,28 +50,29 @@ div.csl-indent {
 }</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./foundations/relations.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../linear-algebra/vector-spaces.html" rel="next">
+<link href="../analysis/set-identities.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-41dd21cc25c22a37874adad123a8230e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,8 +102,37 @@ div.csl-indent {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -276,7 +306,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Math Notes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/set-identities.html">Analysis</a></li><li class="breadcrumb-item"><a href="../analysis/continuous-nowhere-differentiable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Continuous Everywhere, Nowhere Differentiable</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -291,7 +321,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math Notes</a> 
+      <a href="../">Math Notes</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/nvantine/math-notes" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -312,7 +342,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Math Notes</span></span></a>
   </div>
 </li>
@@ -327,7 +357,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./foundations/relations.html" class="sidebar-item-text sidebar-link">
+  <a href="../foundations/relations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relations</span></span></a>
   </div>
 </li>
@@ -344,13 +374,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis/set-identities.html" class="sidebar-item-text sidebar-link">
+  <a href="../analysis/set-identities.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set Identities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis/continuous-nowhere-differentiable.html" class="sidebar-item-text sidebar-link">
+  <a href="../analysis/continuous-nowhere-differentiable.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Continuous Everywhere, Nowhere Differentiable</span></span></a>
   </div>
 </li>
@@ -367,7 +397,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear-algebra/vector-spaces.html" class="sidebar-item-text sidebar-link">
+  <a href="../linear-algebra/vector-spaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vector Spaces</span></span></a>
   </div>
 </li>
@@ -384,7 +414,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
+  <a href="../convex-optimization/convex-sets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convex Sets</span></span></a>
   </div>
 </li>
@@ -400,28 +430,25 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#foundations" id="toc-foundations" class="nav-link active" data-scroll-target="#foundations">Foundations</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
-  <li><a href="#linear-algebra" id="toc-linear-algebra" class="nav-link" data-scroll-target="#linear-algebra">Linear Algebra</a></li>
-  <li><a href="#convex-optimization" id="toc-convex-optimization" class="nav-link" data-scroll-target="#convex-optimization">Convex Optimization</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">4.1</span> Introduction</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">4.2</span> Background</a></li>
+  <li><a href="#construction" id="toc-construction" class="nav-link" data-scroll-target="#construction"><span class="header-section-number">4.3</span> Construction</a></li>
+  <li><a href="#continuity" id="toc-continuity" class="nav-link" data-scroll-target="#continuity"><span class="header-section-number">4.4</span> Continuity</a></li>
+  <li><a href="#nowhere-differentiability" id="toc-nowhere-differentiability" class="nav-link" data-scroll-target="#nowhere-differentiability"><span class="header-section-number">4.5</span> Nowhere differentiability</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.6</span> Conclusion</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/analysis/continuous-nowhere-differentiable.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/set-identities.html">Analysis</a></li><li class="breadcrumb-item"><a href="../analysis/continuous-nowhere-differentiable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Continuous Everywhere, Nowhere Differentiable</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Math Notes</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Continuous Everywhere, Nowhere Differentiable</span></h1>
+<p class="subtitle lead">The Weierstrass function</p>
 </div>
 
-<div>
-  <div class="description">
-    Definitions, theorems, exercises, and proofs.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -433,6 +460,12 @@ div.csl-indent {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Spring 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -442,69 +475,310 @@ div.csl-indent {
 </header>
 
 
-<p>This site collects mathematical definitions, examples, exercises, and proofs in a searchable, cross-referenced form.</p>
-<section id="foundations" class="level2">
-<h2 class="anchored" data-anchor-id="foundations">Foundations</h2>
-<ul>
-<li><a href="foundations/relations.html#def-relation" class="quarto-xref">Definition&nbsp;<span>2.1</span></a> defines a relation as a set of ordered pairs.</li>
-<li><a href="foundations/relations.html#exm-basic-relations" class="quarto-xref">Example&nbsp;<span>2.1</span></a> records the discrete, empty, and diagonal relations.</li>
-<li><a href="foundations/relations.html#exr-equal-canonical-relations" class="quarto-xref">Exercise&nbsp;<span>2.1</span></a> compares those three basic relations.</li>
-<li><a href="foundations/relations.html#exr-product-relation-subset" class="quarto-xref">Exercise&nbsp;<span>2.2</span></a> describes the product of two relations.</li>
-</ul>
+<p>This chapter adapts the paper at <a href="https://github.com/nvantine/Continuous-Everywhere-Nowhere-Differentiable-Function-Paper/tree/612ce5ff672ae637570f975a9d285a0e71681019">source revision <code>612ce5f</code></a>. It follows the paper’s historical motivation while tightening the main construction and proof.</p>
+<section id="introduction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">4.1</span> Introduction</h2>
+<p>In the nineteenth century, continuity was often associated with geometric smoothness. Karl Weierstrass overturned that intuition by constructing a function that is continuous at every real number and differentiable at none <span class="citation" data-cites="wiki-Weierstrass-function wiki-Karl-Weierstrass">(<a href="#ref-wiki-Weierstrass-function" role="doc-biblioref">Wikipedia contributors 2025b</a>, <a href="#ref-wiki-Karl-Weierstrass" role="doc-biblioref">2025a</a>)</span>.</p>
+<p>A classical form of his function is</p>
+<p><span class="math display">\[
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+0&lt;a&lt;1,\qquad b&gt;1\text{ is an odd integer},
+\qquad ab&gt;1+\frac{3\pi}{2}.
+\]</span></p>
+<p>The factor <span class="math inline">\(\pi\)</span> is only a scaling convention: replacing <span class="math inline">\(x\)</span> by <span class="math inline">\(x/\pi\)</span> gives the version <span class="math inline">\(\sum a^n\cos(b^n x)\)</span> used in the original paper. The series is built from smooth cosine waves whose amplitudes decay while their frequencies grow. The result converges to a continuous curve but retains oscillations at every scale <span class="citation" data-cites="SteinShakarchi2003">(<a href="#ref-SteinShakarchi2003" role="doc-biblioref">Stein and Shakarchi 2003</a>)</span>.</p>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<ul>
-<li><a href="analysis/set-identities.html#exr-de-morgan-union" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a> proves De Morgan’s law for a countable union, adapted from <span class="citation" data-cites="Abbott2015">Abbott (<a href="#ref-Abbott2015" role="doc-biblioref">2015</a>)</span>.</li>
-<li><a href="./analysis/continuous-nowhere-differentiable.html">Continuous Everywhere, Nowhere Differentiable</a> develops the Weierstrass function from the definitions of continuity and differentiability through the nowhere-differentiability proof.</li>
-</ul>
+<section id="background" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="background"><span class="header-section-number">4.2</span> Background</h2>
+<div id="def-continuity-epsilon" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 4.1 (Continuity)</strong></span> Let <span class="math inline">\(f:S\to\mathbb R\)</span> and let <span class="math inline">\(c\in S\)</span>. The function <span class="math inline">\(f\)</span> is <em>continuous at <span class="math inline">\(c\)</span></em> if, for every <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(\delta&gt;0\)</span> such that</p>
+<p><span class="math display">\[
+x\in S\text{ and }|x-c|&lt;\delta
+\quad\Longrightarrow\quad
+|f(x)-f(c)|&lt;\varepsilon.
+\]</span></p>
+<p>This is the usual <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(\delta\)</span> definition <span class="citation" data-cites="Abbott2015">(<a href="#ref-Abbott2015" role="doc-biblioref">Abbott 2015</a>)</span>.</p>
+</div>
+<div id="def-continuity-sequential" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 4.2 (Sequential continuity)</strong></span> Let <span class="math inline">\(f:S\to\mathbb R\)</span> and let <span class="math inline">\(c\in S\)</span>. The function <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(c\)</span> if every sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\(S\)</span> satisfying <span class="math inline">\(x_n\to c\)</span> also satisfies <span class="math inline">\(f(x_n)\to f(c)\)</span> <span class="citation" data-cites="ClassNotes">(<a href="#ref-ClassNotes" role="doc-biblioref">Anshelevich 2025</a>)</span>.</p>
+</div>
+<div id="def-differentiability" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 4.3 (Differentiability)</strong></span> Let <span class="math inline">\(g:S\to\mathbb R\)</span> be defined on an interval <span class="math inline">\(S\)</span>, and let <span class="math inline">\(c\in S\)</span>. The derivative of <span class="math inline">\(g\)</span> at <span class="math inline">\(c\)</span> is</p>
+<p><span class="math display">\[
+g'(c)=\lim_{x\to c}\frac{g(x)-g(c)}{x-c},
+\]</span></p>
+<p>provided this limit exists. In that case, <span class="math inline">\(g\)</span> is <em>differentiable at <span class="math inline">\(c\)</span></em> <span class="citation" data-cites="Abbott2015">(<a href="#ref-Abbott2015" role="doc-biblioref">Abbott 2015</a>)</span>.</p>
+</div>
+<div id="thm-differentiable-implies-continuous" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1 (Differentiability implies continuity)</strong></span> If <span class="math inline">\(g:S\to\mathbb R\)</span> is differentiable at <span class="math inline">\(c\in S\)</span>, then <span class="math inline">\(g\)</span> is continuous at <span class="math inline">\(c\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Because the difference quotient tends to <span class="math inline">\(g'(c)\)</span>,</p>
+<p><span class="math display">\[
+\lim_{x\to c}\bigl(g(x)-g(c)\bigr)
+=
+\lim_{x\to c}
+\left(\frac{g(x)-g(c)}{x-c}\right)(x-c)
+=g'(c)\cdot0=0.
+\]</span></p>
+<p>Therefore <span class="math inline">\(\lim_{x\to c}g(x)=g(c)\)</span> <span class="citation" data-cites="Abbott2015">(<a href="#ref-Abbott2015" role="doc-biblioref">Abbott 2015</a>)</span>.</p>
+</div>
+<p>The converse fails even for familiar functions.</p>
+<div id="exm-absolute-value-cusp" class="example theorem">
+<p><span class="theorem-title"><strong>Example 4.1 (The absolute-value cusp)</strong></span> The function <span class="math inline">\(f(x)=|x|\)</span> is continuous at <span class="math inline">\(0\)</span>, but</p>
+<p><span class="math display">\[
+\lim_{x\to0^-}\frac{|x|}{x}=-1
+\qquad\text{and}\qquad
+\lim_{x\to0^+}\frac{|x|}{x}=1.
+\]</span></p>
+<p>Thus <span class="math inline">\(f'(0)\)</span> does not exist <span class="citation" data-cites="Abbott2015">(<a href="#ref-Abbott2015" role="doc-biblioref">Abbott 2015</a>)</span>.</p>
+</div>
+<p>This example has only one corner. Weierstrass’s construction is more striking because it has no differentiable point at all.</p>
 </section>
-<section id="linear-algebra" class="level2">
-<h2 class="anchored" data-anchor-id="linear-algebra">Linear Algebra</h2>
-<ul>
-<li><a href="linear-algebra/vector-spaces.html#exr-double-negation" class="quarto-xref">Exercise&nbsp;<span>5.1</span></a> proves that the additive inverse operation is an involution, adapted from <span class="citation" data-cites="Axler2024">Axler (<a href="#ref-Axler2024" role="doc-biblioref">2024</a>)</span>.</li>
-</ul>
+<section id="construction" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="construction"><span class="header-section-number">4.3</span> Construction</h2>
+<p>We need three elementary estimates.</p>
+<div id="lem-cosine-lipschitz" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 4.1 (Cosine is Lipschitz)</strong></span> For all <span class="math inline">\(x,y\in\mathbb R\)</span>,</p>
+<p><span class="math display">\[
+|\cos x-\cos y|\le |x-y|.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>The mean value theorem gives <span class="math inline">\(\cos x-\cos y=-\sin(\xi)(x-y)\)</span> for some <span class="math inline">\(\xi\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Since <span class="math inline">\(|\sin\xi|\le1\)</span>, the claim follows.</p>
+</div>
+<div id="lem-cosine-oscillation" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 4.2 (A nearby cosine oscillation)</strong></span> For every <span class="math inline">\(c\in\mathbb R\)</span> and every positive integer <span class="math inline">\(k\)</span>, there exists</p>
+<p><span class="math display">\[
+y\in\left(c+\frac{\pi}{k},c+\frac{3\pi}{k}\right)
+\]</span></p>
+<p>such that</p>
+<p><span class="math display">\[
+|\cos(kc)-\cos(ky)|\ge1.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>As <span class="math inline">\(y\)</span> traverses this interval, <span class="math inline">\(ky\)</span> traverses an open interval of length <span class="math inline">\(2\pi\)</span>. Put <span class="math inline">\(r=\cos(kc)\)</span>. If <span class="math inline">\(-1&lt;r&lt;1\)</span>, the interval contains points where cosine equals both <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>, so one of those values differs from <span class="math inline">\(r\)</span> by at least <span class="math inline">\(1\)</span>. If <span class="math inline">\(r=1\)</span> or <span class="math inline">\(r=-1\)</span>, the interval contains a point where cosine is <span class="math inline">\(0\)</span>, again giving a difference of <span class="math inline">\(1\)</span>.</p>
+</div>
+<div id="lem-cosine-shift" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 4.3 (Integer shifts of cosine)</strong></span> For every integer <span class="math inline">\(r\)</span> and every real <span class="math inline">\(t\)</span>,</p>
+<p><span class="math display">\[
+\cos(r\pi+t)=(-1)^r\cos t.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Apply the cosine addition formula and use <span class="math inline">\(\sin(r\pi)=0\)</span> and <span class="math inline">\(\cos(r\pi)=(-1)^r\)</span>.</p>
+</div>
+<div id="lem-reverse-triangle-three-terms" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 4.4 (Three-term reverse triangle inequality)</strong></span> For all real numbers <span class="math inline">\(u,v,w\)</span>,</p>
+<p><span class="math display">\[
+|u+v+w|\ge |u|-|v|-|w|.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Twice applying the triangle inequality gives <span class="math inline">\(|u|\le |u+v+w|+|v|+|w|\)</span>.</p>
+</div>
+<div id="thm-weierstrass-absolute-convergence" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.2 (Absolute convergence)</strong></span> For every <span class="math inline">\(x\in\mathbb R\)</span>, the series</p>
+<p><span class="math display">\[
+\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+\]</span></p>
+<p>converges absolutely.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(|\cos(\pi b^n x)|\le1\)</span>,</p>
+<p><span class="math display">\[
+|a^n\cos(\pi b^n x)|\le a^n.
+\]</span></p>
+<p>The geometric series <span class="math inline">\(\sum_{n=0}^{\infty}a^n\)</span> converges because <span class="math inline">\(0&lt;a&lt;1\)</span>. Comparison proves absolute convergence <span class="citation" data-cites="MITRealAnalysisLecture18">(<a href="#ref-MITRealAnalysisLecture18" role="doc-biblioref">Massachusetts Institute of Technology 2020</a>)</span>.</p>
+</div>
 </section>
-<section id="convex-optimization" class="level2">
-<h2 class="anchored" data-anchor-id="convex-optimization">Convex Optimization</h2>
-<p>The convex-set exercises are adapted from <span class="citation" data-cites="cvxbook">Boyd and Vandenberghe (<a href="#ref-cvxbook" role="doc-biblioref">2004</a>)</span>.</p>
-<ul>
-<li><a href="convex-optimization/convex-sets.html#exr-finite-convex-combinations" class="quarto-xref">Exercise&nbsp;<span>6.1</span></a> extends the definition of convexity to arbitrary finite convex combinations.</li>
-<li><a href="convex-optimization/convex-sets.html#exr-parallel-hyperplanes-distance" class="quarto-xref">Exercise&nbsp;<span>6.2</span></a> computes the distance between parallel hyperplanes.</li>
-<li><a href="convex-optimization/convex-sets.html#exr-voronoi-halfspace" class="quarto-xref">Exercise&nbsp;<span>6.3</span></a> derives the halfspace of points closer to one site than another.</li>
-</ul>
-<div class="pilot-note callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="continuity" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="continuity"><span class="header-section-number">4.4</span> Continuity</h2>
+<div id="thm-weierstrass-continuity" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.3 (Continuity of the Weierstrass function)</strong></span> The function</p>
+<p><span class="math display">\[
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+\]</span></p>
+<p>is bounded and continuous on <span class="math inline">\(\mathbb R\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>For every <span class="math inline">\(x\)</span>,</p>
+<p><span class="math display">\[
+|W(x)|
+\le \sum_{n=0}^{\infty}a^n
+=\frac{1}{1-a},
+\]</span></p>
+<p>so <span class="math inline">\(W\)</span> is bounded. The same estimate is independent of <span class="math inline">\(x\)</span>, so the Weierstrass M-test shows that the partial sums converge uniformly. Every partial sum is continuous, and a uniform limit of continuous functions is continuous <span class="citation" data-cites="MITRealAnalysisLecture18">(<a href="#ref-MITRealAnalysisLecture18" role="doc-biblioref">Massachusetts Institute of Technology 2020</a>)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Migration status
+<span class="screen-reader-only">Note</span>Sequential proof
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>All populated sections from the original LaTeX notes are included. Lean presentation remains deferred while the notes layout is refined.</p>
+<p>The original paper also proves continuity using <a href="#def-continuity-sequential" class="quarto-xref">Definition&nbsp;<span>4.2</span></a>. Let <span class="math inline">\(x_j\to c\)</span> and fix <span class="math inline">\(\varepsilon&gt;0\)</span>. Choose <span class="math inline">\(M\)</span> so large that</p>
+<p><span class="math display">\[
+2\sum_{n=M+1}^{\infty}a^n&lt;\frac{\varepsilon}{2}.
+\]</span></p>
+<p>We split the series into a finite head and a uniformly small tail. For the head, continuity of each cosine term gives</p>
+<p><span class="math display">\[
+\sum_{n=0}^{M}a^n
+\left|\cos(\pi b^n x_j)-\cos(\pi b^n c)\right|
+\longrightarrow0.
+\]</span></p>
+<p>It is therefore less than <span class="math inline">\(\varepsilon/2\)</span> for all sufficiently large <span class="math inline">\(j\)</span>. The tail satisfies</p>
+<p><span class="math display">\[
+\sum_{n=M+1}^{\infty}a^n
+\left|\cos(\pi b^n x_j)-\cos(\pi b^n c)\right|
+\le2\sum_{n=M+1}^{\infty}a^n
+&lt;\frac{\varepsilon}{2}.
+\]</span></p>
+<p>Hence <span class="math inline">\(|W(x_j)-W(c)|&lt;\varepsilon\)</span> eventually, so <span class="math inline">\(W(x_j)\to W(c)\)</span> <span class="citation" data-cites="MITRealAnalysisLecture18">(<a href="#ref-MITRealAnalysisLecture18" role="doc-biblioref">Massachusetts Institute of Technology 2020</a>)</span>.</p>
+</div>
+</div>
+</div>
+<p>The original paper approached continuity sequentially and used the following useful fact.</p>
+<div id="exr-limsup-zero" class="exercise theorem">
+<p><span class="theorem-title"><strong>Exercise 4.1 (A limsup criterion for convergence to zero)</strong></span> Prove that</p>
+<p><span class="math display">\[
+\limsup_{n\to\infty}|x_n|=0
+\quad\Longleftrightarrow\quad
+\lim_{n\to\infty}x_n=0.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(x_n\to0\)</span>, then <span class="math inline">\(|x_n|\to0\)</span>, so <span class="math inline">\(\limsup |x_n|=0\)</span>.</p>
+<p>Conversely, suppose <span class="math inline">\(\limsup |x_n|=0\)</span>. Because <span class="math inline">\(|x_n|\ge0\)</span>, we also have <span class="math inline">\(\liminf |x_n|\ge0\)</span>. Hence</p>
+<p><span class="math display">\[
+0\le\liminf_{n\to\infty}|x_n|
+\le\limsup_{n\to\infty}|x_n|=0.
+\]</span></p>
+<p>Thus <span class="math inline">\(|x_n|\to0\)</span>, which is equivalent to <span class="math inline">\(x_n\to0\)</span>.</p>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<ul>
-<li><a href="https://github.com/nvantine/notes-and-exercises">Original LaTeX notes</a></li>
-<li><a href="https://github.com/nvantine/Continuous-Everywhere-Nowhere-Differentiable-Function-Paper">Continuous-everywhere, nowhere-differentiable paper</a></li>
-<li><a href="https://github.com/nvantine/math-notes">Website source</a></li>
-</ul>
+<section id="nowhere-differentiability" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="nowhere-differentiability"><span class="header-section-number">4.5</span> Nowhere differentiability</h2>
+<div id="thm-weierstrass-nowhere-differentiable" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.4 (Weierstrass)</strong></span> Assume</p>
+<p><span class="math display">\[
+0&lt;a&lt;1,
+\qquad b&gt;1\text{ is an odd integer},
+\qquad ab&gt;1+\frac{3\pi}{2}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+W(x)=\sum_{n=0}^{\infty}a^n\cos(\pi b^n x)
+\]</span></p>
+<p>is nowhere differentiable on <span class="math inline">\(\mathbb R\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Fix <span class="math inline">\(x_0\in\mathbb R\)</span>. For each <span class="math inline">\(m\)</span>, choose an integer <span class="math inline">\(k_m\)</span> nearest to <span class="math inline">\(b^m x_0\)</span> and write</p>
+<p><span class="math display">\[
+z_m=b^m x_0-k_m,
+\qquad -\frac12\le z_m\le\frac12.
+\]</span></p>
+<p>Set</p>
+<p><span class="math display">\[
+x_m=\frac{k_m+1}{b^m},
+\qquad
+h_m=x_m-x_0=\frac{1-z_m}{b^m}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\frac{1}{2b^m}\le h_m\le\frac{3}{2b^m},
+\]</span></p>
+<p>so <span class="math inline">\(x_m\to x_0\)</span> from the right. Split the increment as</p>
+<p><span class="math display">\[
+W(x_m)-W(x_0)=A_m+B_m,
+\]</span></p>
+<p>where <span class="math inline">\(A_m\)</span> contains the terms <span class="math inline">\(0\le n&lt;m\)</span> and <span class="math inline">\(B_m\)</span> contains the terms <span class="math inline">\(n\ge m\)</span>.</p>
+<p>By <a href="#lem-cosine-lipschitz" class="quarto-xref">Lemma&nbsp;<span>4.1</span></a>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+|A_m|
+&amp;\le \pi h_m\sum_{n=0}^{m-1}(ab)^n \\
+&amp;\le \frac{\pi(ab)^m}{ab-1}h_m.
+\end{aligned}
+\]</span></p>
+<p>For <span class="math inline">\(n\ge m\)</span>, the oddness of <span class="math inline">\(b\)</span> and <a href="#lem-cosine-shift" class="quarto-xref">Lemma&nbsp;<span>4.3</span></a> give</p>
+<p><span class="math display">\[
+\cos(\pi b^n x_m)=-(-1)^{k_m}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\cos(\pi b^n x_0)
+=(-1)^{k_m}\cos(\pi b^{n-m}z_m).
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+B_m=-(-1)^{k_m}
+\sum_{n=m}^{\infty}a^n
+\left(1+\cos(\pi b^{n-m}z_m)\right).
+\]</span></p>
+<p>Every summand in parentheses is nonnegative. Keeping only the <span class="math inline">\(n=m\)</span> term and using <span class="math inline">\(|z_m|\le1/2\)</span> yields</p>
+<p><span class="math display">\[
+|B_m|
+\ge a^m\bigl(1+\cos(\pi z_m)\bigr)
+\ge a^m.
+\]</span></p>
+<p>Since <span class="math inline">\(h_m\le 3/(2b^m)\)</span>,</p>
+<p><span class="math display">\[
+|B_m|\ge\frac23(ab)^m h_m.
+\]</span></p>
+<p>The reverse triangle inequality now gives</p>
+<p><span class="math display">\[
+\left|\frac{W(x_m)-W(x_0)}{x_m-x_0}\right|
+\ge
+(ab)^m\left(\frac23-\frac{\pi}{ab-1}\right).
+\]</span></p>
+<p>The parenthesized constant is positive precisely when <span class="math inline">\(ab&gt;1+3\pi/2\)</span>, and <span class="math inline">\((ab)^m\to\infty\)</span>. Thus the difference quotients along <span class="math inline">\(x_m\to x_0\)</span> are unbounded, so <span class="math inline">\(W'(x_0)\)</span> does not exist. Because <span class="math inline">\(x_0\)</span> was arbitrary, <span class="math inline">\(W\)</span> is nowhere differentiable <span class="citation" data-cites="MITRealAnalysisLecture18">(<a href="#ref-MITRealAnalysisLecture18" role="doc-biblioref">Massachusetts Institute of Technology 2020</a>)</span>.</p>
+</div>
+</section>
+<section id="conclusion" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.6</span> Conclusion</h2>
+<p>The Weierstrass function separates continuity from smoothness in the strongest possible way. Its partial sums are smooth, and they converge uniformly, yet the limiting curve remains jagged at every scale. The example shows both the reach and the limits of geometric intuition: continuity survives uniform limits, while differentiability need not.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Abbott2015" class="csl-entry" role="listitem">
 Abbott, Stephen. 2015. <em>Understanding Analysis</em>. 2nd ed. Springer. <a href="https://link.springer.com/book/10.1007/978-1-4939-2712-8">https://link.springer.com/book/10.1007/978-1-4939-2712-8</a>.
 </div>
-<div id="ref-Axler2024" class="csl-entry" role="listitem">
-Axler, Sheldon. 2024. <em>Linear Algebra Done Right</em>. 4th ed. Undergraduate Texts in Mathematics. Springer. <a href="https://doi.org/10.1007/978-3-031-41026-0">https://doi.org/10.1007/978-3-031-41026-0</a>.
+<div id="ref-ClassNotes" class="csl-entry" role="listitem">
+Anshelevich, Michael. 2025. <em>Class Notes for MATH 409</em>.
 </div>
-<div id="ref-cvxbook" class="csl-entry" role="listitem">
-Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511804441">https://doi.org/10.1017/CBO9780511804441</a>.
+<div id="ref-MITRealAnalysisLecture18" class="csl-entry" role="listitem">
+Massachusetts Institute of Technology. 2020. <em>Real Analysis Lecture 18: Weierstrass’s Example of a Continuous and Nowhere Differentiable Function</em>. <a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/mit18_100af20_lec18.pdf">https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/mit18_100af20_lec18.pdf</a>.
+</div>
+<div id="ref-SteinShakarchi2003" class="csl-entry" role="listitem">
+Stein, Elias M., and Rami Shakarchi. 2003. <em>Fourier Analysis: An Introduction</em>. Vol. 1. Princeton Lectures in Analysis. Princeton University Press. <a href="https://press.princeton.edu/books/hardcover/9780691113845/fourier-analysis">https://press.princeton.edu/books/hardcover/9780691113845/fourier-analysis</a>.
+</div>
+<div id="ref-wiki-Karl-Weierstrass" class="csl-entry" role="listitem">
+Wikipedia contributors. 2025a. <em>Karl Weierstrass</em>. <a href="https://en.wikipedia.org/wiki/Karl_Weierstrass">https://en.wikipedia.org/wiki/Karl_Weierstrass</a>.
+</div>
+<div id="ref-wiki-Weierstrass-function" class="csl-entry" role="listitem">
+Wikipedia contributors. 2025b. <em>Weierstrass Function</em>. <a href="https://en.wikipedia.org/wiki/Weierstrass_function">https://en.wikipedia.org/wiki/Weierstrass_function</a>.
 </div>
 </div>
 </section>
@@ -1054,10 +1328,13 @@ Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Camb
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../analysis/set-identities.html" class="pagination-link" aria-label="Set Identities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set Identities</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./foundations/relations.html" class="pagination-link" aria-label="Relations">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../linear-algebra/vector-spaces.html" class="pagination-link" aria-label="Vector Spaces">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vector Spaces</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1066,5 +1343,5 @@ Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Camb
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nvantine/math-notes/edit/main/analysis/continuous-nowhere-differentiable.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nvantine/math-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
