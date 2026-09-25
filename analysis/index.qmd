@@ -1,0 +1,22 @@
+---
+number-sections: false
+---
+
+# Analysis {.unnumbered}
+
+Notes on sets, limits, continuity, and differentiability.
+
+## Contents
+
+- [Set identities](set-identities.qmd)
+- [Continuous nowhere differentiable](continuous-nowhere-differentiable.qmd)
+
+## Reference map
+
+- @exr-de-morgan-union
+
+## Reading the notes
+
+Statements stay visible; open **Proof** or **Solution** when you want the argument. Definitions, theorems, and exercises link to the results they use.
+
+[← All subjects](../index.html)

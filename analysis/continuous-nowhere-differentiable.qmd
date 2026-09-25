@@ -1,5 +1,5 @@
 ---
-title: "Continuous Everywhere, Nowhere Differentiable"
+title: "Continuous Everywhere, Nowhere Differentiable Function"
 subtitle: "The Weierstrass function"
 author: "Nicholas Vantine"
 date: "2025-03-20"

@@ -1,0 +1,44 @@
+<script id="note-disclosures">
+(() => {
+  const revealFragment = () => {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    const panels = new Set();
+    for (let node = target; node; node = node.parentElement) {
+      if (node.classList.contains('collapse')) panels.add(node);
+      if (node.tagName === 'DETAILS') node.open = true;
+    }
+    if (target.classList.contains('callout')) {
+      const panel = target.querySelector(':scope > .callout-collapse');
+      if (panel) panels.add(panel);
+    }
+    for (const panel of panels) {
+      if (!window.bootstrap?.Collapse) continue;
+      panel.addEventListener('shown.bs.collapse', () => {
+        target.scrollIntoView({block: 'start'});
+      }, {once: true});
+      window.bootstrap.Collapse.getOrCreateInstance(panel, {toggle: false}).show();
+    }
+  };
+  const initialize = () => {
+    document.querySelectorAll('.callout-header[data-bs-toggle="collapse"]').forEach(header => {
+      header.setAttribute('role', 'button');
+      header.setAttribute('tabindex', '0');
+      const title = header.querySelector('.callout-title-container');
+      if (title) header.setAttribute('aria-label', title.textContent.replace(/^\s*(Tip|Note)\s*/, '').trim());
+      header.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          header.click();
+        }
+      });
+    });
+    revealFragment();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize);
+  else initialize();
+  window.addEventListener('hashchange', revealFragment);
+})();
+</script>

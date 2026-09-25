@@ -1,0 +1,49 @@
+{
+  "source_repository": "https://github.com/nvantine/notes-and-exercises",
+  "source_revision": "769ae44ffa5a640f43c699548cbdd87ddc63f998",
+  "source_file": "main.tex",
+  "source_sha256": "35bd2200db814a7636a101045c7a93bf17ec4fb60e1ea73fd7c4351b2dc771f9",
+  "context": "import Mathlib\nvariable {V : Type*} [AddCommGroup V] [Module ℝ V]\n",
+  "compiler_checked": false,
+  "items": [
+    {
+      "name": "zero_smul_eq_zero",
+      "math_id": "thm-zero-times-vector",
+      "lean_id": "lean-zero-times-vector",
+      "lean_file": "zero_smul_eq_zero.lean",
+      "html_file": "zero_smul_eq_zero.html",
+      "source_lines": [
+        285,
+        294
+      ],
+      "sha256": "c8b8a52ee2f8b8ba18cf119be3fc09cb23d059672b8ccb2c75967e77618f787a",
+      "playground_url": "https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBwAXuRkB9AM4hNV8gEcrFmQziAAIjj4PNADRwABQADB7aAJRwgEQEPnAAvHBh9IlYLDhwcMAAdjDu%2BBlwqEj4lKgeoeFRsb6JlYyRMXEA1MHJOtVxKXBphZm5qFZQ5ADuxDCUAIx8gAmEcEjCrpYQbVX6mZlQI3wLgrb26OtFJWUATBUh9I01cK0AtEGhV534UXVP1y1tz02vt3APD4vKLdXobOBbWZFI6Q3i7KzZcgAcysAGMkNlUeRDvN4KhToVYfCkDYbBBUYF4YiUejMdjKYs3BAVCgigTNttePijkA"
+    },
+    {
+      "name": "double_negation",
+      "math_id": "exr-double-negation",
+      "lean_id": "lean-double-negation",
+      "lean_file": "double_negation.lean",
+      "html_file": "double_negation.html",
+      "source_lines": [
+        303,
+        310
+      ],
+      "sha256": "b3fe75558f0347e53e86b4b9bc56e750b26e4e098c4cb2e0f0342f5b29a7a25b",
+      "playground_url": "https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBxBcsuQD6AO3IBzFMAg24ACnwNFASi8BaNz98XwBeOE96MKwWHDg4VCR8SlQARi9PAGp3INC4AAYGMKRhWwcrAGMkG3LydHDY%2BMTkgCYvQOC4LMD271yCyLhiwVL7Cqqaup6GqAB3PiGK8RAVFHiUhr8%2FNf9M8LgwvI2t1FbGIM64AJz9%2FIaEpMLBkooAMxgx6tr3VIA6GCgqgBneLNH6AlgSbwNcgADyQ5XgaGAgLBEJAQA"
+    },
+    {
+      "name": "add_inv_swap",
+      "math_id": "exr-add-inv-swap",
+      "lean_id": "lean-add-inv-swap",
+      "lean_file": "add_inv_swap.lean",
+      "html_file": "add_inv_swap.html",
+      "source_lines": [
+        320,
+        330
+      ],
+      "sha256": "e030aae1876daa6a45d39f87e854d510f276b32b12b057cae145c2c77d98ae3b",
+      "playground_url": "https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBwAXuRkB9AM4hNV8gEcrFmQziAAIjj4PNADRwABQADB7aAJRwgEQEPnAAvHBh9IlYLDhwcMAAdjDu%2BBlwqEj4lKgeoeFRsb6JlYyRMXEA1MHJOtVxKXBphZm5qFZQ5ADuxDCUAIx8gAmEcEjCrpYQbVX6mZlQI3wLgrb26OtFJWUATBUh9I01cK0AtEGhV534UXVP1y1tz02vt3APD4vKLdXobOBbWZFI6Q3i7KzZcgAcysAGMkNlUeRDvN4KhToVYfCkDYbBBUYF4YiUejMdjKYs3BAVCgigTMuQAB5IVF404AOhsLAkeBwhmMpnhOXwthGSAUjG8vkYAWC9Q6vwSSTggBTCOCAYCI4NsVYFfK1tokQiDUulMjk8isCplURBsjY8rJedBCgB2rK5dyoPpwWQ2ShBO7TBovYMDIajcZTKGu8j7TQ6HxHTbbXhzeF2TRZiE5myoCDbILTe5RjWWuAAMxkpjSEJySKLsNQRz99sDwa5PPgTLT6EcLiZPiAA"
+    }
+  ]
+}

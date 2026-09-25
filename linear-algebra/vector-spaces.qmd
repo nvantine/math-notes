@@ -2,7 +2,91 @@
 title: "Vector Spaces"
 ---
 
-This exercise is adapted from @Axler2024.
+These notes and exercises follow @Axler2024. Throughout, $\mathbb{F}$ is a field (usually $\mathbb{R}$ or $\mathbb{C}$).
+
+## Definition of a vector space
+
+::: {#def-addition name="Addition" .definition}
+An *addition* on a set $S$ is a binary operation
+
+$$
++:S\times S\to S,\qquad(s,t)\mapsto s+t.
+$$
+:::
+
+::: {#def-scalar-multiplication name="Scalar multiplication" .definition}
+A *scalar multiplication* on $S$ over $\mathbb{F}$ is a map
+
+$$
+\mathbb{F}\times S\to S,\qquad(\lambda,s)\mapsto\lambda s.
+$$
+:::
+
+::: {#def-vector-space name="Vector space" .definition}
+A *vector space* $V$ over $\mathbb{F}$ is a set equipped with an addition (@def-addition) and scalar multiplication (@def-scalar-multiplication) satisfying the following properties:
+
+- **Commutativity:** for all $u,v\in V$, $u+v=v+u$.
+- **Associativity:** for all $u,v,w\in V$, $(u+v)+w=u+(v+w)$.
+- **Additive identity:** there exists $0\in V$ such that $v+0=v$ for every $v\in V$.
+- **Additive inverse:** for every $v\in V$, there exists $w\in V$ such that $v+w=0$.
+- **Multiplicative identity:** for every $v\in V$, $1v=v$.
+- **Associativity of scalar multiplication:** for all $a,b\in\mathbb{F}$ and $v\in V$, $a(bv)=(ab)v$.
+- **Distributive laws:** for all $a,b\in\mathbb{F}$ and $v,w\in V$,
+
+  $$
+  a(v+w)=av+aw,\qquad(a+b)v=av+bv.
+  $$
+:::
+
+*Source correction.* The LaTeX list omitted associativity of scalar multiplication; it is included above. The scalar and vector names in the distributive laws have also been made consistent.
+
+::: {#thm-unique-additive-inverse name="Unique additive inverse" .theorem}
+For every $v\in V$, there exists a unique $w\in V$ such that $v+w=0$.
+
+::: {.proof}
+Suppose $V$ is a vector space. Let $v\in V$. Existence follows from the additive inverse axiom in @def-vector-space. Suppose $w$ and $w'$ are additive inverses of $v$. Then
+
+$$
+w=w+0=w+(v+w')=(w+v)+w'=0+w'=w'.
+$$
+
+Thus $w=w'$.
+:::
+:::
+
+**Remark.** We just proved a statement of the form
+
+$$
+\forall v\in V,\quad
+[\exists u\in V,\ v+u=0]\ \land
+[\forall w,w'\in V,\ ((v+w=0)\land(v+w'=0))\implies w'=w].
+$$
+
+Although this makes the proof look more complicated than it is, it demonstrates what is going on under the hood. Given any vector $v$, we must show that both statements are true. For the first, the definition of a vector space provides an inverse $u$. For the second, we choose two inverses $w,w'$ and use the vector-space properties to show that they are the same. The existence part comes from the axiom; the uniqueness argument alone does not prove existence. We denote this unique inverse by $-v$.
+
+::: {#thm-zero-times-vector name="Zero times a vector" .theorem}
+For every $v\in V$, $0v=0$.
+
+::: {.proof}
+For $v\in V$, we have
+
+$$
+0v=(0+0)v=0v+0v.
+$$
+
+Adding the additive inverse of $0v$ to both sides leaves $0=0v$, as desired.
+:::
+
+::: {#lean-zero-times-vector .callout-note collapse="true"}
+## Lean
+
+The source formalization of @thm-zero-times-vector. As in the LaTeX notes, the displayed snippet omits `import Mathlib` and `variable {V : Type*} [AddCommGroup V] [Module ℝ V]`; the original playground link contains the full context.
+
+{{< include lean/latex/zero_smul_eq_zero.html >}}
+:::
+:::
+
+## Exercises
 
 ::: {#exr-double-negation name="Double additive inverse" .exercise}
 Prove that $-(-v)=v$ for every $v\in V$.
@@ -10,20 +94,72 @@ Prove that $-(-v)=v$ for every $v\in V$.
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-Let $v\in V$. By definition, $-v$ is an additive inverse of $v$, so
+Suppose $v\in V$, where $V$ is a vector space. By definition, $-v$ is the additive inverse of $v$, so
 
 $$
 v+(-v)=0.
 $$
 
-Commutativity gives $(-v)+v=0$. But $-(-v)$ is also defined by
+Also by definition, the additive inverse of $-v$ satisfies
 
 $$
 (-v)+(-(-v))=0.
 $$
 
-Because additive inverses are unique, $-(-v)=v$.
+Using commutativity (@def-vector-space), we can rearrange the first expression to see that
+
+$$
+\begin{aligned}
+(-v)+v&=0,\\
+(-v)+(-(-v))&=0.
+\end{aligned}
+$$
+
+Now @thm-unique-additive-inverse gives $-(-v)=v$.
+:::
+
+::: {#lean-double-negation .callout-note collapse="true"}
+## Lean
+
+The source formalization of @exr-double-negation. This statement only uses the additive-group structure; no scalar multiplication is needed. The displayed snippet omits the source's shared Mathlib imports and variable declarations; the original playground provides them.
+
+{{< include lean/latex/double_negation.html >}}
 :::
 :::
 
-The statement only uses the additive-group structure; no scalar multiplication is needed.
+::: {#exr-add-inv-swap name="Replacing the additive inverse axiom" .exercise}
+Show that in @def-vector-space, the additive inverse condition can be replaced with the condition
+
+$$
+\forall v\in V,\qquad 0v=0.
+$$
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+We need to show that the following are equivalent with the help of the other vector-space axioms:
+
+(a) For every $v\in V$, there exists $w\in V$ such that $v+w=0$.
+(b) For every $v\in V$, $0v=0$.
+
+**(a) $\Rightarrow$ (b).** Assume all the axioms, including additive inverses. This direction is @thm-zero-times-vector.
+
+**(b) $\Rightarrow$ (a).** Assume the remaining axioms and $0v=0$ for every $v\in V$. For a given $v$, take $w=(-1)v$, which exists by scalar multiplication. Distributivity and $1v=v$ give
+
+$$
+v+w=1v+(-1)v=(1+(-1))v=0v=0.
+$$
+
+Thus $w$ is an additive inverse of $v$.
+
+*Source correction.* We construct $w$ as $(-1)v$, not as $-v$: the existence of a vector additive inverse is what this direction must prove. The forward direction uses the zero-scalar theorem, rather than inverse uniqueness.
+:::
+
+::: {#lean-add-inv-swap .callout-note collapse="true"}
+## Lean
+
+The original snippet associated with @exr-add-inv-swap is preserved below. Its context already assumes `[AddCommGroup V] [Module ℝ V]`, so this is **not a formal proof of the weaker axiom system** used in the exercise. It proves the displayed equivalence inside an existing module. Its reverse implication uses `zero_smul_eq_zero` from [the zero-scalar Lean block](#lean-zero-times-vector); that dependency is included in the original playground.
+
+{{< include lean/latex/add_inv_swap.html >}}
+:::
+:::

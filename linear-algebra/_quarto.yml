@@ -1,0 +1,38 @@
+{
+  "project": {
+    "type": "book",
+    "output-dir": "_site"
+  },
+  "metadata-files": [
+    "_shared.yml"
+  ],
+  "book": {
+    "title": "Linear algebra",
+    "author": "Nicholas Vantine",
+    "description": "Vector spaces: addition and scalar multiplication, uniqueness of inverses, and two exercises with Lean code.",
+    "site-url": "https://nvantine.github.io/math-notes/linear-algebra/",
+    "reader-mode": true,
+    "chapters": [
+      "index.qmd",
+      "vector-spaces.qmd"
+    ],
+    "navbar": {
+      "title": "Notes",
+      "background": "light",
+      "left": [
+        {
+          "text": "All subjects",
+          "href": "../index.html"
+        }
+      ]
+    },
+    "sidebar": {
+      "style": "floating",
+      "collapse-level": 2
+    },
+    "page-footer": {
+      "left": "Nicholas Vantine",
+      "right": "[All subjects](../index.html)"
+    }
+  }
+}

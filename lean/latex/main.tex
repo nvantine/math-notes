@@ -1,0 +1,653 @@
+\documentclass[12pt]{book}
+
+
+% Standard American Math Society packages provide theorem environments, symbols,
+% etc.
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%margins
+\usepackage[margin=.75in]{geometry}
+
+%links table of contents
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{cleveref}
+
+% %header
+% \usepackage{fancyhdr}
+% % \setlength{\footskip}{30pt}
+% \setlength{\headheight}{15pt}
+% \pagestyle{fancy}
+
+%enumerate
+\usepackage{enumitem}
+
+% For Lean
+\usepackage[newfloat]{minted}
+\setminted{breaklines}
+\usepackage{fontspec}
+\usepackage{tcolorbox}
+
+
+
+\title{Notes}
+\author{Nicholas Vantine}
+\date{}
+
+\input{macros}
+\input{env}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\bibliographystyle{plain}
+
+\chapter{Foundations}
+
+\section{Orders, Numbers, and Counting}
+
+\subsection{Relations}
+
+A relation simply relates elements in two different sets by delineating a subset of related pairs in the Cartesian product.
+
+\begin{definition}
+Let $X$ and $Y$ be sets. A \emph{relation} over $X \times Y$ is a subset $R \subseteq X \times Y$. If $Y = X$ then it is said to be \emph{homogeneous}, and $R$ is simply said to be a relation over $X$. If $(x,y) \in R$ then we say $x$ is related to $y$ and write $xRy$.
+\end{definition}
+
+\begin{example}
+Let $X$ and $Y$ be sets. Then the following are relations:
+\begin{enumerate}
+    \item The \emph{discrete relation}, $X \times Y$.
+    \item The \emph{empty relation}, $\emptyset \subseteq X \times Y$.
+    \item The \emph{diagonal relation}, $\{(x,x) : x \in X\}$.
+\end{enumerate}
+\end{example}
+
+
+\begin{exercise}
+Give a necessary and sufficient condition for the empty, discrete, and diagonal relations to be equal.
+\end{exercise}
+
+\begin{proof}[Solution]
+    Let $Y = X$ and $X = \emptyset$
+\end{proof}
+
+\begin{exercise}
+If $(X_1, R_1)$ and $(X_2, R_2)$ are pairs of sets and relations on them, then the rule,
+\[
+(x,y) \, R_1 \times R_2 \, (x', y') \quad \text{iff} \quad xR_1x' \text{ and } yR_2y',
+\]
+defines a relation $R_1 \times R_2$ on $X_1 \times X_2$. Express this relation as a subset of $(X_1 \times X_2)^2$.
+\end{exercise}
+
+\begin{proof}[Solution]
+    \[
+        R_1 \times R_2 = \{ ((x,y),(x',y')) \in X_1 \times X_2 : xR_1x' \text{ and } yR_2y' \}
+    \]
+\end{proof}
+
+
+\begin{definition}
+     Let $X$ be a set and $R$ a relation over $X.$ We say $R$ is
+     \begin{enumerate}
+         \item \emph{reflexive} if $xRx$,  $\forall x \in X$,
+         \item \emph{symmetric} if $xRy$ implies $yRx$,  $\forall x,y \in X$,
+         \item \emph{transitive} if $xRy$ and $yRz$ implies $xRz$, $\forall x,y,z \in X$,
+         \item is an \emph{equivalence relation} on $X$ if it is reflexive, symmetric, and transitive.
+     \end{enumerate}
+\end{definition}
+
+\textbf{Notation.} An arbitrary equivalence relation is typically denoted $\sim$.
+
+
+% \subsection{The Natural Numbers}
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Linear Algebra} 
+
+\section{Vector Spaces}
+
+\subsection{Definition of a Vector Space}
+
+\begin{definition}[Addition]\label{def:addition}
+    A binary operation $+: S \times S \to S$, $(s,t) \mapsto s+t$, for $s,t \in S$.
+\end{definition}
+
+\begin{definition}[Scalar Multiplication]\label{def:scalar-mult}
+    A map $*: \F \times S \to S$, $(\lambda, s) \mapsto \lambda s$, for $\lambda \in \F,\ s \in S$.
+\end{definition}
+
+
+
+\begin{definition}[Vector Space] \label{def:vector-space}
+    A Vector Space $V$ is a set equipped with an \emph{addition} and \emph{scalar multiplication} that hold the following properties:
+    \begin{itemize}
+        \item \emph{Commutativity}: $\quad \forall u,v \in V, \quad u+v=v+u.$ 
+        \item \emph{Associativity}: $\quad \forall u,v,w \in V, \quad (u + v) + w = u + (v + w).$ 
+        \item \emph{Additive Identity}: $\quad \exists 0 \in V, \forall v \in V, \quad v + 0 = v.$
+        \item \emph{Additive Inverse}: $\quad \forall v \in V, \exists w \in V, \quad v + w = 0.$
+        \item \emph{Multiplicative Identity}: $\quad \forall v \in V, \quad 1v = v.$
+        \item \emph{Distributive Laws}: $\quad \forall u,v \in V$ and $ \forall s,t \in \F,$ the following hold:
+            \[
+            \begin{aligned}
+                a(v + w) = av + aw \\ 
+                (a + b)v = av + bv.
+            \end{aligned}
+            \]
+    \end{itemize}
+\end{definition}
+
+
+\begin{theorem}[Unique Additive Inverse]\label{thm:unique-add-inv}
+    $\forall v \in V, \exists! w \in V, \quad v + w = 0.$
+\end{theorem}
+\begin{proof}
+    Suppose $V$ is a vector space. Let $ v \in V.$ Suppose $w$ and $w'$ are additive inverses of $v.$ Then
+    \[
+        w = w + 0 = w + (v +w') = (w + v) + w' = 0 + w' = w'.
+    \]
+    Thus $w = w'$. 
+\end{proof}
+
+
+\textbf{Remark.} We just proved a statement of the form,
+\[
+    \forall v \in V, [\exists u \in V, v + u = 0] \land [\forall w,w' \in V, ((v + w = 0) \land (v + w' = 0))\implies w' = w].
+\]
+
+Although this makes the proof look more complicated than it is, I believe it is an excellent demonstration on what is going on under the hood and gives insight to the mechanisms that make this proof work. First we start with the for all part of the statement, which says, ``given any vector show that the following 2 statements are true." For the first statement in the conjunction we have to provide a $u$ given a a $v$. Surely, by the definition of a vector space a vector $u$ exists. Therefore we have the first part of conjunction completed. Now for the second part of the conjunction we choose two inverses of $v$, namely: $w,w'$. And by using the properties of vector spaces we can deduce that these two elements are actually the same thing. You might notice that the first part was not explicitly stated and proved, but by working on the second part of the conjunction you are implicitly proving the existence part of the conjunctive statement, because you have to use the fact that the inverse always exists by definition of a Vector Space.
+
+\begin{theorem} \label{thm:0-times-vec}
+    $\forall v \in V, \quad 0v = 0.$ \footnote{See \cref{lean:0-times-vec} for the formalized proof.}
+\end{theorem}
+
+\begin{proof}
+    For $v \in V$, we have
+    \[
+        0v = (0 + 0)v = 0v + 0v.
+    \]
+    Adding the additive inverse of $0v$ on both sides of the equation above leaves us with $0 = 0v$, as desired.
+\end{proof}
+
+
+
+\newpage
+
+\subsubsection*{Exercises}
+
+
+
+\begin{exercise}\label{ex:double-negation}
+    Prove that $-(-v) = v$ for every $v \in V$. \footnote{See \cref{lean:double-negation} for the formalized proof.}
+\end{exercise}
+
+
+\begin{proof}[Solution]
+    Suppose $v \in V$, where $V$ is a Vector Space. 
+    By definition $-v$ is the additive inverse of $v$, 
+    \[
+        v + (-v) = 0
+    \]
+    Also by definition, the additive inverse of $-v$ is, 
+    \[
+        -v + (-(-v)) = 0
+    \]
+    Using commutativity (\ref{def:vector-space}), we can rearrange one expression to see that
+    \[
+        \begin{aligned}
+            (-v) + v = 0 \\
+            (-v) + (-(-v)) = 0
+        \end{aligned}
+    \]
+    Now using the fact additive inverses are unique (\ref{thm:unique-add-inv}), we can conclude that 
+    \[
+        -(-v) = v.
+    \]
+\end{proof}
+
+\begin{exercise} \label{ex:add-inv-swap-0-times-vec} 
+    Show that in the definition of a vector space (\ref{def:vector-space}), the additive inverse condition can be replaced with the condition that
+    \[
+        \forall v \in V,\quad 0v = 0. \footnote{See \cref{lean:add-inv-swap-0-times-vec} for the formalized proof.}
+    \]
+\end{exercise}
+
+\begin{proof}[Solution]
+    Essentially we need to show that the following are equivalent with the help of the other axioms of a vector space:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\forall v \in V, \exists w \in V, \quad v + w = 0.$
+        \item $\forall v \in V, \quad 0v = 0.$
+    \end{enumerate}
+    $(a) \Rightarrow (b).$ Assume $V$ satisfies all the axioms including the additive inverse. Therefore this direction is proved by (\Cref{thm:unique-add-inv}). \\
+    $ (b) \Rightarrow (a).$ Assume $V$ satisfies commutativity, associativity, the additive identity, multiplicative identity, and distributive laws, and $0v = 0, \forall v \in V.$ We must produce some $w $ such that $v + w = 0$ for all $v$. For some given $v$ take $w = -v$. Then using the distributive property and $1v = v$: 
+    \[
+        v + (-v) = 1v + (-1)v = (1+(-1))v = 0v. 
+    \]
+    By Hypothesis $0v = 0.$ Hence 
+    \[
+        v + (-v) = 0,
+    \] 
+    so $w = -v$ is an additive inverse of $v$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\subsubsection{Lean}
+
+To conserve space and avoid redundancy I will not be displaying imports and the definition of a Vector Space in each code block. To find out what is used before formalizing the proof, click the link to the Lean playground provided in each code block. Almost certainly each code block will have:
+
+\begin{minted}{lean4}
+import Mathlib
+variable {V : Type*} [AddCommGroup V] [Module ℝ V]
+\end{minted}
+
+Other theorems that a lean proof relies upon will not be shown either.
+
+\vspace{1cm}
+
+\refstepcounter{leancode}
+\begin{leanbox}{Number 0 times a vector (\ref{thm:0-times-vec})} \label{lean:0-times-vec}
+\begin{minted}{lean4}
+theorem zero_smul_eq_zero : ∀ v : V, (0 : ℝ) • v = 0 := by
+  intro v
+  have h : (0 : ℝ) • v = (0 : ℝ) • v + (0 : ℝ) • v := by
+    nth_rewrite 1 [← add_zero (0 : ℝ)]
+    rw [add_smul]
+  have h2 : (0:ℝ) • v + -((0:ℝ) • v) = ((0:ℝ) • v + (0:ℝ) • v) + -((0:ℝ) • v) := by
+    rw [← h]
+  rw [add_neg_cancel] at h2
+  rw [add_assoc, add_neg_cancel, add_zero] at h2
+  rw [h2]
+\end{minted}
+\href{https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBwAXuRkB9AM4hNV8gEcrFmQziAAIjj4PNADRwABQADB7aAJRwgEQEPnAAvHBh9IlYLDhwcMAAdjDu%2BBlwqEj4lKgeoeFRsb6JlYyRMXEA1MHJOtVxKXBphZm5qFZQ5ADuxDCUAIx8gAmEcEjCrpYQbVX6mZlQI3wLgrb26OtFJWUATBUh9I01cK0AtEGhV534UXVP1y1tz02vt3APD4vKLdXobOBbWZFI6Q3i7KzZcgAcysAGMkNlUeRDvN4KhToVYfCkDYbBBUYF4YiUejMdjKYs3BAVCgigTNttePijkA}{Open in Lean playground}
+\end{leanbox}
+
+
+\refstepcounter{leancode}
+\begin{leanbox}{Double Negation (\ref{ex:double-negation})} \label{lean:double-negation}
+\begin{minted}{lean4}
+theorem double_negation (v : V) : -(-v) = v := by
+  have h1 : v + (-v) = 0 := add_neg_cancel v
+  have h2 : (-v) + (-(-v)) = 0 := add_neg_cancel (-v)
+  rw [add_comm] at h1
+  -- h1 : -v + v = 0
+  -- h2 : -v + -(-v) = 0
+  have := add_left_cancel (h1.trans h2.symm)
+  exact this.symm
+\end{minted}
+\href{https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBxBcsuQD6AO3IBzFMAg24ACnwNFASi8BaNz98XwBeOE96MKwWHDg4VCR8SlQARi9PAGp3INC4AAYGMKRhWwcrAGMkG3LydHDY%2BMTkgCYvQOC4LMD271yCyLhiwVL7Cqqaup6GqAB3PiGK8RAVFHiUhr8%2FNf9M8LgwvI2t1FbGIM64AJz9%2FIaEpMLBkooAMxgx6tr3VIA6GCgqgBneLNH6AlgSbwNcgADyQ5XgaGAgLBEJAQA}{Open in Lean playground}
+\end{leanbox}
+
+\newpage
+
+\refstepcounter{leancode}
+\begin{leanbox}{Additive Inverse Swapped for 0v = 0 (\ref{ex:add-inv-swap-0-times-vec})} \label{lean:add-inv-swap-0-times-vec}
+\begin{minted}{lean4}
+theorem add_inv_swap : ∀ v : V, ((0 : ℝ) • v = 0 ↔ ∃ w : V, v + w = 0) := by
+  intro v
+  constructor
+  · intro h
+    use (-1 : ℝ) • v
+    nth_rewrite 1 [← one_smul ℝ v]
+    rw [← add_smul]
+    rw [show (1 + -1 : ℝ) = 0 from by ring]
+    rw [h]
+  · intro h
+    exact zero_smul_eq_zero v
+\end{minted}
+\href{https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMBQOBuSUwSW6ApnAN4BqcAXHACoCeY5AVAL5wDaAggBNBAYQggQAcSgQArmDg0AunwQRBsinEC4hIqV405aORBwAXuRkB9AM4hNV8gEcrFmQziAAIjj4PNADRwABQADB7aAJRwgEQEPnAAvHBh9IlYLDhwcMAAdjDu%2BBlwqEj4lKgeoeFRsb6JlYyRMXEA1MHJOtVxKXBphZm5qFZQ5ADuxDCUAIx8gAmEcEjCrpYQbVX6mZlQI3wLgrb26OtFJWUATBUh9I01cK0AtEGhV534UXVP1y1tz02vt3APD4vKLdXobOBbWZFI6Q3i7KzZcgAcysAGMkNlUeRDvN4KhToVYfCkDYbBBUYF4YiUejMdjKYs3BAVCgigTMuQAB5IVF404AOhsLAkeBwhmMpnhOXwthGSAUjG8vkYAWC9Q6vwSSTggBTCOCAYCI4NsVYFfK1tokQiDUulMjk8isCplURBsjY8rJedBCgB2rK5dyoPpwWQ2ShBO7TBovYMDIajcZTKGu8j7TQ6HxHTbbXhzeF2TRZiE5myoCDbILTe5RjWWuAAMxkpjSEJySKLsNQRz99sDwa5PPgTLT6EcLiZPiAA}{Open in Lean playground}
+\end{leanbox}
+
+
+\subsection{Subspaces}
+\subsubsection{Exercises}
+\subsubsection{Lean}
+
+\section{Finite-Dimensional Vector Spaces}
+
+\begin{definition}
+    
+\end{definition}
+
+
+
+
+
+
+
+
+\chapter{Advanced Calculus}
+
+
+\subsubsection*{Exercises}
+
+\begin{exercise}
+    Show 
+    \begin{align*}
+        \left(\bigcup_{i=1}^{\infty} A_i\right)^c = \bigcap_{i=1}^{\infty} A_i^c.
+    \end{align*}
+\end{exercise}
+
+\begin{proof}
+    We show both inclusions via a chain of biconditionals.
+
+    Let $x$ be arbitrary. Then
+    \begin{align*}
+        x \in \left(\bigcup_{i=1}^{\infty} A_i\right)^c
+        &\iff x \notin \bigcup_{i=1}^{\infty} A_i \\
+        &\iff x \notin A_i \text{ for all } i \in \mathbb{N} \\
+        &\iff x \in A_i^c \text{ for all } i \in \mathbb{N} \\
+        &\iff x \in \bigcap_{i=1}^{\infty} A_i^c.
+    \end{align*}
+
+    Since each step above is a biconditional, the chain holds in both directions. Hence
+    \begin{align*}
+        \left(\bigcup_{i=1}^{\infty} A_i\right)^c = \bigcap_{i=1}^{\infty} A_i^c.
+    \end{align*}
+\end{proof}
+
+
+\chapter{Real Analysis}
+
+\section{The Real Numbers}
+
+
+% \chapter{Topology}
+
+
+% \chapter{Differential Geometry}
+
+
+\chapter{Convex Optimization}
+
+
+\section{Convex Sets}
+
+
+\begin{definition}
+    A set $C$ is convex if the line segment between any two points in $C$ lies in $C$, i.e., 
+    if for any $x_1,$ $x_2$ $\in$ $C$ and any $\theta$ with $ 0 \le \theta \le 1,$ we have
+    \[
+        \theta x_1 + (1 - \theta) x_2 \in C.
+    \]
+\end{definition}
+
+
+\subsubsection*{Exercises}
+
+
+\begin{exercise}
+    Let $C \subseteq \R^n$ be a convex set, with $x_1, \ldots, x_k \in C$, and let $\theta_1, \ldots, \theta_k \in \R$ satisfy $\theta_i \geq 0$, $\theta_1 + \cdots + \theta_k = 1$. Show that $\theta_1 x_1 + \cdots + \theta_k x_k \in C$. (The definition of convexity is that this holds for $k = 2$; you must show it for arbitrary $k$.) \textit{Hint.} Use induction on $k$.
+\end{exercise}
+
+\begin{proof}
+    We prove the result by induction on the number of points.
+
+    For the base case, let $k = 2$. If $x_1, x_2 \in C$ and
+    $\theta \in [0,1]$, then by the definition of convexity,
+    \begin{equation*}
+        (1-\theta)x_1 + \theta x_2 \in C.
+    \end{equation*}
+    Hence every convex combination of two points in $C$ belongs to $C$.
+
+    Now suppose every convex combination of $\ell$ points in $C$
+    belongs to $C$. That is, whenever
+    \begin{equation*}
+        x_i \in C,\qquad
+        \theta_i \geq 0,\qquad
+        \sum_{i=1}^{\ell}\theta_i = 1,
+    \end{equation*}
+    we have
+    \begin{equation*}
+        \sum_{i=1}^{\ell}\theta_i x_i \in C.
+    \end{equation*}
+
+    Now let $x_1,\ldots,x_{\ell+1}\in C$ and let
+    $\phi_i \geq 0$ satisfy
+    \begin{equation*}
+        \sum_{i=1}^{\ell+1}\phi_i = 1.
+    \end{equation*}
+    We wish to show that
+    \begin{equation*}
+        \sum_{i=1}^{\ell+1}\phi_i x_i \in C.
+    \end{equation*}
+
+    If $\phi_{\ell+1}=1$, then
+    $\phi_1=\cdots=\phi_\ell=0$, and therefore
+    \begin{equation*}
+        \sum_{i=1}^{\ell+1}\phi_i x_i
+        =
+        x_{\ell+1}
+        \in C.
+    \end{equation*}
+
+    Now suppose $\phi_{\ell+1}<1$, and define
+    \begin{equation*}
+        z
+        =
+        \frac{1}{1-\phi_{\ell+1}}
+        \sum_{i=1}^{\ell}\phi_i x_i.
+    \end{equation*}
+
+    Since
+    \begin{equation*}
+        \sum_{i=1}^{\ell}\phi_i
+        =
+        1-\phi_{\ell+1},
+    \end{equation*}
+    it follows that
+    \begin{equation*}
+        \sum_{i=1}^{\ell}
+        \frac{\phi_i}{1-\phi_{\ell+1}}
+        =
+        1,
+    \end{equation*}
+    and
+    \begin{equation*}
+        \frac{\phi_i}{1-\phi_{\ell+1}}
+        \geq 0,
+        \qquad i=1,\ldots,\ell.
+    \end{equation*}
+
+    Therefore, the induction hypothesis implies that
+    \begin{equation*}
+        z \in C.
+    \end{equation*}
+
+    Finally,
+    \begin{equation*}
+    \begin{aligned}
+        \sum_{i=1}^{\ell+1}\phi_i x_i
+        &=
+        \sum_{i=1}^{\ell}\phi_i x_i
+        + \phi_{\ell+1}x_{\ell+1} \\
+        &=
+        (1-\phi_{\ell+1})z
+        + \phi_{\ell+1}x_{\ell+1}.
+    \end{aligned}
+    \end{equation*} \\
+
+    Since $z,x_{\ell+1}\in C$ and
+    $\phi_{\ell+1}\in[0,1]$, convexity of $C$ yields
+    \begin{equation*}
+        (1-\phi_{\ell+1})z
+        + \phi_{\ell+1}x_{\ell+1}
+        \in C.
+    \end{equation*}
+
+    Hence
+    \begin{equation*}
+        \sum_{i=1}^{\ell+1}\phi_i x_i
+        \in C.
+    \end{equation*}
+
+    Therefore, by induction, every finite convex combination of points in $C$
+    belongs to $C$.
+\end{proof}
+
+
+\newpage
+
+
+\begin{exercise}
+    What is the distance between the parallel hyperplanes
+    \begin{align*}
+        \{x \in \R^n \mid a^T x = b_1\}
+        \quad \text{and} \quad
+        \{x \in \R^n \mid a^T x = b_2\}\, ?
+    \end{align*}
+\end{exercise}
+
+\begin{proof}
+    Let
+    \[
+        H_1=\{x\in\R^n\mid a^Tx=b_1\}
+        \qquad\text{and}\qquad
+        H_2=\{x\in\R^n\mid a^Tx=b_2\}.
+    \]
+
+    Choose arbitrary points $x_1\in H_1$ and $x_2\in H_2$. By the
+    orthogonal decomposition theorem, there exist $t\in\R$ and
+    $y\in\R^n$ such that
+    \[
+        x_1-x_2=ta+y,
+        \qquad y\perp a.
+    \]
+
+    In particular,
+    \[
+        y=x_1-x_2-ta.
+    \]
+
+    Since $ta$ is parallel to $a$, it is perpendicular to both
+    hyperplanes. Therefore, the distance between the hyperplanes is
+    the norm of this component:
+    \[
+        d=\|ta\|.
+    \]
+
+    Since $y\perp a$, we also have $y\perp ta$. Hence,
+    \[
+    \begin{aligned}
+        0
+        &=\langle ta,x_1-x_2-ta\rangle \\
+        &=\langle ta,x_1\rangle
+          -\langle ta,x_2\rangle
+          -\langle ta,ta\rangle \\
+        &=t\langle a,x_1\rangle
+          -t\langle a,x_2\rangle
+          -t^2\|a\|^2 \\
+        &=tb_1-tb_2-t^2\|a\|^2.
+    \end{aligned}
+    \]
+
+    If $b_1=b_2$, then the two hyperplanes are equal and $d=0$.
+    Now suppose $b_1\neq b_2$. Then $t\neq0$, so
+    \[
+        t\|a\|^2=b_1-b_2.
+    \]
+
+    Thus,
+    \[
+        t=\frac{b_1-b_2}{\|a\|^2}.
+    \]
+
+    Therefore,
+    \[
+    \begin{aligned}
+        d
+        &=\|ta\| \\
+        &=\left\|
+            \frac{b_1-b_2}{\|a\|^2}a
+        \right\| \\
+        &=\frac{|b_1-b_2|}{\|a\|^2}\|a\| \\
+        &=\frac{|b_1-b_2|}{\|a\|}.
+    \end{aligned}
+    \]
+
+    Hence, the distance between the two parallel hyperplanes is
+    \[
+        \frac{|b_1-b_2|}{\|a\|}.
+    \]
+\end{proof}
+
+
+\newpage
+
+
+\begin{exercise}
+    \textit{Voronoi description of halfspace.} Let $a$ and $b$ be distinct points in $\mathbf{R}^n$. Show that the set of all points that are closer (in Euclidean norm) to $a$ than $b$, i.e.,
+        $
+        \{x \mid \|x - a\|_2 \leq \|x - b\|_2\},
+        $
+    is a halfspace. Describe it explicitly as an inequality of the form $c^T x \leq d$. Draw a picture.
+\end{exercise}
+
+\begin{proof}
+    Since both sides are nonnegative,
+    \[
+        \|x-a\|_2 \le \|x-b\|_2 \iff \|x-a\|_2^2 \le \|x-b\|_2^2.
+    \]
+    Expanding,
+    \[
+        \|x-a\|_2^2 = x^Tx - 2a^Tx + a^Ta, \qquad \|x-b\|_2^2 = x^Tx - 2b^Tx + b^Tb.
+    \]
+    The inequality becomes
+    \[
+        x^Tx - 2a^Tx + a^Ta \le x^Tx - 2b^Tx + b^Tb,
+    \]
+        and the quadratic terms $x^Tx$ cancel, leaving
+    \[
+        2(b-a)^Tx \le b^Tb - a^Ta.
+    \]
+    Thus
+    \[
+        \{x \mid \|x-a\|_2 \le \|x-b\|_2\} = \{x \mid c^Tx \le d\}, \qquad
+        c = b-a, \quad d = \tfrac{1}{2}\big(\|b\|_2^2 - \|a\|_2^2\big).
+    \]
+    Since $a \ne b$, $c \ne 0$, so this is indeed a halfspace. Geometrically, it is the halfspace bounded by the perpendicular bisector of the segment $[a,b]$, containing $a$, with boundary normal vector $c = b - a$ pointing from $a$ toward $b$.
+\end{proof}
+
+
+
+
+
+
+
+\bibliography{ref}
+
+\end{document}

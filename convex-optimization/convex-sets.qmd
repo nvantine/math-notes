@@ -2,7 +2,46 @@
 title: "Convex Sets"
 ---
 
+
 These exercises are adapted from @cvxbook.
+
+## Convexity
+
+We work in $\mathbb{R}^n$, with the addition and scalar multiplication of a [vector space](../linear-algebra/vector-spaces.html#def-vector-space).
+
+::: {#def-convex-set name="Convex set" .definition}
+A set $C$ is *convex* if the line segment between any two points in $C$ lies in $C$: for any $x_1,x_2\in C$ and any $\theta$ with $0\leq\theta\leq1$,
+
+$$
+\theta x_1+(1-\theta)x_2\in C.
+$$
+:::
+
+The next two definitions fix the notation used in the exercises.
+
+::: {#def-hyperplane name="Hyperplane" .definition}
+For $a\in\mathbb{R}^n$ with $a\neq0$ and $b\in\mathbb{R}$, the set
+
+$$
+H=\{x\in\mathbb{R}^n\mid a^Tx=b\}
+$$
+
+is a *hyperplane*, with normal vector $a$.
+:::
+
+::: {#def-halfspace name="Halfspace" .definition}
+For $a\in\mathbb{R}^n$ with $a\neq0$ and $b\in\mathbb{R}$, the set
+
+$$
+\{x\in\mathbb{R}^n\mid a^Tx\leq b\}
+$$
+
+is a *(closed) halfspace*. Its boundary is the hyperplane $a^Tx=b$ from @def-hyperplane.
+:::
+
+Both hyperplanes and halfspaces satisfy @def-convex-set: applying $a^T$ to a convex combination preserves the defining equality or inequality. @exr-finite-convex-combinations extends the two-point definition to finitely many points; @exr-parallel-hyperplanes-distance and @exr-voronoi-halfspace describe the geometry of @def-hyperplane and @def-halfspace.
+
+## Exercises
 
 ::: {#exr-finite-convex-combinations name="Finite convex combinations" .exercise}
 Let $C \subseteq \mathbb{R}^n$ be a convex set, with $x_1, \ldots, x_k \in C$, and let $\theta_1, \ldots, \theta_k \in \mathbb{R}$ satisfy

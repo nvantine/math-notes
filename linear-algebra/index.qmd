@@ -1,0 +1,25 @@
+---
+number-sections: false
+---
+
+# Linear algebra {.unnumbered}
+
+Vector spaces, their axioms, and the first consequences. These notes follow @Axler2024.
+
+## Contents
+
+- [Vector spaces](vector-spaces.qmd)
+
+## Reference map
+
+- @def-vector-space — the axioms.
+- @thm-unique-additive-inverse and @thm-zero-times-vector — first consequences.
+- @exr-double-negation and @exr-add-inv-swap — exercises.
+
+## Reading the notes
+
+Statements stay visible; open **Proof** or **Solution** when you want the argument. Definitions, theorems, and exercises link to the results they use.
+
+The **Lean** disclosures reproduce the code and playground links in the LaTeX source. Imports and earlier results may be omitted from the displayed excerpt; the playground contains the accompanying context. These are source excerpts, not locally compiler-checked proofs.
+
+[← All subjects](../index.html)

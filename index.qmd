@@ -1,42 +1,39 @@
 ---
-title: "Math Notes"
+title: "Mathematical notes"
+subtitle: "Nicholas Vantine"
 number-sections: false
+toc: false
+page-layout: full
 ---
 
-This site collects mathematical definitions, examples, exercises, and proofs in a searchable, cross-referenced form.
+::: {.subject-index}
+Notes, proofs, and worked exercises. Choose a subject to open its book.
 
-## Foundations
+::: {.subject-list}
 
-- @def-relation defines a relation as a set of ordered pairs.
-- @exm-basic-relations records the discrete, empty, and diagonal relations.
-- @exr-equal-canonical-relations compares those three basic relations.
-- @exr-product-relation-subset describes the product of two relations.
-
-## Analysis
-
-- @exr-de-morgan-union proves De Morgan's law for a countable union, adapted from @Abbott2015.
-- [Continuous Everywhere, Nowhere Differentiable](analysis/continuous-nowhere-differentiable.qmd) develops the Weierstrass function from the definitions of continuity and differentiability through the nowhere-differentiability proof.
-
-## Linear Algebra
-
-- @exr-double-negation proves that the additive inverse operation is an involution, adapted from @Axler2024.
-
-## Convex Optimization
-
-The convex-set exercises are adapted from @cvxbook.
-
-- @exr-finite-convex-combinations extends the definition of convexity to arbitrary finite convex combinations.
-- @exr-parallel-hyperplanes-distance computes the distance between parallel hyperplanes.
-- @exr-voronoi-halfspace derives the halfspace of points closer to one site than another.
-
-::: {.callout-note .pilot-note}
-## Migration status
-
-All populated sections from the original LaTeX notes are included. Lean presentation remains deferred while the notes layout is refined.
+::: {.subject-entry}
+### [Linear algebra](linear-algebra/index.html)
+Vector spaces, additive inverses, and first principles. Proofs paired with Lean code from the original notes.
 :::
 
-## Sources
+::: {.subject-entry}
+### [Convex optimization](convex-optimization/index.html)
+Convex sets, convex combinations, hyperplanes, and halfspaces. Definitions alongside worked exercises.
+:::
 
-- [Original LaTeX notes](https://github.com/nvantine/notes-and-exercises)
-- [Continuous-everywhere, nowhere-differentiable paper](https://github.com/nvantine/Continuous-Everywhere-Nowhere-Differentiable-Function-Paper)
-- [Website source](https://github.com/nvantine/math-notes)
+::: {.subject-entry}
+### [Analysis](analysis/index.html)
+Set identities and the Weierstrass function: continuity and nowhere differentiability.
+:::
+
+::: {.subject-entry}
+### [Foundations](foundations/index.html)
+Relations, their basic properties, and exercises with ordered pairs.
+:::
+
+:::
+
+::: {.source-note}
+Adapted from my [LaTeX notes](https://github.com/nvantine/notes-and-exercises). Each book has its own contents, search, and mathematical references. Where provided, Lean snippets link to the original online playground.
+:::
+:::

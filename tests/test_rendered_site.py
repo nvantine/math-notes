@@ -1,4 +1,3 @@
-import subprocess
 from pathlib import Path
 
 import pytest
@@ -52,8 +51,8 @@ def rendered_page(page: str) -> BeautifulSoup:
 
 
 @pytest.fixture(scope="module", autouse=True)
-def render_site():
-    subprocess.run(["quarto", "render"], cwd=ROOT, check=True)
+def render_site(built_site):
+    return built_site
 
 
 @pytest.mark.parametrize(
@@ -72,7 +71,6 @@ def test_migrated_item_uses_simple_native_environment(
     assert item.select_one(".math-notes-tabset") is None
     assert item.select_one("ul.nav-tabs") is None
     assert item.select_one("[data-lean-id]") is None
-    assert "Lean 4" not in item.get_text(" ", strip=True)
 
 
 @pytest.mark.parametrize(
@@ -94,7 +92,7 @@ def test_every_exercise_has_a_separate_closed_solution(label: str, page: str):
     assert toggle.get("aria-expanded") == "false"
 
 
-def test_site_contains_exactly_the_nine_migrated_items():
+def test_site_preserves_all_previously_migrated_items():
     found = set()
     for page in {page for page, _ in MIGRATED_ITEMS.values()}:
         found.update(
@@ -103,19 +101,80 @@ def test_site_contains_exactly_the_nine_migrated_items():
             if item.get("id")
         )
 
-    assert found == set(MIGRATED_ITEMS)
+    assert set(MIGRATED_ITEMS).issubset(found)
 
 
-def test_index_cross_references_every_migrated_item():
-    hrefs = {
-        link.get("href")
-        for link in rendered_page("index.html").select("a.quarto-xref")
-    }
-    expected = {
-        f"{page}#{label}" for label, (page, _) in MIGRATED_ITEMS.items()
-    }
+def test_subject_index_opens_independent_books():
+    page = rendered_page("index.html")
+    hrefs = {a.get("href") for a in page.select("main a")}
+    for subject in ("linear-algebra", "convex-optimization", "analysis", "foundations"):
+        assert f"{subject}/index.html" in hrefs
+    assert page.select_one("#quarto-sidebar") is None
 
-    assert expected.issubset(hrefs)
+
+def test_subject_indexes_cross_reference_their_migrated_items():
+    for label, (page, _) in MIGRATED_ITEMS.items():
+        subject, chapter = page.split("/")
+        hrefs = {
+            str(link.get("href")).removeprefix("./")
+            for link in rendered_page(f"{subject}/index.html").select("a.quarto-xref")
+        }
+        assert f"{chapter}#{label}" in hrefs
+
+
+@pytest.mark.parametrize("subject", ["linear-algebra", "convex-optimization", "analysis", "foundations"])
+def test_books_have_independent_navigation_and_search(subject):
+    import json
+
+    page = rendered_page(f"{subject}/index.html")
+    sidebar = page.select_one("#quarto-sidebar")
+    assert sidebar is not None
+    assert page.select_one('a[href="../index.html"]') is not None
+    assert not any("../" in str(a.get("href", "")) for a in sidebar.select("a.sidebar-link"))
+    entries = json.loads((ROOT / "_site" / subject / "search.json").read_text())
+    assert entries
+    assert all(not entry["href"].startswith("../") for entry in entries)
+
+
+@pytest.mark.parametrize(("page", "label"), [
+    ("linear-algebra/vector-spaces.html", "thm-unique-additive-inverse"),
+    ("linear-algebra/vector-spaces.html", "thm-zero-times-vector"),
+    ("analysis/continuous-nowhere-differentiable.html", "thm-weierstrass-continuity"),
+])
+def test_theorem_proofs_are_closed_disclosures(page, label):
+    item = rendered_page(page).select_one(f"#{label}")
+    proof = item.select_one(":scope > .callout-tip")
+    if proof is None:
+        proof = item.find_next_sibling("div", class_="callout-tip")
+    assert proof is not None
+    assert proof.select_one(".callout-header")["aria-expanded"] == "false"
+    assert "Proof" in proof.select_one(".callout-title-container").get_text()
+
+
+def test_internal_links_assets_and_fragments_resolve():
+    from urllib.parse import unquote, urlsplit
+
+    site = ROOT / "_site"
+    errors = []
+    pages = {p: BeautifulSoup(p.read_text(), "html.parser") for p in site.rglob("*.html")
+             if "site_libs" not in p.parts and "lean" not in p.parts}
+    for path, page in pages.items():
+        assert not page.select("a.quarto-xref-unresolved"), path
+        for node in page.select("a[href], link[href], script[src], img[src]"):
+            href = str(node.get("href", node.get("src", "")))
+            url = urlsplit(href)
+            if url.scheme or url.netloc or not href:
+                continue
+            target = (path.parent / unquote(url.path)).resolve() if url.path else path.resolve()
+            if target.is_dir():
+                target = target / "index.html"
+            if not target.is_file():
+                errors.append(f"{path.relative_to(site)} -> {href}")
+            elif node.name == "a" and url.fragment and target.suffix == ".html":
+                target_page = pages.get(target) or BeautifulSoup(target.read_text(), "html.parser")
+                if target_page.find(id=unquote(url.fragment)) is None:
+                    errors.append(f"{path.relative_to(site)} -> missing #{url.fragment} in {target.name}")
+    assert not errors, "\n".join(errors)
 
 
 def test_qmd_authoring_uses_plain_theorem_environment_markup():
@@ -184,7 +243,7 @@ def test_weierstrass_paper_is_an_analysis_chapter():
     sidebar_hrefs = {
         link.get("href") for link in page.select("#quarto-sidebar a.sidebar-link")
     }
-    assert "../analysis/continuous-nowhere-differentiable.html" in sidebar_hrefs
+    assert "./continuous-nowhere-differentiable.html" in sidebar_hrefs
 
 
 @pytest.mark.parametrize(("label", "environment"), WEIERSTRASS_ITEMS.items())

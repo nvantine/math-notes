@@ -1,51 +1,19 @@
 project:
-  type: book
+  type: website
   output-dir: _site
-
-book:
-  title: "Math Notes"
-  author: "Nicholas Vantine"
-  description: "Definitions, theorems, exercises, and proofs."
+  render: [index.qmd]
+metadata-files: [_shared.yml]
+website:
+  title: "Notes"
   site-url: "https://nvantine.github.io/math-notes/"
-  repo-url: "https://github.com/nvantine/math-notes"
-  repo-actions: [edit, issue]
-  reader-mode: true
-  chapters:
-    - index.qmd
-    - part: "Foundations"
-      chapters:
-        - foundations/relations.qmd
-    - part: "Analysis"
-      chapters:
-        - analysis/set-identities.qmd
-        - analysis/continuous-nowhere-differentiable.qmd
-    - part: "Linear Algebra"
-      chapters:
-        - linear-algebra/vector-spaces.qmd
-    - part: "Convex Optimization"
-      chapters:
-        - convex-optimization/convex-sets.qmd
-  sidebar:
-    style: floating
-    collapse-level: 2
-    pinned: false
-
-bibliography: references.bib
-
-format:
-  html:
-    theme:
-      light:
-        - lumen
-      dark:
-        - darkly
-    css: styles.css
-    include-after-body: xref-math.html
-    toc: true
-    number-sections: true
-    code-copy: true
-    smooth-scroll: true
-    link-external-newwindow: true
-
-execute:
-  freeze: auto
+  description: "Mathematical notes by Nicholas Vantine, organized by subject."
+  search: false
+  navbar:
+    title: "Notes"
+    background: light
+    right:
+      - text: "LaTeX source"
+        href: "https://github.com/nvantine/notes-and-exercises"
+  page-footer:
+    left: "Nicholas Vantine"
+    right: "Definitions · Theorems · Exercises"

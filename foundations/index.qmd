@@ -1,0 +1,24 @@
+---
+number-sections: false
+---
+
+# Foundations {.unnumbered}
+
+The language of sets and relations.
+
+## Contents
+
+- [Relations](relations.qmd)
+
+## Reference map
+
+- @def-relation and @def-equivalence-relation
+- @exm-basic-relations
+- @exr-equal-canonical-relations
+- @exr-product-relation-subset
+
+## Reading the notes
+
+Statements stay visible; open **Proof** or **Solution** when you want the argument. Definitions, theorems, and exercises link to the results they use.
+
+[← All subjects](../index.html)

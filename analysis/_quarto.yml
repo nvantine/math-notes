@@ -1,0 +1,39 @@
+{
+  "project": {
+    "type": "book",
+    "output-dir": "_site"
+  },
+  "metadata-files": [
+    "_shared.yml"
+  ],
+  "book": {
+    "title": "Analysis",
+    "author": "Nicholas Vantine",
+    "description": "Set identities and a longer study of the Weierstrass function.",
+    "site-url": "https://nvantine.github.io/math-notes/analysis/",
+    "reader-mode": true,
+    "chapters": [
+      "index.qmd",
+      "set-identities.qmd",
+      "continuous-nowhere-differentiable.qmd"
+    ],
+    "navbar": {
+      "title": "Notes",
+      "background": "light",
+      "left": [
+        {
+          "text": "All subjects",
+          "href": "../index.html"
+        }
+      ]
+    },
+    "sidebar": {
+      "style": "floating",
+      "collapse-level": 2
+    },
+    "page-footer": {
+      "left": "Nicholas Vantine",
+      "right": "[All subjects](../index.html)"
+    }
+  }
+}

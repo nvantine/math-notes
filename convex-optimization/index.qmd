@@ -1,0 +1,26 @@
+---
+number-sections: false
+---
+
+# Convex optimization {.unnumbered}
+
+Convexity begins with line segments. These notes follow @cvxbook, starting with the geometry of convex sets.
+
+## Contents
+
+- [Convex sets](convex-sets.qmd)
+
+## Reference map
+
+- @def-convex-set, @def-hyperplane, and @def-halfspace — geometric vocabulary.
+- @exr-finite-convex-combinations
+- @exr-parallel-hyperplanes-distance
+- @exr-voronoi-halfspace
+
+## Reading the notes
+
+Statements stay visible; open **Proof** or **Solution** when you want the argument. Definitions, theorems, and exercises link to the results they use.
+
+For the underlying algebra, see [vector spaces](../linear-algebra/vector-spaces.html). The current LaTeX convex-optimization chapter has no Lean blocks; none are invented here.
+
+[← All subjects](../index.html)

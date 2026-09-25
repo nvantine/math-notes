@@ -30,15 +30,20 @@ jobs:
         with:
           version: "1.10.18"
 
-      - name: Install and test synchronization tooling
+      - name: Install tooling and browser
         run: |
           uv sync --locked
+          uv run playwright install --with-deps chromium
+
+      - name: Build all books and verify
+        run: |
           uv run pytest
           uv run python scripts/sync_lean.py --check
 
-      - name: Render and publish
+      - name: Publish verified assembled site
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

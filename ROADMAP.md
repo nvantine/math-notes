@@ -1,19 +1,16 @@
-# Roadmap
+# Scope and next notes
 
-## Pilot
+- [x] Subject index and independent Quarto books.
+- [x] Updated populated LaTeX content, focused on linear algebra and convex optimization.
+- [x] Simple, separate Proof/Solution and Lean disclosures.
+- [x] Exact source Lean excerpts and original external playground links.
+- [x] Links among mathematical statements, prerequisites, and Lean dependencies.
+- [x] Automated rendering, link checks, browser checks, and GitHub Pages publishing.
 
-- [x] Quarto book structure for project-wide mathematical cross-references
-- [ ] Add Lean views only where a corresponding formalization exists
-- [x] Marker-based Lean snippet synchronization
-- [x] GitHub Pages deployment
-- [x] Migrate every populated section from `notes-and-exercises`
+As new LaTeX notes are written, migrate populated sections into the appropriate
+subject book. Keep additions modest and identify corrections rather than silently
+changing the source's mathematics.
 
-## After pilot approval
-
-- [ ] Expand subject navigation as new notes are written
-
-## Future implementation
-
-- [ ] Investigate a browser-based Lean 4 editor or playground embedded beside each formalization.
-
-The online editor is deliberately deferred. Before implementation, evaluate sandboxing, Mathlib version pinning, browser/WASM support, server-side execution costs, abuse prevention, and whether edits should be temporary or exportable to GitHub.
+An embedded Lean editor, compiler/Mathlib CI, automatic proof generation, and a
+large syllabus expansion are outside the current scope. Add none without a new
+request. Use the existing external playground links for self-verification.

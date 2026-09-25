@@ -2,7 +2,7 @@
 title: "Relations"
 ---
 
-A relation records which ordered pairs from two sets are related.
+A relation simply relates elements in two different sets by delineating a subset of related pairs in the Cartesian product.
 
 ::: {#def-relation name="Relation" .definition}
 Let $X$ and $Y$ be sets. A *relation* over $X \times Y$ is a subset $R \subseteq X \times Y$.
@@ -67,3 +67,14 @@ R_1\times R_2
 $$
 :::
 :::
+
+::: {#def-equivalence-relation name="Equivalence relation" .definition}
+Let $X$ be a set and $R$ a relation over $X$ as in @def-relation. We say $R$ is
+
+1. *Reflexive* if $xRx$ for every $x\in X$.
+2. *Symmetric* if $xRy$ implies $yRx$ for all $x,y\in X$.
+3. *Transitive* if $xRy$ and $yRz$ imply $xRz$ for all $x,y,z\in X$.
+4. An *equivalence relation* on $X$ if it is reflexive, symmetric, and transitive.
+:::
+
+**Notation.** An arbitrary equivalence relation is typically denoted $\sim$.

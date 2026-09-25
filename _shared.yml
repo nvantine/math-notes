@@ -1,0 +1,23 @@
+bibliography: references.bib
+filters: [proofs.lua]
+format:
+  html:
+    theme:
+      light: lumen
+      dark: darkly
+    css: styles.css
+    include-after-body:
+      - xref-math.html
+      - disclosures.html
+    toc: true
+    number-sections: true
+    code-copy: true
+    smooth-scroll: false
+    link-external-newwindow: true
+    anchor-sections: true
+    mainfont: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    monofont: "'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
+    fontsize: 17px
+    linestretch: 1.7
+execute:
+  freeze: auto
