@@ -1,0 +1,112 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "Analysis\nNotes on sets, limits, continuity, and differentiability.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "Analysis",
+    "section": "Contents",
+    "text": "Contents\n\nSet identities\nContinuous nowhere differentiable",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "index.html#reference-map",
+    "href": "index.html#reference-map",
+    "title": "Analysis",
+    "section": "Reference map",
+    "text": "Reference map\n\nExercise 1.1",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "index.html#reading-the-notes",
+    "href": "index.html#reading-the-notes",
+    "title": "Analysis",
+    "section": "Reading the notes",
+    "text": "Reading the notes\nStatements stay visible; open Proof or Solution when you want the argument. Definitions, theorems, and exercises link to the results they use.\n← All subjects",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "set-identities.html",
+    "href": "set-identities.html",
+    "title": "1  Set Identities",
+    "section": "",
+    "text": "This exercise is adapted from Abbott (2015).\n\nExercise 1.1 (De Morgan’s law for unions) For a sequence of sets \\((A_i)_{i=1}^{\\infty}\\), show that\n\\[\n\\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n=\n\\bigcap_{i=1}^{\\infty} A_i^c.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe show equality by a chain of biconditionals. For arbitrary \\(x\\),\n\\[\\begin{align*}\nx \\in \\left(\\bigcup_{i=1}^{\\infty} A_i\\right)^c\n&\\iff x \\notin \\bigcup_{i=1}^{\\infty} A_i \\\\\n&\\iff x \\notin A_i \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in A_i^c \\text{ for every } i\\in\\mathbb N \\\\\n&\\iff x \\in \\bigcap_{i=1}^{\\infty} A_i^c.\n\\end{align*}\\]\n\n\n\n\nThis elementwise proof establishes the identity directly.\n\n\n\n\nAbbott, Stephen. 2015. Understanding Analysis. 2nd ed. Springer. https://link.springer.com/book/10.1007/978-1-4939-2712-8.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Identities</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html",
+    "href": "continuous-nowhere-differentiable.html",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "",
+    "text": "2.1 Introduction\nThis chapter adapts the paper at source revision 612ce5f. It follows the paper’s historical motivation while tightening the main construction and proof.\nIn the nineteenth century, continuity was often associated with geometric smoothness. Karl Weierstrass overturned that intuition by constructing a function that is continuous at every real number and differentiable at none (Wikipedia contributors 2025b, 2025a).\nA classical form of his function is\n\\[\nW(x)=\\sum_{n=0}^{\\infty}a^n\\cos(\\pi b^n x),\n\\]\nwhere\n\\[\n0&lt;a&lt;1,\\qquad b&gt;1\\text{ is an odd integer},\n\\qquad ab&gt;1+\\frac{3\\pi}{2}.\n\\]\nThe factor \\(\\pi\\) is only a scaling convention: replacing \\(x\\) by \\(x/\\pi\\) gives the version \\(\\sum a^n\\cos(b^n x)\\) used in the original paper. The series is built from smooth cosine waves whose amplitudes decay while their frequencies grow. The result converges to a continuous curve but retains oscillations at every scale (Stein and Shakarchi 2003).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html#background",
+    "href": "continuous-nowhere-differentiable.html#background",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "2.2 Background",
+    "text": "2.2 Background\n\nDefinition 2.1 (Continuity) Let \\(f:S\\to\\mathbb R\\) and let \\(c\\in S\\). The function \\(f\\) is continuous at \\(c\\) if, for every \\(\\varepsilon&gt;0\\), there exists \\(\\delta&gt;0\\) such that\n\\[\nx\\in S\\text{ and }|x-c|&lt;\\delta\n\\quad\\Longrightarrow\\quad\n|f(x)-f(c)|&lt;\\varepsilon.\n\\]\nThis is the usual \\(\\varepsilon\\)–\\(\\delta\\) definition (Abbott 2015).\n\n\nDefinition 2.2 (Sequential continuity) Let \\(f:S\\to\\mathbb R\\) and let \\(c\\in S\\). The function \\(f\\) is continuous at \\(c\\) if every sequence \\((x_n)\\) in \\(S\\) satisfying \\(x_n\\to c\\) also satisfies \\(f(x_n)\\to f(c)\\) (Anshelevich 2025).\n\n\nDefinition 2.3 (Differentiability) Let \\(g:S\\to\\mathbb R\\) be defined on an interval \\(S\\), and let \\(c\\in S\\). The derivative of \\(g\\) at \\(c\\) is\n\\[\ng'(c)=\\lim_{x\\to c}\\frac{g(x)-g(c)}{x-c},\n\\]\nprovided this limit exists. In that case, \\(g\\) is differentiable at \\(c\\) (Abbott 2015).\n\n\nTheorem 2.1 (Differentiability implies continuity) If \\(g:S\\to\\mathbb R\\) is differentiable at \\(c\\in S\\), then \\(g\\) is continuous at \\(c\\).\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nBecause the difference quotient tends to \\(g'(c)\\),\n\\[\n\\lim_{x\\to c}\\bigl(g(x)-g(c)\\bigr)\n=\n\\lim_{x\\to c}\n\\left(\\frac{g(x)-g(c)}{x-c}\\right)(x-c)\n=g'(c)\\cdot0=0.\n\\]\nTherefore \\(\\lim_{x\\to c}g(x)=g(c)\\) (Abbott 2015).\n\n\n\nThe converse fails even for familiar functions.\n\nExample 2.1 (The absolute-value cusp) The function \\(f(x)=|x|\\) is continuous at \\(0\\), but\n\\[\n\\lim_{x\\to0^-}\\frac{|x|}{x}=-1\n\\qquad\\text{and}\\qquad\n\\lim_{x\\to0^+}\\frac{|x|}{x}=1.\n\\]\nThus \\(f'(0)\\) does not exist (Abbott 2015).\n\nThis example has only one corner. Weierstrass’s construction is more striking because it has no differentiable point at all.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html#construction",
+    "href": "continuous-nowhere-differentiable.html#construction",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "2.3 Construction",
+    "text": "2.3 Construction\nWe need three elementary estimates.\n\nLemma 2.1 (Cosine is Lipschitz) For all \\(x,y\\in\\mathbb R\\),\n\\[\n|\\cos x-\\cos y|\\le |x-y|.\n\\]\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nThe mean value theorem gives \\(\\cos x-\\cos y=-\\sin(\\xi)(x-y)\\) for some \\(\\xi\\) between \\(x\\) and \\(y\\). Since \\(|\\sin\\xi|\\le1\\), the claim follows.\n\n\n\n\nLemma 2.2 (A nearby cosine oscillation) For every \\(c\\in\\mathbb R\\) and every positive integer \\(k\\), there exists\n\\[\ny\\in\\left(c+\\frac{\\pi}{k},c+\\frac{3\\pi}{k}\\right)\n\\]\nsuch that\n\\[\n|\\cos(kc)-\\cos(ky)|\\ge1.\n\\]\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nAs \\(y\\) traverses this interval, \\(ky\\) traverses an open interval of length \\(2\\pi\\). Put \\(r=\\cos(kc)\\). If \\(-1&lt;r&lt;1\\), the interval contains points where cosine equals both \\(-1\\) and \\(1\\), so one of those values differs from \\(r\\) by at least \\(1\\). If \\(r=1\\) or \\(r=-1\\), the interval contains a point where cosine is \\(0\\), again giving a difference of \\(1\\).\n\n\n\n\nLemma 2.3 (Integer shifts of cosine) For every integer \\(r\\) and every real \\(t\\),\n\\[\n\\cos(r\\pi+t)=(-1)^r\\cos t.\n\\]\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nApply the cosine addition formula and use \\(\\sin(r\\pi)=0\\) and \\(\\cos(r\\pi)=(-1)^r\\).\n\n\n\n\nLemma 2.4 (Three-term reverse triangle inequality) For all real numbers \\(u,v,w\\),\n\\[\n|u+v+w|\\ge |u|-|v|-|w|.\n\\]\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nTwice applying the triangle inequality gives \\(|u|\\le |u+v+w|+|v|+|w|\\).\n\n\n\n\nTheorem 2.2 (Absolute convergence) For every \\(x\\in\\mathbb R\\), the series\n\\[\n\\sum_{n=0}^{\\infty}a^n\\cos(\\pi b^n x)\n\\]\nconverges absolutely.\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nSince \\(|\\cos(\\pi b^n x)|\\le1\\),\n\\[\n|a^n\\cos(\\pi b^n x)|\\le a^n.\n\\]\nThe geometric series \\(\\sum_{n=0}^{\\infty}a^n\\) converges because \\(0&lt;a&lt;1\\). Comparison proves absolute convergence (Massachusetts Institute of Technology 2020).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html#continuity",
+    "href": "continuous-nowhere-differentiable.html#continuity",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "2.4 Continuity",
+    "text": "2.4 Continuity\n\nTheorem 2.3 (Continuity of the Weierstrass function) The function\n\\[\nW(x)=\\sum_{n=0}^{\\infty}a^n\\cos(\\pi b^n x)\n\\]\nis bounded and continuous on \\(\\mathbb R\\).\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nFor every \\(x\\),\n\\[\n|W(x)|\n\\le \\sum_{n=0}^{\\infty}a^n\n=\\frac{1}{1-a},\n\\]\nso \\(W\\) is bounded. The same estimate is independent of \\(x\\), so the Weierstrass M-test shows that the partial sums converge uniformly. Every partial sum is continuous, and a uniform limit of continuous functions is continuous (Massachusetts Institute of Technology 2020).\n\n\n\n\n\n\n\n\n\nNoteSequential proof\n\n\n\n\n\nThe original paper also proves continuity using Definition 2.2. Let \\(x_j\\to c\\) and fix \\(\\varepsilon&gt;0\\). Choose \\(M\\) so large that\n\\[\n2\\sum_{n=M+1}^{\\infty}a^n&lt;\\frac{\\varepsilon}{2}.\n\\]\nWe split the series into a finite head and a uniformly small tail. For the head, continuity of each cosine term gives\n\\[\n\\sum_{n=0}^{M}a^n\n\\left|\\cos(\\pi b^n x_j)-\\cos(\\pi b^n c)\\right|\n\\longrightarrow0.\n\\]\nIt is therefore less than \\(\\varepsilon/2\\) for all sufficiently large \\(j\\). The tail satisfies\n\\[\n\\sum_{n=M+1}^{\\infty}a^n\n\\left|\\cos(\\pi b^n x_j)-\\cos(\\pi b^n c)\\right|\n\\le2\\sum_{n=M+1}^{\\infty}a^n\n&lt;\\frac{\\varepsilon}{2}.\n\\]\nHence \\(|W(x_j)-W(c)|&lt;\\varepsilon\\) eventually, so \\(W(x_j)\\to W(c)\\) (Massachusetts Institute of Technology 2020).\n\n\n\nThe original paper approached continuity sequentially and used the following useful fact.\n\nExercise 2.1 (A limsup criterion for convergence to zero) Prove that\n\\[\n\\limsup_{n\\to\\infty}|x_n|=0\n\\quad\\Longleftrightarrow\\quad\n\\lim_{n\\to\\infty}x_n=0.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nIf \\(x_n\\to0\\), then \\(|x_n|\\to0\\), so \\(\\limsup |x_n|=0\\).\nConversely, suppose \\(\\limsup |x_n|=0\\). Because \\(|x_n|\\ge0\\), we also have \\(\\liminf |x_n|\\ge0\\). Hence\n\\[\n0\\le\\liminf_{n\\to\\infty}|x_n|\n\\le\\limsup_{n\\to\\infty}|x_n|=0.\n\\]\nThus \\(|x_n|\\to0\\), which is equivalent to \\(x_n\\to0\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html#nowhere-differentiability",
+    "href": "continuous-nowhere-differentiable.html#nowhere-differentiability",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "2.5 Nowhere differentiability",
+    "text": "2.5 Nowhere differentiability\n\nTheorem 2.4 (Weierstrass) Assume\n\\[\n0&lt;a&lt;1,\n\\qquad b&gt;1\\text{ is an odd integer},\n\\qquad ab&gt;1+\\frac{3\\pi}{2}.\n\\]\nThen\n\\[\nW(x)=\\sum_{n=0}^{\\infty}a^n\\cos(\\pi b^n x)\n\\]\nis nowhere differentiable on \\(\\mathbb R\\).\n\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nFix \\(x_0\\in\\mathbb R\\). For each \\(m\\), choose an integer \\(k_m\\) nearest to \\(b^m x_0\\) and write\n\\[\nz_m=b^m x_0-k_m,\n\\qquad -\\frac12\\le z_m\\le\\frac12.\n\\]\nSet\n\\[\nx_m=\\frac{k_m+1}{b^m},\n\\qquad\nh_m=x_m-x_0=\\frac{1-z_m}{b^m}.\n\\]\nThen\n\\[\n\\frac{1}{2b^m}\\le h_m\\le\\frac{3}{2b^m},\n\\]\nso \\(x_m\\to x_0\\) from the right. Split the increment as\n\\[\nW(x_m)-W(x_0)=A_m+B_m,\n\\]\nwhere \\(A_m\\) contains the terms \\(0\\le n&lt;m\\) and \\(B_m\\) contains the terms \\(n\\ge m\\).\nBy Lemma 2.1,\n\\[\n\\begin{aligned}\n|A_m|\n&\\le \\pi h_m\\sum_{n=0}^{m-1}(ab)^n \\\\\n&\\le \\frac{\\pi(ab)^m}{ab-1}h_m.\n\\end{aligned}\n\\]\nFor \\(n\\ge m\\), the oddness of \\(b\\) and Lemma 2.3 give\n\\[\n\\cos(\\pi b^n x_m)=-(-1)^{k_m}\n\\]\nand\n\\[\n\\cos(\\pi b^n x_0)\n=(-1)^{k_m}\\cos(\\pi b^{n-m}z_m).\n\\]\nTherefore\n\\[\nB_m=-(-1)^{k_m}\n\\sum_{n=m}^{\\infty}a^n\n\\left(1+\\cos(\\pi b^{n-m}z_m)\\right).\n\\]\nEvery summand in parentheses is nonnegative. Keeping only the \\(n=m\\) term and using \\(|z_m|\\le1/2\\) yields\n\\[\n|B_m|\n\\ge a^m\\bigl(1+\\cos(\\pi z_m)\\bigr)\n\\ge a^m.\n\\]\nSince \\(h_m\\le 3/(2b^m)\\),\n\\[\n|B_m|\\ge\\frac23(ab)^m h_m.\n\\]\nThe reverse triangle inequality now gives\n\\[\n\\left|\\frac{W(x_m)-W(x_0)}{x_m-x_0}\\right|\n\\ge\n(ab)^m\\left(\\frac23-\\frac{\\pi}{ab-1}\\right).\n\\]\nThe parenthesized constant is positive precisely when \\(ab&gt;1+3\\pi/2\\), and \\((ab)^m\\to\\infty\\). Thus the difference quotients along \\(x_m\\to x_0\\) are unbounded, so \\(W'(x_0)\\) does not exist. Because \\(x_0\\) was arbitrary, \\(W\\) is nowhere differentiable (Massachusetts Institute of Technology 2020).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  },
+  {
+    "objectID": "continuous-nowhere-differentiable.html#conclusion",
+    "href": "continuous-nowhere-differentiable.html#conclusion",
+    "title": "2  Continuous Everywhere, Nowhere Differentiable Function",
+    "section": "2.6 Conclusion",
+    "text": "2.6 Conclusion\nThe Weierstrass function separates continuity from smoothness in the strongest possible way. Its partial sums are smooth, and they converge uniformly, yet the limiting curve remains jagged at every scale. The example shows both the reach and the limits of geometric intuition: continuity survives uniform limits, while differentiability need not.\n\n\n\n\nAbbott, Stephen. 2015. Understanding Analysis. 2nd ed. Springer. https://link.springer.com/book/10.1007/978-1-4939-2712-8.\n\n\nAnshelevich, Michael. 2025. Class Notes for MATH 409.\n\n\nMassachusetts Institute of Technology. 2020. Real Analysis Lecture 18: Weierstrass’s Example of a Continuous and Nowhere Differentiable Function. https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/mit18_100af20_lec18.pdf.\n\n\nStein, Elias M., and Rami Shakarchi. 2003. Fourier Analysis: An Introduction. Vol. 1. Princeton Lectures in Analysis. Princeton University Press. https://press.princeton.edu/books/hardcover/9780691113845/fourier-analysis.\n\n\nWikipedia contributors. 2025a. Karl Weierstrass. https://en.wikipedia.org/wiki/Karl_Weierstrass.\n\n\nWikipedia contributors. 2025b. Weierstrass Function. https://en.wikipedia.org/wiki/Weierstrass_function.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous Everywhere, Nowhere Differentiable Function</span>"
+    ]
+  }
+]

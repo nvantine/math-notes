@@ -1,0 +1,1 @@
+Sitemap: https://nvantine.github.io/math-notes/convex-optimization/sitemap.xml

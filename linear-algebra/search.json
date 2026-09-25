@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Linear algebra",
+    "section": "",
+    "text": "Linear algebra\nVector spaces, their axioms, and the first consequences. These notes follow Axler (2024).",
+    "crumbs": [
+      "Linear algebra"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "Linear algebra",
+    "section": "Contents",
+    "text": "Contents\n\nVector spaces",
+    "crumbs": [
+      "Linear algebra"
+    ]
+  },
+  {
+    "objectID": "index.html#reference-map",
+    "href": "index.html#reference-map",
+    "title": "Linear algebra",
+    "section": "Reference map",
+    "text": "Reference map\n\nDefinition 1.3 — the axioms.\nTheorem 1.1 and Theorem 1.2 — first consequences.\nExercise 1.1 and Exercise 1.2 — exercises.",
+    "crumbs": [
+      "Linear algebra"
+    ]
+  },
+  {
+    "objectID": "index.html#reading-the-notes",
+    "href": "index.html#reading-the-notes",
+    "title": "Linear algebra",
+    "section": "Reading the notes",
+    "text": "Reading the notes\nStatements stay visible; open Proof or Solution when you want the argument. Definitions, theorems, and exercises link to the results they use.\nThe Lean disclosures reproduce the code and playground links in the LaTeX source. Imports and earlier results may be omitted from the displayed excerpt; the playground contains the accompanying context. These are source excerpts, not locally compiler-checked proofs.\n← All subjects\n\n\n\n\nAxler, Sheldon. 2024. Linear Algebra Done Right. 4th ed. Undergraduate Texts in Mathematics. Springer. https://doi.org/10.1007/978-3-031-41026-0.",
+    "crumbs": [
+      "Linear algebra"
+    ]
+  },
+  {
+    "objectID": "vector-spaces.html",
+    "href": "vector-spaces.html",
+    "title": "1  Vector Spaces",
+    "section": "",
+    "text": "1.1 Definition of a vector space\nThese notes and exercises follow Axler (2024). Throughout, \\(\\mathbb{F}\\) is a field (usually \\(\\mathbb{R}\\) or \\(\\mathbb{C}\\)).\nSource correction. The LaTeX list omitted associativity of scalar multiplication; it is included above. The scalar and vector names in the distributive laws have also been made consistent.\nRemark. We just proved a statement of the form\n\\[\n\\forall v\\in V,\\quad\n[\\exists u\\in V,\\ v+u=0]\\ \\land\n[\\forall w,w'\\in V,\\ ((v+w=0)\\land(v+w'=0))\\implies w'=w].\n\\]\nAlthough this makes the proof look more complicated than it is, it demonstrates what is going on under the hood. Given any vector \\(v\\), we must show that both statements are true. For the first, the definition of a vector space provides an inverse \\(u\\). For the second, we choose two inverses \\(w,w'\\) and use the vector-space properties to show that they are the same. The existence part comes from the axiom; the uniqueness argument alone does not prove existence. We denote this unique inverse by \\(-v\\).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vector Spaces</span>"
+    ]
+  },
+  {
+    "objectID": "vector-spaces.html#definition-of-a-vector-space",
+    "href": "vector-spaces.html#definition-of-a-vector-space",
+    "title": "1  Vector Spaces",
+    "section": "",
+    "text": "Definition 1.1 (Addition) An addition on a set \\(S\\) is a binary operation\n\\[\n+:S\\times S\\to S,\\qquad(s,t)\\mapsto s+t.\n\\]\n\n\nDefinition 1.2 (Scalar multiplication) A scalar multiplication on \\(S\\) over \\(\\mathbb{F}\\) is a map\n\\[\n\\mathbb{F}\\times S\\to S,\\qquad(\\lambda,s)\\mapsto\\lambda s.\n\\]\n\n\nDefinition 1.3 (Vector space) A vector space \\(V\\) over \\(\\mathbb{F}\\) is a set equipped with an addition (Definition 1.1) and scalar multiplication (Definition 1.2) satisfying the following properties:\n\nCommutativity: for all \\(u,v\\in V\\), \\(u+v=v+u\\).\nAssociativity: for all \\(u,v,w\\in V\\), \\((u+v)+w=u+(v+w)\\).\nAdditive identity: there exists \\(0\\in V\\) such that \\(v+0=v\\) for every \\(v\\in V\\).\nAdditive inverse: for every \\(v\\in V\\), there exists \\(w\\in V\\) such that \\(v+w=0\\).\nMultiplicative identity: for every \\(v\\in V\\), \\(1v=v\\).\nAssociativity of scalar multiplication: for all \\(a,b\\in\\mathbb{F}\\) and \\(v\\in V\\), \\(a(bv)=(ab)v\\).\nDistributive laws: for all \\(a,b\\in\\mathbb{F}\\) and \\(v,w\\in V\\),\n\\[\na(v+w)=av+aw,\\qquad(a+b)v=av+bv.\n\\]\n\n\n\n\nTheorem 1.1 (Unique additive inverse) For every \\(v\\in V\\), there exists a unique \\(w\\in V\\) such that \\(v+w=0\\).\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nSuppose \\(V\\) is a vector space. Let \\(v\\in V\\). Existence follows from the additive inverse axiom in Definition 1.3. Suppose \\(w\\) and \\(w'\\) are additive inverses of \\(v\\). Then\n\\[\nw=w+0=w+(v+w')=(w+v)+w'=0+w'=w'.\n\\]\nThus \\(w=w'\\).\n\n\n\n\n\n\n\n\nTheorem 1.2 (Zero times a vector) For every \\(v\\in V\\), \\(0v=0\\).\n\n\n\n\n\n\nTipProof\n\n\n\n\n\nFor \\(v\\in V\\), we have\n\\[\n0v=(0+0)v=0v+0v.\n\\]\nAdding the additive inverse of \\(0v\\) to both sides leaves \\(0=0v\\), as desired.\n\n\n\n\n\n\n\n\n\nNoteLean\n\n\n\n\n\nThe source formalization of Theorem 1.2. As in the LaTeX notes, the displayed snippet omits import Mathlib and variable {V : Type*} [AddCommGroup V] [Module ℝ V]; the original playground link contains the full context.\n\ntheorem zero_smul_eq_zero : ∀ v : V, (0 : ℝ) • v = 0 := by\n  intro v\n  have h : (0 : ℝ) • v = (0 : ℝ) • v + (0 : ℝ) • v := by\n    nth_rewrite 1 [← add_zero (0 : ℝ)]\n    rw [add_smul]\n  have h2 : (0:ℝ) • v + -((0:ℝ) • v) = ((0:ℝ) • v + (0:ℝ) • v) + -((0:ℝ) • v) := by\n    rw [← h]\n  rw [add_neg_cancel] at h2\n  rw [add_assoc, add_neg_cancel, add_zero] at h2\n  rw [h2]\n\n\nOpen in Lean playground",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vector Spaces</span>"
+    ]
+  },
+  {
+    "objectID": "vector-spaces.html#exercises",
+    "href": "vector-spaces.html#exercises",
+    "title": "1  Vector Spaces",
+    "section": "1.2 Exercises",
+    "text": "1.2 Exercises\n\nExercise 1.1 (Double additive inverse) Prove that \\(-(-v)=v\\) for every \\(v\\in V\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nSuppose \\(v\\in V\\), where \\(V\\) is a vector space. By definition, \\(-v\\) is the additive inverse of \\(v\\), so\n\\[\nv+(-v)=0.\n\\]\nAlso by definition, the additive inverse of \\(-v\\) satisfies\n\\[\n(-v)+(-(-v))=0.\n\\]\nUsing commutativity (Definition 1.3), we can rearrange the first expression to see that\n\\[\n\\begin{aligned}\n(-v)+v&=0,\\\\\n(-v)+(-(-v))&=0.\n\\end{aligned}\n\\]\nNow Theorem 1.1 gives \\(-(-v)=v\\).\n\n\n\n\n\n\n\n\n\nNoteLean\n\n\n\n\n\nThe source formalization of Exercise 1.1. This statement only uses the additive-group structure; no scalar multiplication is needed. The displayed snippet omits the source’s shared Mathlib imports and variable declarations; the original playground provides them.\n\ntheorem double_negation (v : V) : -(-v) = v := by\n  have h1 : v + (-v) = 0 := add_neg_cancel v\n  have h2 : (-v) + (-(-v)) = 0 := add_neg_cancel (-v)\n  rw [add_comm] at h1\n  -- h1 : -v + v = 0\n  -- h2 : -v + -(-v) = 0\n  have := add_left_cancel (h1.trans h2.symm)\n  exact this.symm\n\n\nOpen in Lean playground\n\n\n\n\n\n\n\nExercise 1.2 (Replacing the additive inverse axiom) Show that in Definition 1.3, the additive inverse condition can be replaced with the condition\n\\[\n\\forall v\\in V,\\qquad 0v=0.\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe need to show that the following are equivalent with the help of the other vector-space axioms:\n\nFor every \\(v\\in V\\), there exists \\(w\\in V\\) such that \\(v+w=0\\).\nFor every \\(v\\in V\\), \\(0v=0\\).\n\n(a) \\(\\Rightarrow\\) (b). Assume all the axioms, including additive inverses. This direction is Theorem 1.2.\n(b) \\(\\Rightarrow\\) (a). Assume the remaining axioms and \\(0v=0\\) for every \\(v\\in V\\). For a given \\(v\\), take \\(w=(-1)v\\), which exists by scalar multiplication. Distributivity and \\(1v=v\\) give\n\\[\nv+w=1v+(-1)v=(1+(-1))v=0v=0.\n\\]\nThus \\(w\\) is an additive inverse of \\(v\\).\nSource correction. We construct \\(w\\) as \\((-1)v\\), not as \\(-v\\): the existence of a vector additive inverse is what this direction must prove. The forward direction uses the zero-scalar theorem, rather than inverse uniqueness.\n\n\n\n\n\n\n\n\n\nNoteLean\n\n\n\n\n\nThe original snippet associated with Exercise 1.2 is preserved below. Its context already assumes [AddCommGroup V] [Module ℝ V], so this is not a formal proof of the weaker axiom system used in the exercise. It proves the displayed equivalence inside an existing module. Its reverse implication uses zero_smul_eq_zero from the zero-scalar Lean block; that dependency is included in the original playground.\n\ntheorem add_inv_swap : ∀ v : V, ((0 : ℝ) • v = 0 ↔ ∃ w : V, v + w = 0) := by\n  intro v\n  constructor\n  · intro h\n    use (-1 : ℝ) • v\n    nth_rewrite 1 [← one_smul ℝ v]\n    rw [← add_smul]\n    rw [show (1 + -1 : ℝ) = 0 from by ring]\n    rw [h]\n  · intro h\n    exact zero_smul_eq_zero v\n\n\nOpen in Lean playground\n\n\n\n\n\n\n\n\n\n\nAxler, Sheldon. 2024. Linear Algebra Done Right. 4th ed. Undergraduate Texts in Mathematics. Springer. https://doi.org/10.1007/978-3-031-41026-0.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vector Spaces</span>"
+    ]
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Convex optimization",
+    "section": "",
+    "text": "Convex optimization\nConvexity begins with line segments. These notes follow Boyd and Vandenberghe (2004), starting with the geometry of convex sets.",
+    "crumbs": [
+      "Convex optimization"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "Convex optimization",
+    "section": "Contents",
+    "text": "Contents\n\nConvex sets",
+    "crumbs": [
+      "Convex optimization"
+    ]
+  },
+  {
+    "objectID": "index.html#reference-map",
+    "href": "index.html#reference-map",
+    "title": "Convex optimization",
+    "section": "Reference map",
+    "text": "Reference map\n\nDefinition 1.1, Definition 1.2, and Definition 1.3 — geometric vocabulary.\nExercise 1.1\nExercise 1.2\nExercise 1.3",
+    "crumbs": [
+      "Convex optimization"
+    ]
+  },
+  {
+    "objectID": "index.html#reading-the-notes",
+    "href": "index.html#reading-the-notes",
+    "title": "Convex optimization",
+    "section": "Reading the notes",
+    "text": "Reading the notes\nStatements stay visible; open Proof or Solution when you want the argument. Definitions, theorems, and exercises link to the results they use.\nFor the underlying algebra, see vector spaces. The current LaTeX convex-optimization chapter has no Lean blocks; none are invented here.\n← All subjects\n\n\n\n\nBoyd, Stephen, and Lieven Vandenberghe. 2004. Convex Optimization. Cambridge University Press. https://doi.org/10.1017/CBO9780511804441.",
+    "crumbs": [
+      "Convex optimization"
+    ]
+  },
+  {
+    "objectID": "convex-sets.html",
+    "href": "convex-sets.html",
+    "title": "1  Convex Sets",
+    "section": "",
+    "text": "1.1 Convexity\nThese exercises are adapted from Boyd and Vandenberghe (2004).\nWe work in \\(\\mathbb{R}^n\\), with the addition and scalar multiplication of a vector space.\nThe next two definitions fix the notation used in the exercises.\nBoth hyperplanes and halfspaces satisfy Definition 1.1: applying \\(a^T\\) to a convex combination preserves the defining equality or inequality. Exercise 1.1 extends the two-point definition to finitely many points; Exercise 1.2 and Exercise 1.3 describe the geometry of Definition 1.2 and Definition 1.3.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Convex Sets</span>"
+    ]
+  },
+  {
+    "objectID": "convex-sets.html#convexity",
+    "href": "convex-sets.html#convexity",
+    "title": "1  Convex Sets",
+    "section": "",
+    "text": "Definition 1.1 (Convex set) A set \\(C\\) is convex if the line segment between any two points in \\(C\\) lies in \\(C\\): for any \\(x_1,x_2\\in C\\) and any \\(\\theta\\) with \\(0\\leq\\theta\\leq1\\),\n\\[\n\\theta x_1+(1-\\theta)x_2\\in C.\n\\]\n\n\n\nDefinition 1.2 (Hyperplane) For \\(a\\in\\mathbb{R}^n\\) with \\(a\\neq0\\) and \\(b\\in\\mathbb{R}\\), the set\n\\[\nH=\\{x\\in\\mathbb{R}^n\\mid a^Tx=b\\}\n\\]\nis a hyperplane, with normal vector \\(a\\).\n\n\nDefinition 1.3 (Halfspace) For \\(a\\in\\mathbb{R}^n\\) with \\(a\\neq0\\) and \\(b\\in\\mathbb{R}\\), the set\n\\[\n\\{x\\in\\mathbb{R}^n\\mid a^Tx\\leq b\\}\n\\]\nis a (closed) halfspace. Its boundary is the hyperplane \\(a^Tx=b\\) from Definition 1.2.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Convex Sets</span>"
+    ]
+  },
+  {
+    "objectID": "convex-sets.html#exercises",
+    "href": "convex-sets.html#exercises",
+    "title": "1  Convex Sets",
+    "section": "1.2 Exercises",
+    "text": "1.2 Exercises\n\nExercise 1.1 (Finite convex combinations) Let \\(C \\subseteq \\mathbb{R}^n\\) be a convex set, with \\(x_1, \\ldots, x_k \\in C\\), and let \\(\\theta_1, \\ldots, \\theta_k \\in \\mathbb{R}\\) satisfy\n\\[\n\\theta_i \\geq 0,\n\\qquad\n\\theta_1 + \\cdots + \\theta_k = 1.\n\\]\nShow that\n\\[\n\\theta_1x_1 + \\cdots + \\theta_kx_k \\in C.\n\\]\nThe definition of convexity gives this result for \\(k=2\\); prove it for arbitrary \\(k\\).\nHint. Use induction on \\(k\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe prove the result by induction on the number of points.\nThe case \\(k=1\\) is immediate: the coefficient condition forces \\(\\theta_1=1\\), so \\(\\theta_1x_1=x_1\\in C\\).\nFor the first nontrivial case, let \\(k=2\\). If \\(x_1,x_2\\in C\\) and \\(\\theta\\in[0,1]\\), then the definition of convexity gives\n\\[\n(1-\\theta)x_1+\\theta x_2\\in C.\n\\]\nThus every convex combination of two points in \\(C\\) belongs to \\(C\\).\nNow suppose every convex combination of \\(\\ell\\) points in \\(C\\) belongs to \\(C\\). In other words, whenever\n\\[\nx_i\\in C,\n\\qquad\n\\theta_i\\geq0,\n\\qquad\n\\sum_{i=1}^{\\ell}\\theta_i=1,\n\\]\nwe have\n\\[\n\\sum_{i=1}^{\\ell}\\theta_i x_i\\in C.\n\\]\nLet \\(x_1,\\ldots,x_{\\ell+1}\\in C\\), and let \\(\\phi_i\\geq0\\) satisfy\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i=1.\n\\]\nIf \\(\\phi_{\\ell+1}=1\\), then \\(\\phi_1=\\cdots=\\phi_\\ell=0\\), so\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i=x_{\\ell+1}\\in C.\n\\]\nNow suppose \\(\\phi_{\\ell+1}&lt;1\\), and define\n\\[\nz=\\frac{1}{1-\\phi_{\\ell+1}}\n\\sum_{i=1}^{\\ell}\\phi_i x_i.\n\\]\nSince\n\\[\n\\sum_{i=1}^{\\ell}\\phi_i=1-\\phi_{\\ell+1},\n\\]\nthe coefficients in the definition of \\(z\\) are nonnegative and sum to one. The induction hypothesis therefore implies that \\(z\\in C\\).\nFinally,\n\\[\n\\begin{aligned}\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i\n&=\\sum_{i=1}^{\\ell}\\phi_i x_i+\\phi_{\\ell+1}x_{\\ell+1} \\\\\n&=(1-\\phi_{\\ell+1})z+\\phi_{\\ell+1}x_{\\ell+1}.\n\\end{aligned}\n\\]\nBecause \\(z,x_{\\ell+1}\\in C\\) and \\(\\phi_{\\ell+1}\\in[0,1]\\), convexity of \\(C\\) gives\n\\[\n\\sum_{i=1}^{\\ell+1}\\phi_i x_i\\in C.\n\\]\nTherefore, by induction, every finite convex combination of points in \\(C\\) belongs to \\(C\\).\n\n\n\n\n\nExercise 1.2 (Distance between parallel hyperplanes) For \\(a\\neq0\\), what is the distance between the parallel hyperplanes\n\\[\nH_1=\\{x\\in\\mathbb{R}^n\\mid a^Tx=b_1\\}\n\\qquad\\text{and}\\qquad\nH_2=\\{x\\in\\mathbb{R}^n\\mid a^Tx=b_2\\}?\n\\]\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor every \\(x_1\\in H_1\\) and \\(x_2\\in H_2\\),\n\\[\na^T(x_1-x_2)=b_1-b_2.\n\\]\nThe Cauchy–Schwarz inequality therefore gives\n\\[\n|b_1-b_2|\n=|a^T(x_1-x_2)|\n\\leq\\lVert a\\rVert\\,\\lVert x_1-x_2\\rVert.\n\\]\nThus every pair of points, one from each hyperplane, satisfies\n\\[\n\\lVert x_1-x_2\\rVert\n\\geq\n\\frac{|b_1-b_2|}{\\lVert a\\rVert}.\n\\]\nThis lower bound is attained. Choose any \\(x_2\\in H_2\\) and define\n\\[\nx_1=x_2+\\frac{b_1-b_2}{\\lVert a\\rVert^2}a.\n\\]\nThen\n\\[\na^Tx_1\n=a^Tx_2+\\frac{b_1-b_2}{\\lVert a\\rVert^2}a^Ta\n=b_2+(b_1-b_2)\n=b_1,\n\\]\nso \\(x_1\\in H_1\\), and\n\\[\n\\lVert x_1-x_2\\rVert\n=\\left\\lVert\\frac{b_1-b_2}{\\lVert a\\rVert^2}a\\right\\rVert\n=\\frac{|b_1-b_2|}{\\lVert a\\rVert}.\n\\]\nHence the distance between the hyperplanes is\n\\[\n\\boxed{\\frac{|b_1-b_2|}{\\lVert a\\rVert}}.\n\\]\n\n\n\n\n\nExercise 1.3 (Voronoi description of a halfspace) Let \\(a\\) and \\(b\\) be distinct points in \\(\\mathbb{R}^n\\). Show that the set of all points that are closer in Euclidean norm to \\(a\\) than to \\(b\\),\n\\[\n\\{x\\mid \\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\\},\n\\]\nis a halfspace. Describe it explicitly as an inequality of the form \\(c^Tx\\leq d\\). Draw a picture.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nSince both sides are nonnegative,\n\\[\n\\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\n\\iff\n\\lVert x-a\\rVert_2^2\\leq\\lVert x-b\\rVert_2^2.\n\\]\nExpanding the squared norms gives\n\\[\n\\lVert x-a\\rVert_2^2=x^Tx-2a^Tx+a^Ta,\n\\qquad\n\\lVert x-b\\rVert_2^2=x^Tx-2b^Tx+b^Tb.\n\\]\nThe quadratic terms cancel, leaving\n\\[\n2(b-a)^Tx\\leq b^Tb-a^Ta.\n\\]\nThus\n\\[\n\\{x\\mid\\lVert x-a\\rVert_2\\leq\\lVert x-b\\rVert_2\\}\n=\n\\{x\\mid c^Tx\\leq d\\},\n\\]\nwhere\n\\[\nc=b-a,\n\\qquad\nd=\\frac{1}{2}\\bigl(\\lVert b\\rVert_2^2-\\lVert a\\rVert_2^2\\bigr).\n\\]\nSince \\(a\\neq b\\), we have \\(c\\neq0\\), so this is a halfspace. Geometrically, its boundary is the perpendicular bisector of the segment \\([a,b]\\), and the halfspace contains \\(a\\).\n\n\n\n\n\n\n\n\nBoyd, Stephen, and Lieven Vandenberghe. 2004. Convex Optimization. Cambridge University Press. https://doi.org/10.1017/CBO9780511804441.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Convex Sets</span>"
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Foundations",
+    "section": "",
+    "text": "Foundations\nThe language of sets and relations.",
+    "crumbs": [
+      "Foundations"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "Foundations",
+    "section": "Contents",
+    "text": "Contents\n\nRelations",
+    "crumbs": [
+      "Foundations"
+    ]
+  },
+  {
+    "objectID": "index.html#reference-map",
+    "href": "index.html#reference-map",
+    "title": "Foundations",
+    "section": "Reference map",
+    "text": "Reference map\n\nDefinition 1.1 and Definition 1.2\nExample 1.1\nExercise 1.1\nExercise 1.2",
+    "crumbs": [
+      "Foundations"
+    ]
+  },
+  {
+    "objectID": "index.html#reading-the-notes",
+    "href": "index.html#reading-the-notes",
+    "title": "Foundations",
+    "section": "Reading the notes",
+    "text": "Reading the notes\nStatements stay visible; open Proof or Solution when you want the argument. Definitions, theorems, and exercises link to the results they use.\n← All subjects",
+    "crumbs": [
+      "Foundations"
+    ]
+  },
+  {
+    "objectID": "relations.html",
+    "href": "relations.html",
+    "title": "1  Relations",
+    "section": "",
+    "text": "A relation simply relates elements in two different sets by delineating a subset of related pairs in the Cartesian product.\n\nDefinition 1.1 (Relation) Let \\(X\\) and \\(Y\\) be sets. A relation over \\(X \\times Y\\) is a subset \\(R \\subseteq X \\times Y\\).\nIf \\(Y=X\\), the relation is called homogeneous. When \\((x,y)\\in R\\), we say that \\(x\\) is related to \\(y\\) and write \\(xRy\\).\n\nThe definition in Definition 1.1 treats a relation as a set of ordered pairs. Equivalently, its indicator is a proposition-valued function of two arguments.\n\nExample 1.1 (Basic relations) Let \\(X\\) and \\(Y\\) be sets. The following are standard examples:\n\nThe discrete relation \\(X\\times Y\\).\nThe empty relation \\(\\emptyset\\subseteq X\\times Y\\).\nWhen \\(Y=X\\), the diagonal relation \\(\\{(x,x):x\\in X\\}\\).\n\n\n\nExercise 1.1 (Equality of the basic relations) Give a necessary and sufficient condition for the empty, discrete, and diagonal relations to be equal.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAssume the three are homogeneous relations on the same set \\(X\\), so \\(Y=X\\). They are equal if and only if \\(X=\\emptyset\\).\nIf \\(X=\\emptyset\\), then\n\\[\nX\\times X=\\emptyset\n\\qquad\\text{and}\\qquad\n\\{(x,x):x\\in X\\}=\\emptyset,\n\\]\nso all three relations coincide. Conversely, if the diagonal relation is empty, then \\(X\\) has no elements: any \\(x\\in X\\) would make \\((x,x)\\) an element of the diagonal. Therefore \\(X=\\emptyset\\).\n\n\n\n\n\nExercise 1.2 (Product of relations) Let \\((X_1,R_1)\\) and \\((X_2,R_2)\\) be pairs of sets and relations on them. The rule\n\\[\n(x,y)\\,(R_1\\times R_2)\\,(x',y')\n\\quad\\Longleftrightarrow\\quad\nxR_1x'\\text{ and }yR_2y'\n\\]\ndefines a relation \\(R_1\\times R_2\\) on \\(X_1\\times X_2\\). Express this relation as a subset of \\((X_1\\times X_2)^2\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe relation is\n\\[\nR_1\\times R_2\n=\n\\left\\{\n\\bigl((x,y),(x',y')\\bigr)\\in(X_1\\times X_2)^2\n:\n(x,x')\\in R_1\\text{ and }(y,y')\\in R_2\n\\right\\}.\n\\]\n\n\n\n\n\nDefinition 1.2 (Equivalence relation) Let \\(X\\) be a set and \\(R\\) a relation over \\(X\\) as in Definition 1.1. We say \\(R\\) is\n\nReflexive if \\(xRx\\) for every \\(x\\in X\\).\nSymmetric if \\(xRy\\) implies \\(yRx\\) for all \\(x,y\\in X\\).\nTransitive if \\(xRy\\) and \\(yRz\\) imply \\(xRz\\) for all \\(x,y,z\\in X\\).\nAn equivalence relation on \\(X\\) if it is reflexive, symmetric, and transitive.\n\n\nNotation. An arbitrary equivalence relation is typically denoted \\(\\sim\\).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Relations</span>"
+    ]
+  }
+]
